@@ -5,7 +5,7 @@
 
 function Add(a,b)
 {
-	return 100 + 20;
+	return 10 + 20;
 }
 
 function changeHeading1() {
