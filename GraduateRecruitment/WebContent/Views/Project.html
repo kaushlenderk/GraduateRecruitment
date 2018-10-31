@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Create New Research Project</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+		input[type=text], select {
+		    width: 100%;
+		    padding: 12px 20px;
+		    margin: 8px 0;
+		    display: inline-block;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    box-sizing: border-box;
+		}
+		
+		input[type=submit] {
+		    width: 100%;
+		    background-color: #4CAF50;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 8px 0;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+		
+		input[type=submit]:hover {
+		    background-color: #45a049;
+		}
+		
+		div {
+		    border-radius: 5px;
+		    background-color: #f2f2f2;
+		    padding: 20px;
+		}
+   </style>
+   
+</head>
+
+<body>
+  <div><a href="Index.html">Back to Home</a></div>	
+  <div class="small-container">
+    <h1>Create New Research Projects</h1>
+
+    <form>
+      <input id="item" type="text" placeholder="Department Name" style="width:400px;"><br/>
+      <input id="item1" type="text" placeholder="Project Title" style="width:400px;"><br/> 
+      <textarea id="item2" name="item2" style="width:400px;height:100px;padding: 5px 10px 0 20px;"  placeholder="Project Description"></textarea>    
+    </form>
+
+	<br/>
+	
+    <button>Clear All</button>
+    <button onclick="SetItemData()">Create</button>
+	<br/>
+    <h3>Added Research Projects</h3>
+     
+	<div class="container">	   
+	  <div class="table-responsive">          
+	  <table class="table" id="data">
+	    <thead>
+	      <tr>
+	        <th>Department Name</th>
+	        <th>Project Title</th>
+	        <th>Project Description</th>
+	      </tr>
+	    </thead>
+	    <tbody>	      
+	    </tbody>
+	  </table>
+	  </div>
+	</div>
+
+  </div>
+
+ 	
+  <script src="../Scripts/Js.js"></script>
+  
+  <script>
+  	
+  </script>
+</body>
+
+</html>

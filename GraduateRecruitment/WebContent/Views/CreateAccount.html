@@ -50,7 +50,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div style="text-align: center;">
-				<h2>MUN Login</h2>
+				<h2>MUN Create Account</h2>
 			</div>			
 		</div>
 	</div> 
@@ -63,17 +63,17 @@
 	        <div class="col-sm-6">
 	            <div class="wizard-container" style="padding-top: 40px;">
 	                <div class="card wizard-card" style="min-height:0px;" data-color="green" id="wizard">
-	                <form action="" method="">  
+	                <form action="">  
 	                     <div class="row">
 	                         <div class="col-sm-12">
 	                              <h4 class="info-text"></h4>									
 	                         </div>                                  
 	                         <div class="col-sm-10 col-sm-offset-1">
 	                             <div class="form-group">
-	                                 <label>Memorial Number &nbsp;<span class="required">*</span></label> 
+	                                 <label>First Name &nbsp;<span class="required">*</span></label>
 	                             </div>
 	                             <div class="form-group"> 
-	                                 <input type="text" class="form-control" id="MemorialNumber" placeholder="Memorial Number">
+	                                 <input type="text" class="form-control" id="firstName" placeholder="First Name">
 	                             </div>
 	                             <div class="form-group">
 	                                 <label id="E1" class="hide_control">Required field</label>
@@ -84,22 +84,51 @@
 	                         </div>    
 	                         <div class="col-sm-10 col-sm-offset-1">
 	                               <div class="form-group">
-	                                    <label>Password &nbsp;<span class="required">*</span></label>
+	                                    <label>Last Name &nbsp;<span class="required">*</span></label>
 	                               </div>
 	                               <div class="form-group">
-	                                    <input type="password" class="form-control" id="SignInPassword" placeholder="Password"> 
+	                                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
 	                               </div>
 	                               <div class="form-group">
 	                                    <label id="E2" class="hide_control">Required field</label>
 	                               </div>
 	                          </div>
+	                          <div class="col-sm-12">
+	                              &nbsp;									
+	                         </div>    
+	                         <div class="col-sm-10 col-sm-offset-1">
+	                               <div class="form-group">
+	                                    <label>External Email Address &nbsp;<span class="required">*</span></label>
+	                               </div>
+	                               <div class="form-group">
+	                                    <input type="text" class="form-control" id="email" placeholder="External Email Address">
+	                               </div>
+	                               <div class="form-group">
+	                                    <label id="E3" class="hide_control">Required field</label>
+	                                    <label id="E33" class="hide_control">Invalid email id format</label>
+	                               </div>
+	                          </div>
+	                           <div class="col-sm-12">
+	                              &nbsp;									
+	                         </div>    
+	                         <div class="col-sm-10 col-sm-offset-1">
+	                               <div class="form-group">
+	                                    <label>Password &nbsp;<span class="required">*</span></label>
+	                               </div>
+	                               <div class="form-group">
+	                                    <input type="password" class="form-control" id="SignUppassword" placeholder="Password">
+	                               </div>
+	                               <div class="form-group">
+	                                   <label id="E4" class="hide_control">Required field</label>
+	                               </div>
+	                          </div>
 						      <div class="col-sm-10 col-sm-offset-1">
 							 	 <div class="form-group info-text">                                        
-	                                  <input type='button' class='btn btn-fill btn-success btn-wd btn-sm info-text' style="min-width: 100%;" name='Sign in' value='Sign in'  onclick="validateSignIn();"/>  <br/><span><a href="#" style="color: #000;float: right;">Can't login?</a><span>
+	                                  <input type='button' class='btn btn-fill btn-success btn-wd btn-sm info-text' style="min-width: 100%;"  name='Join Now'  value='Join Now' onclick="validateSignUp();" />  <br/><span><a href="Login.html" style="color: #000;float: right;">Login</a><span>
 	                             </div>                                  						
 	                           </div>
 	                      </div>                        
-	                  </form>
+	                    </form>
 	                </div>
 	            </div> 
 	        </div>
@@ -107,16 +136,16 @@
         </div>  
     </div>   
 </div>
-
+ 
 <div class="container" style="padding: 25px;"> 
 	<div class="row">
 		<div class="col-md-12">
 			<div style="text-align: center;">
-				<a href="CreateAccount.html">Create Account</a>
+				&nbsp;
 			</div>			
 		</div>
 	</div> 
-</div>  
+</div> 
 
 <nav class="navbar navbar-default">
 	<div class="container">&nbsp;</div> 
@@ -135,12 +164,9 @@
                             <!-- <p>A Design By <a href="#">XpeedStudio</a></p> -->
                         </div>
                     </div>
-                </div>
-                <!--End of row-->
-            </div>
-            <!--End of container-->
-        </section>
-        <!--End of footer-->
+                </div> 
+            </div> 
+        </section> 
 		
 </body>
 
@@ -154,11 +180,16 @@
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 	<script src="../Scripts/jquery.validate.min.js"></script>
 
-	<script> 
-		function validateSignIn()
+	<script>
+		function isValidEmailAddress(emailAddress) {
+		    var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+		    return pattern.test(emailAddress);
+		}
+		
+		function validateSignUp()
 		{
 			
-			if($("#MemorialNumber").val()== null || $("#MemorialNumber").val()== '')
+			if($("#firstName").val()== null || $("#firstName").val()== '')
 			{ 
 				$("#E1").removeClass("hide_control");
 				$("#E1").addClass("show_control");
@@ -170,7 +201,7 @@
 			}
 			
 			
-			if($("#SignInPassword").val()== null || $("#SignInPassword").val()== '')
+			if($("#lastName").val()== null || $("#lastName").val()== '')
 			{
 				$("#E2").removeClass("hide_control");
 				$("#E2").addClass("show_control");
@@ -180,23 +211,72 @@
 				$("#E2").removeClass("show_control");
 				$("#E2").addClass("hide_control");
 			}
+			
+			if($("#email").val()== null || $("#email").val()== '')
+			{
+				$("#E3").removeClass("hide_control");
+				$("#E3").addClass("show_control");		
+			}
+			else
+			{
+				$("#E3").removeClass("show_control");
+				$("#E3").addClass("hide_control");
+				
+				if(!isValidEmailAddress($("#email").val())) 
+				{ 
+					$("#E33").removeClass("hide_control");
+					$("#E33").addClass("show_control");
+				}
+				else
+				{
+					$("#E33").removeClass("show_control");
+					$("#E33").addClass("hide_control");
+				}
+			}
+			
+			if($("#SignUppassword").val()== null || $("#SignUppassword").val()== '')
+			{
+				$("#E4").removeClass("hide_control");
+				$("#E4").addClass("show_control");
+			}
+			else
+			{
+				$("#E4").removeClass("show_control");
+				$("#E4").addClass("hide_control");
+			}
 		}
 		
-		$('#MemorialNumber').on('input',function(e){
-			if($("#MemorialNumber").val()!= null || $("#MemorialNumber").val()!= '')
+		$('#firstName').on('input',function(e){
+			if($("#firstName").val()!= null || $("#firstName").val()!= '')
 			{ 
 				$("#E1").removeClass("show_control");
 				$("#E1").addClass("hide_control");
 			}
 		});
 		
-		$('#SignInPassword').on('input',function(e){
-			if($("#SignInPassword").val()!= null || $("#SignInPassword").val()!= '')
+		$('#lastName').on('input',function(e){
+			if($("#lastName").val()!= null || $("#lastName").val()!= '')
 			{ 
 				$("#E2").removeClass("show_control");
 				$("#E2").addClass("hide_control");
 			}
-		}); 
-  </script>
+		});
+		
+		$('#email').on('input',function(e){
+			if($("#email").val()!= null || $("#email").val()!= '')
+			{ 
+				$("#E3").removeClass("show_control");
+				$("#E3").addClass("hide_control");
+			}
+		});
+		
+		$('#SignUppassword').on('input',function(e){
+			if($("#SignUppassword").val()!= null || $("#SignUppassword").val()!= '')
+			{ 
+				$("#E4").removeClass("show_control");
+				$("#E4").addClass("hide_control");
+			}
+		});
+	</script>
 </html>
 
