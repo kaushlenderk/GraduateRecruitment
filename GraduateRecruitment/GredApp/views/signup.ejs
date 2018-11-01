@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
+	<link rel="icon" type="image/png" href="img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title><%= siteTitle %> - <%= pageTitle %></title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+	<link type="text/css" rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css">
+    <link type="text/css" rel="stylesheet"  href="/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet"  href="/css/gsdk-bootstrap-wizard.css"/>
+	<link type="text/css" rel="stylesheet"  href="/css/demo.css"/>
+	<link type="text/css" rel="stylesheet" href="/css/carousel.css" />
+    <link type="text/css" rel="stylesheet" href="/css/profile_css.css">   
+    
+    <style>
+    	.required{color:red;}
+    	.hide_control{display:none;}
+    	.show_control{display:inline;color:red;}
+    	.form-group{margin-bottom: 0px;}    	
+    </style> 	
+</head>
+
+<body>
+<nav class="navbar navbar-default" style="min-height: 0px;margin-bottom:0px;">
+	<div class="container">&nbsp;</div> 
+</nav>
+<div class="container"> 
+	<div class="row">
+		<div class="col-md-12">
+			<div style="text-align: center;">
+				<a href="/"><img src="/images/MUN_Logo_RGB.png" alt="Logo" /></a>
+			</div>			
+		</div>
+	</div> 
+</div> 
+<div class="container"> 
+	<div class="row">
+		<div class="col-md-12">
+			<div style="text-align: center;">
+				<h2>MUN Create Account</h2>
+			</div>			
+		</div>
+	</div> 
+</div>  
+	 
+<div class="image-container set-full-height" style="background-image: url('assets/img/wizard-city.jpg');min-height: 0vh;"> 
+    <div class="container">
+        <div class="row">
+	        <div class="col-sm-3"></div>
+	        <div class="col-sm-6">
+	            <div class="wizard-container" style="padding-top: 40px;">
+	                <div class="card wizard-card" style="min-height:0px;" data-color="green" id="wizard">
+	                <form action="">  
+	                     <div class="row">
+	                         <div class="col-sm-12">
+	                              <h4 class="info-text"></h4>									
+	                         </div>                                  
+	                         <div class="col-sm-10 col-sm-offset-1">
+	                             <div class="form-group">
+	                                 <label>First Name &nbsp;<span class="required">*</span></label>
+	                             </div>
+	                             <div class="form-group"> 
+	                                 <input type="text" class="form-control" id="firstName" placeholder="First Name">
+	                             </div>
+	                             <div class="form-group">
+	                                 <label id="E1" class="hide_control">Required field</label>
+	                             </div>
+	                         </div>
+	                          <div class="col-sm-12">
+	                              &nbsp;									
+	                         </div>    
+	                         <div class="col-sm-10 col-sm-offset-1">
+	                               <div class="form-group">
+	                                    <label>Last Name &nbsp;<span class="required">*</span></label>
+	                               </div>
+	                               <div class="form-group">
+	                                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+	                               </div>
+	                               <div class="form-group">
+	                                    <label id="E2" class="hide_control">Required field</label>
+	                               </div>
+	                          </div>
+	                          <div class="col-sm-12">
+	                              &nbsp;									
+	                         </div>    
+	                         <div class="col-sm-10 col-sm-offset-1">
+	                               <div class="form-group">
+	                                    <label>External Email Address &nbsp;<span class="required">*</span></label>
+	                               </div>
+	                               <div class="form-group">
+	                                    <input type="text" class="form-control" id="email" placeholder="External Email Address">
+	                               </div>
+	                               <div class="form-group">
+	                                    <label id="E3" class="hide_control">Required field</label>
+	                                    <label id="E33" class="hide_control">Invalid email id format</label>
+	                               </div>
+	                          </div>
+	                           <div class="col-sm-12">
+	                              &nbsp;									
+	                         </div>    
+	                         <div class="col-sm-10 col-sm-offset-1">
+	                               <div class="form-group">
+	                                    <label>Password &nbsp;<span class="required">*</span></label>
+	                               </div>
+	                               <div class="form-group">
+	                                    <input type="password" class="form-control" id="SignUppassword" placeholder="Password">
+	                               </div>
+	                               <div class="form-group">
+	                                   <label id="E4" class="hide_control">Required field</label>
+	                               </div>
+	                          </div>
+						      <div class="col-sm-10 col-sm-offset-1">
+							 	 <div class="form-group info-text">                                        
+	                                  <input type='button' class='btn btn-fill btn-success btn-wd btn-sm info-text' style="min-width: 100%;"  name='Join Now'  value='Join Now' onclick="validateSignUp();" />  <br/><span><a href="login" style="color: #000;float: right;">Login</a><span>
+	                             </div>                                  						
+	                           </div>
+	                      </div>                        
+	                    </form>
+	                </div>
+	            </div> 
+	        </div>
+	        <div class="col-sm-3"></div>
+        </div>  
+    </div>   
+</div>
+ 
+<div class="container" style="padding: 25px;"> 
+	<div class="row">
+		<div class="col-md-12">
+			<div style="text-align: center;">
+				&nbsp;
+			</div>			
+		</div>
+	</div> 
+</div> 
+
+<nav class="navbar navbar-default">
+	<div class="container">&nbsp;</div> 
+</nav> 
+		<!--Start of footer-->
+        <section id="footer" style="background: #82ca9c;">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <div class="copyright" style="color:#fff;text-align:left;">
+                            <p>@ 2016 - Design By <span><a href="">&#9798;</a></span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="designer">
+                            <!-- <p>A Design By <a href="#">XpeedStudio</a></p> -->
+                        </div>
+                    </div>
+                </div> 
+            </div> 
+        </section> 
+		
+</body>
+
+	<!--   Core JS Files   --> 
+	<script src="/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/js/jquery.bootstrap.wizard.js" type="text/javascript"></script> 
+	<script src="/js/gsdk-bootstrap-wizard.js"></script>
+	<script src="/js/jquery.validate.min.js"></script>
+
+	<script>
+		function isValidEmailAddress(emailAddress) {
+		    var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+		    return pattern.test(emailAddress);
+		}
+		
+		function validateSignUp()
+		{
+			
+			if($("#firstName").val()== null || $("#firstName").val()== '')
+			{ 
+				$("#E1").removeClass("hide_control");
+				$("#E1").addClass("show_control");
+			}
+			else
+			{
+				$("#E1").removeClass("show_control");
+				$("#E1").addClass("hide_control");
+			}
+			
+			
+			if($("#lastName").val()== null || $("#lastName").val()== '')
+			{
+				$("#E2").removeClass("hide_control");
+				$("#E2").addClass("show_control");
+			}
+			else
+			{
+				$("#E2").removeClass("show_control");
+				$("#E2").addClass("hide_control");
+			}
+			
+			if($("#email").val()== null || $("#email").val()== '')
+			{
+				$("#E3").removeClass("hide_control");
+				$("#E3").addClass("show_control");		
+			}
+			else
+			{
+				$("#E3").removeClass("show_control");
+				$("#E3").addClass("hide_control");
+				
+				if(!isValidEmailAddress($("#email").val())) 
+				{ 
+					$("#E33").removeClass("hide_control");
+					$("#E33").addClass("show_control");
+				}
+				else
+				{
+					$("#E33").removeClass("show_control");
+					$("#E33").addClass("hide_control");
+				}
+			}
+			
+			if($("#SignUppassword").val()== null || $("#SignUppassword").val()== '')
+			{
+				$("#E4").removeClass("hide_control");
+				$("#E4").addClass("show_control");
+			}
+			else
+			{
+				$("#E4").removeClass("show_control");
+				$("#E4").addClass("hide_control");
+			}
+		}
+		
+		$('#firstName').on('input',function(e){
+			if($("#firstName").val()!= null || $("#firstName").val()!= '')
+			{ 
+				$("#E1").removeClass("show_control");
+				$("#E1").addClass("hide_control");
+			}
+		});
+		
+		$('#lastName').on('input',function(e){
+			if($("#lastName").val()!= null || $("#lastName").val()!= '')
+			{ 
+				$("#E2").removeClass("show_control");
+				$("#E2").addClass("hide_control");
+			}
+		});
+		
+		$('#email').on('input',function(e){
+			if($("#email").val()!= null || $("#email").val()!= '')
+			{ 
+				$("#E3").removeClass("show_control");
+				$("#E3").addClass("hide_control");
+			}
+		});
+		
+		$('#SignUppassword').on('input',function(e){
+			if($("#SignUppassword").val()!= null || $("#SignUppassword").val()!= '')
+			{ 
+				$("#E4").removeClass("show_control");
+				$("#E4").addClass("hide_control");
+			}
+		});
+	</script>
+</html>
+
