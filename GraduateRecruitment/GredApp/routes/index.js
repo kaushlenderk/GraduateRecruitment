@@ -13,7 +13,7 @@ router.get("/",function(req,res){
 /** Login page link **/
 router.get("/login",function(req,res){
  
-    res.render("Login",{
+    res.render("login",{
         pageTitle:'Login',
         pageID:'login'
     })
