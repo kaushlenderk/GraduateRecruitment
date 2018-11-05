@@ -28,5 +28,24 @@ router.get("/signup",function(req,res){
     })
 });
 
+/** faculty page link **/
+router.get("/faculty",function(req,res){
+ 
+    res.render("faculty",{
+        pageTitle:'Faculty Admin Page',
+        pageID:'Faculty Admin Page'
+    })
+});
+
+
+/** student page link **/
+router.get("/student",function(req,res){
+ 
+    res.render("student",{
+        pageTitle:'Student Admin Page',
+        pageID:'Student Admin Page'
+    })
+});
+
 
 module.exports =router; 

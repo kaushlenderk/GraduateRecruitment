@@ -98,9 +98,23 @@
 	                                    <label id="E33" class="hide_control">Invalid email id format</label>
 	                               </div>
 	                          </div>
-	                           <div class="col-sm-12">
+	                         <div class="col-sm-12">
 	                              &nbsp;									
-	                         </div>    
+	                         </div> 
+	                         <div class="col-sm-10 col-sm-offset-1">
+	                             <div class="col-sm-4" style="padding-left: 0px;">
+	                             	 <label class="checkbox-inline"><input type="checkbox" value="" id="isFaculty">Is Faculty</label>				
+	                         	</div>	
+	                         	 <div class="col-sm-6" style="width: 66%;padding-right: 0px;">
+	                             	 <div class="form-group" id="divfacultyid" style="display:none;">
+	                               		 <input type="text" class="form-control" id="facultyid" placeholder="Faculty Id">
+	                               		 <label id="E5" class="hide_control">Required field</label>
+	                           		 </div>					
+	                         	</div>						
+	                         </div>   
+	                         <div class="col-sm-12">
+	                              &nbsp;									
+	                         </div> 
 	                         <div class="col-sm-10 col-sm-offset-1">
 	                               <div class="form-group">
 	                                    <label>Password &nbsp;<span class="required">*</span></label>
@@ -168,6 +182,18 @@
 	<script src="/js/jquery.validate.min.js"></script>
 
 	<script>
+		$('#isFaculty').change(function() { 
+			var x = document.getElementById("divfacultyid");
+		    if (this.checked) {
+		       x.style.display = "block";
+		    } else {
+		       x.style.display = "none";
+		       
+			   $("#E5").removeClass("show_control");
+			   $("#E5").addClass("hide_control");
+		    }
+		});
+
 		function isValidEmailAddress(emailAddress) {
 		    var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
 		    return pattern.test(emailAddress);
@@ -231,6 +257,20 @@
 				$("#E4").removeClass("show_control");
 				$("#E4").addClass("hide_control");
 			}
+			
+			if(document.getElementById('isFaculty').checked) { 
+			    if($("#facultyid").val()== null || $("#facultyid").val()== '')
+				{
+					$("#E5").removeClass("hide_control");
+					$("#E5").addClass("show_control");
+				}
+				else
+				{
+					$("#E5").removeClass("show_control");
+					$("#E5").addClass("hide_control");
+				}
+			}  
+			 
 		}
 		
 		$('#firstName').on('input',function(e){
