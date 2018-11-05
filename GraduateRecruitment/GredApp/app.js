@@ -15,9 +15,9 @@ app.set("view engine","ejs");
 app.set("views","./views")
 
 /** route setting **/
-app.use(require("./routes/index"))
-//app.use(require("./routes/speakers"))
-  
+app.use(require("./routes/index"));
+app.use(require("./routes/faculty")); 
+app.use(require("./routes/student"));   
 
 /** start listener **/
 app.listen(app.get("port"),function(){
