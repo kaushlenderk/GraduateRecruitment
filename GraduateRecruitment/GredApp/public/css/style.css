@@ -1,0 +1,11 @@
+.required {
+	color: #a94442;
+}
+
+.show_error {
+	display: block;
+}
+
+.hide_error {
+	display: none;
+}

@@ -28,4 +28,9 @@ router.get("/signup",function(req,res){
     })
 });
 
+
+
+
+/** contact page**/ 
+
 module.exports =router; 
