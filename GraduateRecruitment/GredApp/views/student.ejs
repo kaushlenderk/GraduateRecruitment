@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<% include partials/template/headercontent.ejs %>
+	
+    
+    <style>    	
+		ul {
+		    list-style-type: none;
+		    margin: 0;
+		    padding: 0;
+		    overflow: hidden;
+		    background-color: #fff;
+		    color:black;
+		}
+		
+		li {
+		    float: left; 
+		    display :block;
+		    float:left; 		    
+		}
+		
+		li a {
+		    display: block;
+		    color: black;
+		    text-align: center;
+		    padding: 16px;
+		    text-decoration: none;
+		}
+		
+		a:hover {
+		    background-color: #393939;
+		     color:#fff;
+		}
+		
+		.li_style{
+		    background-color : #393939;
+		    color:#fff;
+		}
+		
+		.div_active{
+			display:inline;
+		}
+		
+		.div_unactive{
+			display:none;
+		}
+		
+		.div_active1{
+			display:flex;
+		}
+		 
+	</style>
+</head>
+
+<body> 
+		
+<% include partials/template/header.ejs %>
+
+<% include partials/template/headstudent.ejs %>
+
+<div class="container">
+        <div class="row div_active" id="tab1">
+        	<div class="col-sm-12">        		
+        		<h1 style="text-align: center;">Create Program</h1>
+        	</div>
+        </div>
+        <div class="row div_unactive" id="tab2">
+        	<div class="col-sm-12">        		
+        		<h1 style="text-align: center;"><%= underConstruction %></h1>
+        	</div>
+        </div>
+        <div class="row div_unactive" id="tab3">
+        	<div class="col-sm-12">        		
+        		<h1 style="text-align: center;"><%= underConstruction %></h1>
+        	</div>
+        </div>
+        <div class="row div_unactive" id="tab4">
+        	<div class="col-sm-12">        		
+        		<h1 style="text-align: center;"><%= underConstruction %></h1>
+        	</div>
+        </div>
+</div>
+    
+<% include partials/template/footer.ejs %>
+		
+</body>
+
+	<!--   Core JS Files   --> 
+	<script src="/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/js/jquery.bootstrap.wizard.js" type="text/javascript"></script> 
+	<script src="/js/gsdk-bootstrap-wizard.js"></script> 
+	<script src="/js/jquery.validate.min.js"></script>
+	
+	<script>
+	$(document).ready(function(){
+		$('li > a').click(function() {
+		    $('li').removeClass();
+		    $(this).parent().addClass('li_style');
+		});
+		
+		$('#Tab1').click(function() {
+		    $('#tab1').addClass("div_active");
+		    $('#tab1').removeClass('div_unactive');
+		    
+		    $('#tab2').addClass("div_unactive");
+		    $('#tab2').removeClass('div_active');		    
+		    $('#tab3').addClass("div_unactive");
+		    $('#tab3').removeClass('div_active');		    
+		    $('#tab4').addClass("div_unactive");
+		    $('#tab4').removeClass('div_active');
+		    
+		    $('#tab11').removeClass("div_unactive");
+		    $('#tab11').addClass("div_active1");
+		    
+		});
+		$('#Tab2').click(function() {
+			$('#tab2').addClass("div_active");
+		    $('#tab2').removeClass('div_unactive');
+		    
+		    $('#tab1').addClass("div_unactive");
+		    $('#tab1').removeClass('div_active');
+		    $('#tab3').addClass("div_unactive");
+		    $('#tab3').removeClass('div_active');
+		    $('#tab4').addClass("div_unactive");
+		    $('#tab4').removeClass('div_active');
+		    
+		    $('#tab11').addClass("div_unactive");
+		    $('#tab11').removeClass("div_active1");
+		});
+		$('#Tab3').click(function() {
+			$('#tab3').addClass("div_active");
+		    $('#tab3').removeClass('div_unactive');
+		    
+		    $('#tab1').addClass("div_unactive");
+		    $('#tab1').removeClass('div_active');
+		    $('#tab2').addClass("div_unactive");
+		    $('#tab2').removeClass('div_active');
+		    $('#tab4').addClass("div_unactive");
+		    $('#tab4').removeClass('div_active');
+		    
+		    $('#tab11').addClass("div_unactive");
+		    $('#tab11').removeClass("div_active1");
+		});
+		$('#Tab4').click(function() { 	
+			$('#tab4').addClass("div_active");
+		    $('#tab4').removeClass('div_unactive');
+		    
+		    $('#tab1').addClass("div_unactive");
+		    $('#tab1').removeClass('div_active');
+		    $('#tab2').addClass("div_unactive");
+		    $('#tab2').removeClass('div_active');
+		    $('#tab3').addClass("div_unactive");
+		    $('#tab3').removeClass('div_active');
+		    
+		    $('#tab11').addClass("div_unactive");
+		    $('#tab11').removeClass("div_active1");
+		});
+	});
+	</script>
+
+</html>
+
