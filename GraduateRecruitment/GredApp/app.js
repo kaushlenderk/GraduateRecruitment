@@ -1,6 +1,10 @@
-var express = require("express");
-var app = express(); 
+var express = require("express"); 
+const mysql = require('mysql'); 
+var db = require('./config/database');
+var dbfunc = require('./config/db-function');
+
  
+var app = express(); 
 
 /** site title **/
 app.locals.siteTitle = "Memorial University";
@@ -16,8 +20,10 @@ app.set("views","./views")
 
 /** route setting **/
 app.use(require("./routes/index"));
+app.use(require("./routes/user")); 
 app.use(require("./routes/faculty")); 
-app.use(require("./routes/student"));   
+app.use(require("./routes/student")); 
+app.use(require("./routes/api"));   
 
 /** start listener **/
 app.listen(app.get("port"),function(){

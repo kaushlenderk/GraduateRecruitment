@@ -10,6 +10,11 @@
 	display: none;
 }
 
+.message{
+	font-weight:bold;
+	color:#a94442
+}
+
 /*  
 	DEFAULT CSS
 ================================================*/
