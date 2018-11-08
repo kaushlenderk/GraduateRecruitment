@@ -1,10 +1,9 @@
 var db = require('../config/database');
 var dbFunc = require('../config/db-function')
 
-
 var modelData = {
 	getDepartmentList:getDepartmentList,
-	setContactUs:setContactUs
+	setContactUs:setContactUs 
 }
 
 

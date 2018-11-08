@@ -11,8 +11,10 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cryptr": "^4.0.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.3.0",
     "mysql": "^2.16.0",
     "nodemon": "^1.18.5"
   }
