@@ -12,11 +12,26 @@
 			</div>
  
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right">
-					<li ><a href="faculty">Faculty</a></li>
-					<li><a href="student">Student</a></li>
-					<li><a href="login">SignIn</a></li>
-					<li><a href="signup">SignUp</a></li>
+				<ul class="nav navbar-nav navbar-right"> 
+				    <li><a href="/">HOME</a></li>
+					<li><a href="login">ALUMNI</a></li>
+					<% if(locals.user) { %>
+					    <% if(locals.user[0].memorialNumber != null){ %>
+					      <li><a href="student">Student</a></li>
+					      <li><a href="logout">Log out</a></li>
+					    <% } else {%> 
+					    	 <li><a href="login">Sign In</a></li>
+							 <li><a href="signup">Sign Up</a></li>
+					    <% } %>
+					    
+					    <% if(locals.user[0].memorialNumber != null && locals.user[0].facultyId != null){ %>
+					      <li ><a href="faculty">Faculty</a></li>
+					    <% } %> 					    
+					    
+					 <% } else {%>
+					 <li><a href="login">Sign In</a></li>
+				     <li><a href="signup">Sign Up</a></li>
+					 <% } %>					
 				</ul>
 			</div> 
 		</div> 
@@ -28,14 +43,18 @@
                 <!-- Example row of columns -->
                 <div class="row">
                     <div class="social-wrapper">
-                        <div class="col-md-10">
+                        <div class="col-md-7">
                             <div class="social-icon">
-                               NEWFOUNDLAND AND LABRADOR&acute;S UNIVERSITY (Graduate Recruitment System)
+                                GRADUATE RECRUITMENT SYSTEM
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4  col-sm-offset-1">
                             <div class="social-contact">
-                               &nbsp;
+                               <% if(locals.user) { %>
+							    <% if(locals.user[0].memorialNumber != null){ %>
+							      <span style="font-weight:bold;"> <%= locals.user[0].firstName %> &nbsp; <%= locals.user[0].lastName %> &nbsp;&nbsp;&nbsp;</span>
+							    <% }%> 
+							 <% }%> 
                             </div>
                         </div>
                     </div>

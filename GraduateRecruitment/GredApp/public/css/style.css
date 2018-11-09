@@ -10,9 +10,10 @@
 	display: none;
 }
 
-.message{
+.alert_message{
 	font-weight:bold;
-	color:#a94442
+	color:#a94442;
+	margin: 21px 0 15px;
 }
 
 /*  

@@ -19,8 +19,7 @@ function getDepartmentList(result) {
     });   
 }
 
-function setContactUs(data,result) {
-	//console.log("kk:" + data.name);
+function setContactUs(data,result) { 
 	db.query("INSERT INTO ContactUs(name,email,deptName,message) VALUES('" + data.name + "','" + data.email + "','" + data.department + "','" + data.message + "')",
 			function(err,res){
 		 if(err) {

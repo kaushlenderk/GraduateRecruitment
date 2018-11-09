@@ -1,13 +1,17 @@
 var express = require("express");
-var router = express.Router();
-
+var router = express.Router(); 
 
 /** Home page link **/
+
+ 
 router.get("/",function(req,res){
-     res.render("index",{
-         pageTitle:'Home',
-         pageID:'Home'
-     })
+	 
+    res.render("index",{
+        pageTitle:'Home',
+        pageID:'Home' 
+    })
+     
+    
 });
 
 

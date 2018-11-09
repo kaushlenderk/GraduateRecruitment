@@ -14,7 +14,7 @@
 					<div class="msg">
 						<div class="form_area">
 							<div class="contact-form wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-									<div id="message" class="message"></div>
+									<div id="alertMessage" class="alert_message"></div>
 									<br/>
 									<form class="form-horizontal contact-1" role="form" id="contactform">
 										<div class="form-group">
@@ -59,8 +59,8 @@
 	
 	<script>
 		setTimeout(function () {
-			if ($('#message').length) {
-				document.getElementById('message').style.opacity = 0;
+			if ($('#alertMessage').length) {
+				document.getElementById('alertMessage').style.opacity = 0;
 			}
 		}, 15000);
 	</script>

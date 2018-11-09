@@ -1,6 +1,6 @@
 $(function(){
 	
-	$.getJSON('api/getDepartment',fnDepartment);
+	$.getJSON('api/getDepartmentList',fnDepartment);
 	
 	$("#contactform").submit(function(e){
 		e.preventDefault(); 
@@ -22,10 +22,10 @@ $(function(){
 		{
 			//alert(data.errno);
 			//alert(data.sqlMessage);
-			$("#message").text(data.sqlMessage);
+			$("#alertMessage").text(data.sqlMessage);
 		}
 		else
-		{
+		{ 
 			$('#tab4').addClass("div_active");
 		    $('#tab4').removeClass('div_unactive');
 		    
@@ -42,9 +42,9 @@ $(function(){
 		    $("#name").val("");
 		    $("#email").val(""); 
 		    $('#ddlDepartment option')[0].selected = true;
-		    $("#textarea#message").val("");
-		    
-		    $("#message").text("Message submitted successfully.");
+		    $("#message").val("");
+		     
+		    $("#alertMessage").text("Message submitted successfully.");
 		}
 	}
 	
@@ -60,15 +60,16 @@ $(function(){
 			select.appendChild(option);
 		}); 
 	}
-	
-	var flag = true;
-
+		
 	function ValidateEmail(email) {
-		var expr = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
-		return expr.test(email);
+		var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+	    return pattern.test(email);
 	};
 	
-	function validateContactForm() {		
+	function validateContactForm() {
+		
+		var flag = true;
+
 		if ($('#name').val().length === 0) {
 			$('#E1').removeClass('hide_error');
 			$('#E1').addClass('show_error');
@@ -118,12 +119,12 @@ $(function(){
 			$('#E5').removeClass('show_error');
 			$('#E5').addClass('hide_error');
 		}
-
+ 
 		if (flag == true) {
 			return true;
 		}
 		else {
-			return true; //need to change
+			return false; //need to change
 		}
 	}
 	
