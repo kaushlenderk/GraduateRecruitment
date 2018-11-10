@@ -124,7 +124,7 @@ $(function(){
 			return true;
 		}
 		else {
-			return false; //need to change
+			return false;
 		}
 	}
 	

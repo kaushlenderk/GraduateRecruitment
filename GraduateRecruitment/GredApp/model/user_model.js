@@ -66,10 +66,7 @@ function verfiyFaculty(data,result) {
 
 function registerUser(data,result) {  
 	const encryptedpwd = cryptr.encrypt(data.password); 
-    //const decryptedString = cryptr.decrypt(encryptedString);
-	
-	console.log("password 1:" + encryptedpwd);
-	
+    
 	var user={
 	    "firstName":data.firstName,
 	    "lastName":data.lastName,

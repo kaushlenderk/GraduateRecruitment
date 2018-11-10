@@ -16,18 +16,17 @@
 				    <li><a href="/">HOME</a></li>
 					<li><a href="login">ALUMNI</a></li>
 					<% if(locals.user) { %>
-					    <% if(locals.user[0].memorialNumber != null){ %>
-					      <li><a href="student">Student</a></li>
-					      <li><a href="logout">Log out</a></li>
-					    <% } else {%> 
-					    	 <li><a href="login">Sign In</a></li>
+						 
+					    <% if(locals.user[0].memorialNumber != null && locals.user[0].facultyId == ""){ %>
+					      	 <li><a href="student">Student</a></li>
+					         <li><a href="logout">Log out</a></li>
+					    <% } else if (locals.user[0].memorialNumber != null && locals.user[0].facultyId != "") {%> 
+					    	 <li ><a href="faculty">Faculty</a></li>
+					    	 <li><a href="logout">Log out</a></li>
+					    <% } else {%>
+					     	 <li><a href="login">Sign In</a></li>
 							 <li><a href="signup">Sign Up</a></li>
 					    <% } %>
-					    
-					    <% if(locals.user[0].memorialNumber != null && locals.user[0].facultyId != null){ %>
-					      <li ><a href="faculty">Faculty</a></li>
-					    <% } %> 					    
-					    
 					 <% } else {%>
 					 <li><a href="login">Sign In</a></li>
 				     <li><a href="signup">Sign Up</a></li>

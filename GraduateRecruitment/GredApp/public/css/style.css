@@ -16,6 +16,30 @@
 	margin: 21px 0 15px;
 }
 
+.h1_header
+{
+	font-weight: bold;
+	text-align: left;
+}
+
+/*  
+	student
+================================================*/
+
+.education_row
+{
+	border: 0px solid #E3E3E3;
+	padding: 0px 0px;
+}
+
+.ed_td{
+	font-weight: bold;
+}
+
+.hr_width{
+	border-top: 3px solid #eee;
+}
+
 /*  
 	DEFAULT CSS
 ================================================*/

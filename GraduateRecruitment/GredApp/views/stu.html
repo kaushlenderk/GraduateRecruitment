@@ -1,0 +1,399 @@
+<section>
+	<div class="row">
+            <form action="post">
+                <!-- left section -->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                	<h4 class="form-section-title">Personal Detail</h4>
+                    <hr class="custom-hr hr_width">
+                    
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<div class="form-group">
+                            <label for="title">First Name &nbsp;<span class="required">*</span></label>
+                            <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                            <label id="E1" class="text-danger hide_error">Required field</label>
+                    	</div>
+	                </div>
+	                <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<div class="form-group">
+                    	 	<label for="title">Last Name &nbsp;<span class="required">*</span></label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                            <label id="E2" class="text-danger hide_error">Required field</label>
+                    	</div>
+	                </div> 
+	                
+	                <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<div class="form-group">
+                            <label for="title">Email &nbsp;<span class="required">*</span></label>
+                            <input type="text" class="form-control" id="email" placeholder="Email">
+                            <label id="E3" class="text-danger hide_error">Required field</label>
+                    	</div>
+	                </div>
+	                <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<div class="form-group">
+                    	 	<label for="title">Date of Birth &nbsp;<span class="required">*</span></label>
+                            <input type="date" class="form-control" name="amount" id="dateofbirth" placeholder="Date of Birth">
+                            <label id="E4" class="text-danger hide_error">Required field</label>
+                    	</div>
+	                </div> 
+	                <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<div class="form-group">
+                    	 	<label for="title">Contact Number &nbsp;<span class="required">*</span></label>
+                            <input type="text" class="form-control" id="contactnumber" placeholder="Contact Number">
+                            <label id="E5" class="text-danger hide_error">Required field</label>
+                    	</div>
+	                </div> 
+	                <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<div class="form-group">
+                            <label for="title">Address &nbsp;<span class="required">*</span></label>
+                            <textarea class="form-control" id="address" placeholder="Address"></textarea>
+                            <label id="E6" class="text-danger hide_error">Required field</label>
+                    	</div>
+	                </div>
+	                <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<div class="form-group">
+                            <div class="checkbox">
+		                        <label>
+		                            <input type="checkbox"> Is there any financial support need?
+		                        </label>
+		                    </div>
+                    	</div>
+	                </div>
+	                
+                </div>  <!--end profile-->
+                
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:20px;"></div>
+                <!--start education profile-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                	<h4 class="form-section-title">Education Detail</h4>
+                    <hr class="custom-hr hr_width">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                    	<div class="form-group">
+                            <label for="title" style="font-weight:bold;">Add Education</label>
+                    	</div>
+	                </div>
+	                <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<div class="form-group">
+                            <a type="button" class="btn btn-info btn-sm btn-left" data-toggle="modal" data-target="#educationModel">
+                              	  <i class="fa fa-plus"></i>
+                            </a>
+                    	</div>
+	                </div> 
+	                
+	                <br/>
+	                <!-- Modal -->
+                    <div class="modal fade" id="educationModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                           <div class="modal-dialog" role="document">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                         <h4 class="modal-title" id="myModalLabel">Add New Education Details</h4>
+                                     </div>
+                                 <div class="modal-body">
+					             <div class="form-group">
+					                 <label for="title">Program &nbsp;<span class="required">*</span></label>
+					                 <select class="form-control" name="program" id="eddlprogram">
+		                                <option value="-select-">-select-</option>
+		                                <option value="University Degree: Ph.D (Post-Graduate)">University Degree: Ph.D (Post-Graduate)</option>
+		                                <option value="University Degree: Master (Post-Graduate)">University Degree: Master (Post-Graduate)</option>
+		                                <option value="Bachelor Degree: University or College (Undergraduate)">Bachelor Degree: University or College (Undergraduate)</option>
+		                                <option value="Professional, Vocational or Trade School Certificate or Diploma">Professional, Vocational or Trade School Certificate or Diploma</option>		                                
+		                                <option value="Other Type Of Educational Credential">Other Type Of Educational Credential</option>
+		                             </select>
+		                             <label id="EE1" class="text-danger hide_error">Required field</label>
+					             </div>
+					             <div class="form-group">
+					                 <label for="title">Field of Study &nbsp;<span class="required">*</span></label>
+					                 <input type="text" class="form-control" id="efieldofstudy" placeholder="Computer Science">
+					                 <label id="EE2" class="text-danger hide_error">Required field</label>
+					             </div> 
+					             <div class="form-group">
+					                  <label for="description">Institute Name and Address &nbsp;<span class="required">*</span></label>
+					                  <textarea class="form-control" id="einstituename_address" placeholder="Institute Name and Address"></textarea>
+					                  <label id="EE3" class="text-danger hide_error">Required field</label>
+					             </div>
+					             <div class="form-group">
+					                 <label for="title">Graduation Date&nbsp;<span class="required">*</span></label>
+                           			 <input type="date" class="form-control" name="egraduationdate" id="egraduationdate" placeholder="Graduation Date">
+                          			 <label id="EE4" class="text-danger hide_error">Required field</label>
+					             </div>
+                           </div>
+                           <div class="modal-footer">
+                           		  <button type="button" class="btn btn-primary" id="addEducation">Save Education</button>	
+                                  <button type="button" class="btn btn-default" data-dismiss="modal" id="btnEducationCloseModel">Close</button>                                  
+                           </div>
+                          </div>
+                         </div> 
+                     </div> 
+                     
+                     <div class="col-lg-12 col-md-12 col-sm-12 hide_error" id="educationDivData">
+                    	<div style="padding-left: 0px;"> 
+						    <table id="educationTable" class="table order-list">
+							    <thead>
+							        <tr>
+							            <td class="ed_td">Program</td>
+							            <td class="ed_td">Field of Study</td>
+							            <td class="ed_td">Institute Name and Address</td>
+							            <td class="ed_td">Year of Graduation</td>
+							        </tr>
+							    </thead>
+							    <tbody>  
+							    </tbody>							    
+						     </table>
+						</div>
+	                </div>
+                </div>  
+                <!-- end of education section -->
+                                 
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:20px;"></div>
+ 				<!--start reserach pubication-->
+ 				
+ 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                	<h4 class="form-section-title">Research Publication Detail</h4>
+                    <hr class="custom-hr hr_width">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                    	<div class="form-group">
+                            <label for="title" style="font-weight:bold;">Add Research Publication</label>
+                    	</div>
+	                </div>
+	                <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<div class="form-group">
+                            <a type="button" class="btn btn-info btn-sm btn-left" data-toggle="modal" data-target="#researchPublicationModel">
+                              	  <i class="fa fa-plus"></i>
+                            </a>
+                    	</div>
+	                </div> 
+	                
+	                <br/>
+	             </div>
+	             
+	             <!-- Modal -->
+                    <div class="modal fade" id="researchPublicationModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                           <div class="modal-dialog" role="document">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                         <h4 class="modal-title" id="myRModalLabel">Add New Research Publication</h4>
+                                     </div>
+                                 <div class="modal-body">
+					             <div class="form-group">
+					                 <label for="title">Name &nbsp;<span class="required">*</span></label>
+					                 <input type="text" class="form-control" id="rpname" placeholder="Publication Name">
+		                             <label id="RE1" class="text-danger hide_error">Required field</label>
+					             </div>
+					             <div class="form-group">
+					                 <label for="title">Publication Area &nbsp;<span class="required">*</span></label>
+					                 <input type="text" class="form-control" id="rppublicationArea" placeholder="Publication Area">
+					                 <label id="RE2" class="text-danger hide_error">Required field</label>
+					             </div> 
+					             <div class="form-group">
+					                  <label for="description">Description &nbsp;<span class="required">*</span></label>
+					                  <textarea class="form-control" id="rpdescription" placeholder="Publication Description"></textarea>
+					                  <label id="RE3" class="text-danger hide_error">Required field</label>
+					             </div>
+					             <div class="form-group">
+					                 <label for="title">Publication Date&nbsp;<span class="required">*</span></label>
+                           			 <input type="date" class="form-control" name="rppublicationdate" id="rppublicationdate">
+                          			 <label id="RE4" class="text-danger hide_error">Required field</label>
+					             </div>
+                           </div>
+                           <div class="modal-footer">
+                           		  <button type="button" class="btn btn-primary" id="addResearchPublicationModel">Save Publication</button>	
+                                  <button type="button" class="btn btn-default" data-dismiss="modal" id="btnResearchPublicationModel">Close</button>                                  
+                           </div>
+                          </div>
+                         </div> 
+                     </div> 
+                     <div class="col-lg-12 col-md-12 col-sm-12 hide_error" id="publicationResearchDivData">
+                    	<div style="padding-left: 0px;"> 
+						    <table id="publicationResearchTable" class="table order-list">
+							    <thead>
+							        <tr>
+							            <td class="ed_td">Name</td>
+							            <td class="ed_td">Publication Area</td>
+							            <td class="ed_td">Description</td>
+							            <td class="ed_td">Publication Date</td>
+							        </tr>
+							    </thead>
+							    <tbody>  
+							    </tbody>							    
+						     </table>
+						</div>
+	                </div>
+ 				<!--end education publication-->
+
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:20px;"></div>
+				
+				<!--start work experience -->
+				
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                	<h4 class="form-section-title">Work Experience Detail</h4>
+                    <hr class="custom-hr hr_width">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                    	<div class="form-group">
+                            <label for="title" style="font-weight:bold;">Add Work Experience</label>
+                    	</div>
+	                </div>
+	                <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<div class="form-group">
+                            <a type="button" class="btn btn-info btn-sm btn-left" data-toggle="modal" data-target="#workExperienceModel">
+                              	  <i class="fa fa-plus"></i>
+                            </a>
+                    	</div>
+	                </div> 
+	                
+	                <br/>
+	             </div>
+	             <div class="modal fade" id="workExperienceModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  						 <div class="modal-dialog" role="document">
+                               <div class="modal-content">
+                                 <div class="modal-header">
+                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                     <h4 class="modal-title" id="myRModalLabel">Add New Work Experience</h4>
+                                 </div>
+                                 <div class="modal-body">
+						             <div class="form-group">
+						                 <label for="title">Institution &nbsp;<span class="required">*</span></label>
+						                 <input type="text" class="form-control" id="weinstitution" placeholder="Institution Name">
+			                             <label id="WE1" class="text-danger hide_error">Required field</label>
+						             </div>
+						             <div class="form-group">
+						                 <label for="title">Position &nbsp;<span class="required">*</span></label>
+						                 <input type="text" class="form-control" id="rpposition" placeholder="Job Position">
+						                 <label id="WE2" class="text-danger hide_error">Required field</label>
+						             </div> 
+						             <div class="form-group">
+						                 <label for="title">Location &nbsp;<span class="required">*</span></label>
+						                 <input type="text" class="form-control" id="rplocation" placeholder="Job Location">
+						                 <label id="WE3" class="text-danger hide_error">Required field</label>
+						             </div> 
+						             <div class="form-group">
+						                 <label for="title">Month of Experience&nbsp;<span class="required">*</span></label>
+	                           			 <input type="text" class="form-control" name="rpnumberofmonthexperience" id="rpnumberofmonthexperience" placeholder="Month of Experience">
+	                          			 <label id="WE4" class="text-danger hide_error">Required field</label>
+						             </div>
+                           		</div>
+	                            <div class="modal-footer">
+	                           		  <button type="button" class="btn btn-primary" id="addWorkExperienceModel">Save Work Experience</button>	
+	                                  <button type="button" class="btn btn-default" data-dismiss="modal" id="btnWorkExperienceModel">Close</button>                                  
+	                            </div>
+                              </div>
+                         </div>                         
+                  </div> 
+                  <div class="col-lg-12 col-md-12 col-sm-12 hide_error" id="workExperienceDivData">
+                    	<div style="padding-left: 0px;"> 
+						    <table id="workExperienceTable" class="table order-list">
+							    <thead>
+							        <tr>
+							            <td class="ed_td">Institution</td>
+							            <td class="ed_td">Position</td>
+							            <td class="ed_td">Location</td>
+							            <td class="ed_td">Month of Experience</td>
+							        </tr>
+							    </thead>
+							    <tbody>  
+							    </tbody>							    
+						     </table>
+						</div>
+	                </div>
+				<!--end work experience -->
+				
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:20px;"></div>
+				
+				<!--start research interest -->
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                	<h4 class="form-section-title">Program Research Interest Detail</h4>
+                    <hr class="custom-hr hr_width">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                    	<div class="form-group">
+                            <label for="title" style="font-weight:bold;">Add Program Research Interest</label>
+                    	</div>
+	                </div>
+	                <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<div class="form-group">
+                            <a type="button" class="btn btn-info btn-sm btn-left" data-toggle="modal" data-target="#researchProgramResearchInterestModel">
+                              	  <i class="fa fa-plus"></i>
+                            </a>
+                    	</div>
+	                </div> 
+	                
+	                <br/>
+	             </div>
+	             <div class="modal fade" id="researchProgramResearchInterestModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  						 <div class="modal-dialog" role="document">
+                               <div class="modal-content">
+                                 <div class="modal-header">
+                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                     <h4 class="modal-title" id="myRModalLabel">Add Program Research Interest Details</h4>
+                                 </div>
+                                 <div class="modal-body">
+						             <div class="form-group">
+						                 <label for="title">Program &nbsp;<span class="required">*</span></label>
+						                 <select class="form-control" name="rpiddlprogram" id="rpiddlprogram">
+			                                <option value="-select-">-select-</option>
+			                                <option value="Ph.D (Post-Graduate)">Ph.D (Post-Graduate)</option>
+			                                <option value="Master (Post-Graduate)">Master (Post-Graduate)</option>
+			                             </select>
+			                             <label id="RIE1" class="text-danger hide_error">Required field</label>
+						             </div>
+						             <div class="form-group">
+						                 <label for="title">Research Area &nbsp;<span class="required">*</span></label>
+						                 <select class="form-control" name="rpiddlresearcharea" id="rpiddlresearcharea">
+			                                <option value="-select-">-select-</option>
+			                                <option value="Computer Research">Computer Research</option>
+			                                <option value="Artificial Intelligence">Artificial Intelligence</option>
+			                                <option value="Robotics Intelligence">Robotics Intelligence</option>
+			                             </select>
+						                 <label id="RIE2" class="text-danger hide_error">Required field</label>
+						             </div> 
+						             <div class="form-group">
+						                  <label for="description">Research Description &nbsp;<span class="required">*</span></label>
+						                  <textarea class="form-control" id="rpidescription" placeholder="Research Description" style="height: 100px;"></textarea>
+						                  <label id="RIE3" class="text-danger hide_error">Required field</label>
+					             	</div>
+                           		</div>
+	                            <div class="modal-footer">
+	                           		  <button type="button" class="btn btn-primary" id="addResearchProgramResearchInterestModel">Add Research Program</button>	
+	                                  <button type="button" class="btn btn-default" data-dismiss="modal" id="btnResearchProgramResearchInterestModel">Close</button>                                  
+	                            </div>
+                              </div>
+                         </div>                         
+                  </div> 
+                  <div class="col-lg-12 col-md-12 col-sm-12 hide_error" id="researchProgramResearchInterestDivData">
+                    	<div style="padding-left: 0px;"> 
+						    <table id="researchProgramResearchInterestTable" class="table order-list">
+							    <thead>
+							        <tr>
+							            <td class="ed_td">Program</td>
+							            <td class="ed_td">Research Area</td>
+							            <td class="ed_td">Research Description</td>
+							        </tr>
+							    </thead>
+							    <tbody>  
+							    </tbody>							    
+						     </table>
+						</div>
+	                </div>
+				<!--end research interest -->
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:20px;"></div>
+                <div class="col-md-12">
+                	<div class="col-md-8">
+                		<table style="width: 40%;">
+                			<tr>
+                				<td><button type="submit" class="btn btn-success btn-left">Draft Profile</button></td>
+                				<td><button type="submit" class="btn btn-success btn-left">Submit Profile</button></td>
+                			</tr>
+                		</table>                		
+					</div>                     
+                </div>
+            </form>
+        </div>
+</section>
+
+<!--   Core JS Files   --> 
+<script src="/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/jquery.bootstrap.wizard.js" type="text/javascript"></script> 
+<script src="/js/gsdk-bootstrap-wizard.js"></script> 
+<script src="/js/jquery.validate.min.js"></script> 
+<script src="/js/student/js_student.js"></script>  
+

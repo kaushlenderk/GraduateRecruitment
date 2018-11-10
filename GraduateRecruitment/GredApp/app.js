@@ -65,8 +65,7 @@ app.use(function(req, res, next) {
 			 			if(data.status!=false)
 			 			{
 			 				req.session.user = data; 
-			 				res.locals.user = data;
-			 				console.log("data: "+ data[0].password);
+			 				res.locals.user = data; 
 			 			} 
 			 		} 			    	
 			    } 
