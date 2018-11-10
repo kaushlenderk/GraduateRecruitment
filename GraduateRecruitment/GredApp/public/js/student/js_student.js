@@ -554,6 +554,22 @@ function validateProgramResearchInterestSection() {
 		btnClick ="btnSubmitProfile";
 	});
 	
+	/*start get form data */
+	
+	var UserId = $("#userIdData").val(); 
+	$.post("/getProfile",{
+		userId : UserId
+	},fnGetProfile)
+ 
+	function fnGetProfile(data)
+	{  
+		$.each(data,function(key,item){
+			$("#firstName").val(item.firstName);			 
+		}); 
+	}
+	
+	/*end get form data */
+	
 	/*start save form data */
 	 		
 	$("#userProfileform").submit(function(e){

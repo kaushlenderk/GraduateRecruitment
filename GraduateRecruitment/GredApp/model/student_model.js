@@ -11,8 +11,16 @@ var studentModel = {
 	setProgramResearchInterest:setProgramResearchInterest
 }
 
-function getProfile(data,result) {
-	result(null, result);  
+function getProfile(data,result) { 
+	db.query("select * from userProfile WHERE userId= '" + data.userId +"'", function (err, res) {
+	    if(err) {
+	            console.log("error: ", err);
+	            result(null, err);
+		    }
+		    else{   
+		        result(null, res);
+		}
+	});
 };
 
 function setProfile(data,result) {  

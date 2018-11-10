@@ -11,6 +11,19 @@ router.get("/student",function(req,res){
     })
 });
 
+router.post("/getProfile",function(req,res){  
+	student_model.getProfile(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
 router.post("/student",function(req,res){ 
 	student_model.setProfile(req.body, function(err, data) {	    
 	    if (err)
