@@ -187,7 +187,8 @@ function setProgramResearchInterest(data,result) {
 	            console.log("error: ", err);
 	            result(null, err);
 		    }
-		    else{   
+		    else{  
+		    	
 		    	if(userModel.program!="")
 		    	{
 		    		db.query("INSERT INTO programResearchInterest set ? " ,userModel,function(err,res){
