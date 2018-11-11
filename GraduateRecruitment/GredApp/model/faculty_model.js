@@ -85,9 +85,7 @@ function setProfile(data,result) {
 		    "contactNumber":data.contactnumber,
 		    "address":data.address
 	};
-	  
-	console.log(":kaushlender:");
-	
+	   
 	db.query("select userId from userProfile WHERE userId= " + data.userId +"", function (err, res) {
 	    if(err) {
 	            console.log("error: ", err);

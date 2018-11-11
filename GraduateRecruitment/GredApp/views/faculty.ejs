@@ -67,9 +67,9 @@
         	</div>
         </div>
         <div class="row div_unactive" id="tab2">
-        	<div class="col-sm-12">        		
-        		<h1 class="form-title">Create Program</h1>
-        		<% include partials/template/faculty/createproject.ejs %>
+        	<div class="col-sm-12">
+        		<h4 class="form-title" style="text-align: left;font-weight: bold;">Create Project</h4>
+        		<% include partials/template/faculty/create_project.ejs %>
         	</div>
         </div>
         <div class="row div_unactive" id="tab3">
@@ -101,9 +101,10 @@
 	
 	<script src="/js/gsdk-bootstrap-wizard.js"></script> 
 	<script src="/js/jquery.validate.min.js"></script>
+	<script src="/js/faculty/create_project.js"></script>
 	
 	<script>
-	$(document).ready(function(){
+	 $(document).ready(function(){
 		$('li > a').click(function() {
 		    $('li').removeClass();
 		    $(this).parent().addClass('li_style');

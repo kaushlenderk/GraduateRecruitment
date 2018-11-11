@@ -1,6 +1,12 @@
 var faculty_model = require("../model/faculty_model");
+var create_project_model = require("../model/create_project_model");
 var express = require("express");
+var bodyParser = require("body-parser");
+
 var router = express.Router();
+
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended:false}));
 
 /** faculty page link **/
 router.get("/faculty",function(req,res){
@@ -103,6 +109,61 @@ router.post("/publication",function(req,res){
 
 router.post("/workExperience",function(req,res){ 
 	faculty_model.setWorkExperienceDetail(req.body, function(err, data) {	    
+	    if (err)
+	    {
+	    	throw err
+	    }
+	    else
+	    {
+	    	res.json(data);	
+	    } 
+	  });
+});
+
+/** create project link **/
+
+router.get("/getDepartmentList",function(req,res){
+	create_project_model.getDepartmentList(function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       //console.log(data);
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
+router.post("/getDepartmentBranch",function(req,res){
+	create_project_model.getDepartmentBranch(req.body, function(err, data) {	    
+	    if (err)
+	    {
+	    	throw err
+	    }
+	    else
+	    {
+	    	res.json(data);	
+	    } 
+	  });
+});
+
+router.post("/setProjectData",function(req,res){ ;
+	create_project_model.setProjectDetail(req.body, function(err, data) {	    
+	    if (err)
+	    {
+	    	throw err
+	    }
+	    else
+	    {
+	    	res.json(data);	
+	    } 
+	  });
+});
+
+router.post("/setProjectResearchDetail",function(req,res){
+	create_project_model.setProjectResearchDetail(req.body, function(err, data) {	    
 	    if (err)
 	    {
 	    	throw err
