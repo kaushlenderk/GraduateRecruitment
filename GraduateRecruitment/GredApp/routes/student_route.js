@@ -24,6 +24,58 @@ router.post("/getProfile",function(req,res){
 	}); 
 });
 
+router.post("/getEducation",function(req,res){  
+	student_model.getEducationDetail(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
+router.post("/getPublication",function(req,res){  
+	student_model.getPublicationDetail(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
+router.post("/getWorkExperience",function(req,res){  
+	student_model.getWorkExperienceDetail(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
+router.post("/getProgramResearchInterest",function(req,res){  
+	student_model.getProgramResearchInterest(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
 router.post("/student",function(req,res){ 
 	student_model.setProfile(req.body, function(err, data) {	    
 	    if (err)

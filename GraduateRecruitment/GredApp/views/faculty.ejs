@@ -61,14 +61,15 @@
 
 <div class="container">
         <div class="row div_active" id="tab1">
-        	<div class="col-sm-12">        		
-        		<h1 class="form-title">Create Program</h1>
-        		<% include partials/template/faculty/createproject.ejs %>
+        	<div class="col-sm-12">
+        		<h4 class="form-title" style="text-align: left;font-weight: bold;">Create or Update Profile</h4>
+        		<% include partials/template/faculty/f_profile.ejs %>
         	</div>
         </div>
         <div class="row div_unactive" id="tab2">
         	<div class="col-sm-12">        		
-        		<h1 style="text-align: center;"><%= underConstruction %></h1>
+        		<h1 class="form-title">Create Program</h1>
+        		<% include partials/template/faculty/createproject.ejs %>
         	</div>
         </div>
         <div class="row div_unactive" id="tab3">
@@ -77,6 +78,11 @@
         	</div>
         </div>
         <div class="row div_unactive" id="tab4">
+        	<div class="col-sm-12">        		
+        		<h1 style="text-align: center;"><%= underConstruction %></h1>
+        	</div>
+        </div>
+        <div class="row div_unactive" id="tab5">
         	<div class="col-sm-12">        		
         		<h1 style="text-align: center;"><%= underConstruction %></h1>
         	</div>
@@ -90,7 +96,7 @@
 	<!--   Core JS Files   --> 
 	<script src="/js/jquery-2.2.4.min.js" type="text/javascript"></script>
 	<script src="/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>  >
+	<script src="/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 	<script src="/js/select2.min.js"></script> 
 	
 	<script src="/js/gsdk-bootstrap-wizard.js"></script> 
@@ -113,6 +119,8 @@
 		    $('#tab3').removeClass('div_active');		    
 		    $('#tab4').addClass("div_unactive");
 		    $('#tab4').removeClass('div_active');
+		    $('#tab5').addClass("div_unactive");
+		    $('#tab5').removeClass('div_active');
 		    
 		    $('#tab11').removeClass("div_unactive");
 		    $('#tab11').addClass("div_active1");
@@ -128,6 +136,8 @@
 		    $('#tab3').removeClass('div_active');
 		    $('#tab4').addClass("div_unactive");
 		    $('#tab4').removeClass('div_active');
+		    $('#tab5').addClass("div_unactive");
+		    $('#tab5').removeClass('div_active');
 		    
 		    $('#tab11').addClass("div_unactive");
 		    $('#tab11').removeClass("div_active1");
@@ -142,6 +152,8 @@
 		    $('#tab2').removeClass('div_active');
 		    $('#tab4').addClass("div_unactive");
 		    $('#tab4').removeClass('div_active');
+		    $('#tab5').addClass("div_unactive");
+		    $('#tab5').removeClass('div_active');
 		    
 		    $('#tab11').addClass("div_unactive");
 		    $('#tab11').removeClass("div_active1");
@@ -156,6 +168,25 @@
 		    $('#tab2').removeClass('div_active');
 		    $('#tab3').addClass("div_unactive");
 		    $('#tab3').removeClass('div_active');
+		    $('#tab5').addClass("div_unactive");
+		    $('#tab5').removeClass('div_active');
+		    
+		    $('#tab11').addClass("div_unactive");
+		    $('#tab11').removeClass("div_active1");
+		});
+		
+		$('#Tab5').click(function() { 	
+			$('#tab5').addClass("div_active");
+		    $('#tab5').removeClass('div_unactive');
+		    
+		    $('#tab1').addClass("div_unactive");
+		    $('#tab1').removeClass('div_active');
+		    $('#tab2').addClass("div_unactive");
+		    $('#tab2').removeClass('div_active');
+		    $('#tab3').addClass("div_unactive");
+		    $('#tab3').removeClass('div_active');
+		    $('#tab4').addClass("div_unactive");
+		    $('#tab4').removeClass('div_active');
 		    
 		    $('#tab11').addClass("div_unactive");
 		    $('#tab11').removeClass("div_active1");
@@ -167,6 +198,6 @@
 	  $('#select_item').select2({
 	    placeholder: 'Select Research Interest'
 	  });
-</script>
+	</script>
 </html>
 

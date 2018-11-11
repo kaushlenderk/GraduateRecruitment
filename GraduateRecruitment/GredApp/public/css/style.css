@@ -10,6 +10,10 @@
 	display: none;
 }
 
+.hide_message {
+	display: inline-block;
+}
+
 .alert_message{
 	font-weight:bold;
 	color:#a94442;

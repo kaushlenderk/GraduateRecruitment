@@ -2,17 +2,15 @@ var db = require('../config/database');
 var dbFunc = require('../config/db-function')
 
 
-var studentModel = {
+var facultyModel = {
 	getProfile:getProfile,
 	getEducationDetail:getEducationDetail,
 	getPublicationDetail:getPublicationDetail,
 	getWorkExperienceDetail:getWorkExperienceDetail,
-	getProgramResearchInterest:getProgramResearchInterest,
 	setProfile:setProfile,
 	setEducationDetail:setEducationDetail,
 	setPublicationDetail:setPublicationDetail,
-	setWorkExperienceDetail:setWorkExperienceDetail,
-	setProgramResearchInterest:setProgramResearchInterest
+	setWorkExperienceDetail:setWorkExperienceDetail
 }
 
 function getProfile(data,result) { 
@@ -85,11 +83,11 @@ function setProfile(data,result) {
 		    "email":data.email,
 		    "dateOfBirth":data.dateofbirth,
 		    "contactNumber":data.contactnumber,
-		    "address":data.address,
-		    "isFinancialSupportNeed":data.isFinancialSupportNeed,
-		    "isDraft":data.isDraft
+		    "address":data.address
 	};
 	  
+	console.log(":kaushlender:");
+	
 	db.query("select userId from userProfile WHERE userId= " + data.userId +"", function (err, res) {
 	    if(err) {
 	            console.log("error: ", err);
@@ -113,7 +111,7 @@ function setProfile(data,result) {
 		    	else
 		    	{
 		    		db.query("UPDATE userProfile set firstName='"+data.firstName+"',lastName='"+data.lastName+"',email='"+data.email+"',dateOfBirth='"+ data.dateofbirth
-		    				+"',contactNumber='"+data.contactnumber+"',address='"+data.address +"',isFinancialSupportNeed="+data.isFinancialSupportNeed +",isDraft="+data.isDraft+" WHERE userId="+data.userId,function(err,res){
+		    				+"',contactNumber='"+data.contactnumber+"',address='"+data.address +"' WHERE userId="+data.userId,function(err,res){
 		    			if(err) {
 			   			    console.log("error: ", err);
 			   			    result(null,err);
@@ -269,5 +267,5 @@ function setProgramResearchInterest(data,result) {
 	 
 }
 
-module.exports = studentModel;
+module.exports = facultyModel;
 

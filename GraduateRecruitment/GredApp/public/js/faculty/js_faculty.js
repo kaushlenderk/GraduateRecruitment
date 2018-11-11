@@ -425,135 +425,7 @@ $(document).ready(function () {
 
 	
 	/* end work experience  */
-	
-	/* start Program Research Interest */
-	$("#addResearchProgramResearchInterestModel").on("click", function () {
-    	
-    	if(validateProgramResearchInterestSection())
-    	{
-	    	$('#researchProgramResearchInterestDivData').addClass("show_error");
-			$('#researchProgramResearchInterestDivData').removeClass('hide_error');
-			    
-	    	var rpiddlprogram=$("#rpiddlprogram").val();
-	    	var rpiddlresearcharea=$("#rpiddlresearcharea").val();
-	    	var rpidescription=$("textarea#rpidescription").val();  
-	    	
-	        var newRow = $("<tr>");
-	        var cols = "";
-	
-	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpiddlprogram">' + rpiddlprogram + '</label> </td>';
-	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpiddlresearcharea">' + rpiddlresearcharea + '</label> </td>';
-	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="rpidescription">' + rpidescription + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
-	        
-	        newRow.append(cols);
-	        $("#researchProgramResearchInterestTable").append(newRow);
-	        counter++;
-	         
-	        $('#rpiddlprogram option')[0].selected = true; 
-	        $('#rpiddlresearcharea option')[0].selected = true;
-	        $("#rpidescription").val("");
-        }
- 
-        $("#researchProgramResearchInterestTable").on("click", ".ibtnDel", function (event) {
-	        $(this).closest("tr").remove();       
-	        counter -= 1
-	        var rowCount = $('#researchProgramResearchInterestTable tr').length;
-	        if(rowCount==1)
-	        {
-	        	$('#researchProgramResearchInterestDivData').addClass("hide_error");
-				$('#researchProgramResearchInterestDivData').removeClass('show_error');
-	        }
-	    });
-	});
-	
-function validateProgramResearchInterestSection() {
-		
-		var flag = true;
-		
-		if ($('#rpiddlprogram').val() == "-select-") {
-			$('#RIE1').removeClass('hide_error');
-			$('#RIE1').addClass('show_error');
-			flag = false;
-		}
-		else {
-			$('#RIE1').removeClass('show_error');
-			$('#RIE1').addClass('hide_error');
-		} 
-		
-		if ($('#rpiddlresearcharea').val() == "-select-") {
-			$('#RIE2').removeClass('hide_error');
-			$('#RIE2').addClass('show_error');
-			flag = false;
-		}
-		else {
-			$('#RIE2').removeClass('show_error');
-			$('#RIE2').addClass('hide_error');
-		}  		 
-
-		if ($('textarea#rpidescription').val().length === 0) {
-			$('#RIE3').removeClass('hide_error');
-			$('#RIE3').addClass('show_error');
-			flag = false;
-		}
-		else {
-			$('#RIE3').removeClass('show_error');
-			$('#RIE3').addClass('hide_error');
-		}	 
- 
-		if (flag == true) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	
-	$("#rpiddlprogram").on('change', function() {
-	    if ($(this).val() != '-select-'){
-	        $("#RIE1").removeClass("show_error");
-			$("#RIE1").addClass("hide_error");
-	    } 
-	});
-	
-	$("#rpiddlresearcharea").on('change', function() {
-	    if ($(this).val() != '-select-'){
-	        $("#RIE2").removeClass("show_error");
-			$("#RIE2").addClass("hide_error");
-	    } 
-	});
-
-	$('textarea#rpidescription').on('change',function(e){
-		if($("textarea#rpidescription").val()!= null || $("textarea#rpidescription").val()!= '')
-		{ 
-			$("#RIE3").removeClass("show_error");
-			$("#RIE3").addClass("hide_error");
-		}
-	});
-	
-	$("#btnResearchProgramResearchInterestModel").click(function(){
-		$("#RIE1").removeClass("show_error");
-		$("#RIE1").addClass("hide_error");
-		$("#RIE2").removeClass("show_error");
-		$("#RIE2").addClass("hide_error");
-		$("#RIE3").removeClass("show_error");
-		$("#RIE3").addClass("hide_error");
-
-		$('#rpiddlprogram option')[0].selected = true; 
-		$('#rpiddlresearcharea option')[0].selected = true;
-        $("#rpidescription").val("");
-	});
-	/* end Program Research Interest */
-	
-	var btnClick="";
-	$("#btnDraftProfile").click(function(){
-		btnClick ="btnDraftProfile";
-	});
-	
-	$("#btnSubmitProfile").click(function(){
-		btnClick ="btnSubmitProfile";
-	});
-	
+	 
 	/*start get form data */
 	
 	var UserId = $("#userIdData").val(); 
@@ -563,9 +435,7 @@ function validateProgramResearchInterestSection() {
 	},fnGetProfile)
  
 	function fnGetProfile(data)
-	{  
-		var isFinancial="";
-		var isDraftStatus="";
+	{   
 		var rowCount = 0;
 		
 		$.each(data,function(key,item){
@@ -575,45 +445,8 @@ function validateProgramResearchInterestSection() {
 			$("#dateofbirth").val(item.dateOfBirth);
 			$("#contactnumber").val(item.contactNumber);
 			$("#address").val(item.address);
-			isFinancial = item.isFinancialSupportNeed;
-			isDraftStatus = item.isDraft;
 			rowCount=1;
 		}); 
-		
-		if(isFinancial==1)
-		{
-			$('#isFinancialSupportNeed').prop('checked', true);
-		}
-		
-		if(rowCount==0)
-		{ 
-			$('#btnDraftProfile').addClass("show_error");
-			$('#btnDraftProfile').removeClass("hide_error");
-			$('#btnSubmitProfile').addClass("show_error");
-			$('#btnSubmitProfile').removeClass("hide_error");
-		}
-		else if(isDraftStatus==1)
-		{
-			$('#btnDraftProfile').addClass("show_error");
-			$('#btnDraftProfile').removeClass("hide_error");
-			$('#btnSubmitProfile').addClass("show_error");
-			$('#btnSubmitProfile').removeClass("hide_error");
-			$("#btnSubmitProfile").html('Submit Profile');
-		}
-		else if(isDraftStatus==0)
-		{
-			$('#btnDraftProfile').addClass("hide_error");
-			$('#btnDraftProfile').removeClass("show_error");
-			$('#btnSubmitProfile').addClass("show_error");
-			$('#btnSubmitProfile').removeClass("hide_error"); 
-			$('#btnResearchInterest').addClass("hide_error");
-			$('#btnResearchInterest').removeClass("show_error");
-			$('#btnResearchInterest1').addClass("hide_error");
-			$('#btnResearchInterest1').removeClass("show_error");
-			$("#btnSubmitProfile").html('Update Profile');		
-			
-		}
-		
 	}
 	
 	$.post("/getEducation",{
@@ -621,8 +454,7 @@ function validateProgramResearchInterestSection() {
 	},fnGetEducation)
  
 	function fnGetEducation(data)
-	{  
-		var isFinancial="";
+	{   
 		$.each(data,function(key,item){
 			var count=0;
 			 
@@ -729,34 +561,21 @@ function validateProgramResearchInterestSection() {
 	 		
 	$("#userProfileform").submit(function(e){
 		e.preventDefault();  
-		
-		var isDraft = 0;		
+		 		
 		var userId = 0; 
-		var isFinancialSupportNeed=0;
-		
-		if($('#isFinancialSupportNeed').prop('checked')) {
-			isFinancialSupportNeed = 1;
-		} 
-		
+		 	 
 		userId = $("#userIdData").val();
 		 
 		if(validateFormData() && userId!="")
-		{ 
-			if(btnClick==="btnDraftProfile")
-			{
-				isDraft=1;
-			} 
-			 
-			$.post("/student",{
+		{  
+			$.post("/faculty",{
 				userId : userId,
 				firstName : $("#firstName").val(),
 				lastName : $("#lastName").val(),
 				email : $("#email").val(),
 				dateofbirth : $("#dateofbirth").val(),
 				contactnumber : $("#contactnumber").val(),
-				address : $("#address").val(),
-				isFinancialSupportNeed:isFinancialSupportNeed,
-				isDraft : isDraft
+				address : $("#address").val()
 			},funAlertProfile)
 			
 			
@@ -836,30 +655,7 @@ function validateProgramResearchInterestSection() {
 					monthOfExperience : monthOfExperience
 				},funAlertProfile)
 		        	
-		    }); 
-			
-			//researchInterest
-			$.post("/researchInterest",{
-				userId : userId,
-				program : "",
-				researchArea : "",
-				researchDescription : ""
-			},funAlertProfile)
-			
-			$("#researchProgramResearchInterestTable").find('tbody tr').each(function (i, el) {
-		        var $tds = $(this).find('td'),
-		        program = $tds.eq(0).text(),
-		        researchArea = $tds.eq(1).text(),
-		        researchDescription = $tds.eq(2).text(); 
-		        
-		        $.post("/researchInterest",{
-					userId : userId,
-					program : program,
-					researchArea : researchArea,
-					researchDescription : researchDescription
-				},funAlertProfile)
-		        	
-		    }); 
+		    }); 			 
 		}	
 	});
 	
@@ -874,7 +670,7 @@ function validateProgramResearchInterestSection() {
 				$("#alertMessage").text(data.message)
 			}
 			else	
-			{
+			{ 
 				document.getElementById('alertMessage').style.opacity = 0.7;
 				$("#alertMessage").text("Profile has been successfully saved");
 			}
