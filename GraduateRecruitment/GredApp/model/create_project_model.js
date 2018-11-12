@@ -172,7 +172,7 @@ function setProjectDetail(data,result) {
 
 function setProjectResearchDetail(data,result) {  
 	
-	console.log("sadsad dsa :" +data.researchTitle);
+	console.log("researchTitle :" +data.researchTitle);
 	var model={	
 		    "projectId":data.projectId,
 		    "researchTitle":data.researchTitle,

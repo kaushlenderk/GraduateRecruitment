@@ -243,6 +243,33 @@ $(function(){
 		});  
 	}
 	
+	function GetResearchProjectEditData(data)
+	{
+		$("#offeredResearchTable > tbody").html("");
+		$('#offeredResearchDivData').addClass("hide_error");
+		$('#offeredResearchDivData').removeClass('show_error');
+		
+		$.each(data,function(key,item){
+			var count=0;
+			 
+			$('#offeredResearchDivData').addClass("show_error");
+			$('#offeredResearchDivData').removeClass('hide_error');
+			
+			var newRow = $("<tr>");
+	        var cols = "";
+	
+	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="research_title_id">' + item.researchTitle + '</label> </td>';
+	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="research_description_id">' + item.researchDescription	 + '</label> </td>';
+	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="project_fund_id">' + item.projectFund + '</label> </td>';
+			cols += '<td class="col-sm-2"><label class="form-control education_row" name="skill_set_select_id">' + item.skillSet + '</label> </td>';
+	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        
+	        newRow.append(cols);
+	        $("#offeredResearchTable").append(newRow);
+	        counter++;
+		});  
+	}
+	
 	//edit
 	$("#addedProjectTable").on("click", ".ibtnDel3", function (event) {
 		$('#createProjectSection').addClass("show_error");
@@ -277,12 +304,15 @@ $(function(){
 			
 			$.post("/getSelectedResearchProject",{
 				projectId : projectId
-			},GetResearchProjectData)
+			},GetResearchProjectEditData)
 		} 
     });
 	
 	//publish
 	$("#addedProjectTable").on("click", ".ibtnDel4", function (event) {
+		$('#createProjectSection').addClass("hide_error");
+		$('#createProjectSection').removeClass("show_error"); 
+		
 		var table = document.getElementById('addedProjectTable');
 		var $tr = $("#addedProjectTable"); 
 		var row = $(this).closest("tr").index(); 
@@ -353,8 +383,12 @@ $(function(){
     	{
 	    	$('#offeredResearchDivData').addClass("show_error");
 			$('#offeredResearchDivData').removeClass('hide_error');
-			    
-	    	var research_title_id=$("#research_title_id").val();
+			
+			var research_title_id=$("#research_title_id").val();
+			research_title_id = research_title_id.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+			    return letter.toUpperCase();
+			}); 
+	    	
 	    	var research_description_id=$("textarea#research_description_id").val();
 	    	var project_fund_id=$("#project_fund_id").val();	    	
 	    	var skill_set_select_id=$("#select_item").val();
@@ -713,16 +747,7 @@ $(function(){
 			$('#ES7').removeClass('show_error');
 			$('#ES7').addClass('hide_error');
 		}	
-		
-		if ($('#other_requirement_id').val().length === 0) {
-			$('#ES8').removeClass('hide_error');
-			$('#ES8').addClass('show_error');
-			flag = false;
-		}
-		else {
-			$('#ES8').removeClass('show_error');
-			$('#ES8').addClass('hide_error');
-		}	
+		 	
 		
 		if (flag == true) {
 			return true;
@@ -785,13 +810,41 @@ $(function(){
 			$("#ES7").addClass("hide_error");
 		}
 	});
+	 
 	
-	$('#other_requirement_id').on('change',function(e){
-		if($("#other_requirement_id").val()!= null || $("#other_requirement_id").val()!= '')
-		{ 
-			$("#ES8").removeClass("show_error");
-			$("#ES8").addClass("hide_error");
-		}
-	});
+	 $("#number_of_position_id").on("keypress keyup blur",function (event) {    
+         $(this).val($(this).val().replace(/[^\d].+/, ""));
+          if ((event.which < 48 || event.which > 57)) {
+              event.preventDefault();
+          }
+      });
+	 
+	 
+	 $("#available_amount_id").on("keypress keyup blur",function (event) { 
+		 $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+         if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+             event.preventDefault();
+         }
+     });
+	 
+	 $("#project_fund_id").on("keypress keyup blur",function (event) { 
+		 $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+         if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+             event.preventDefault();
+         }
+     });
 	/* end research data */
+	 
+	/* start enrollment data */
+	  	
+	 $.getJSON('/GetMappedStudentProfile',fnDepartment1);
+		
+		function fnDepartment1()
+		{
+			
+		} 
+		
+	/* end research data */ 
+	 
+	 
 });

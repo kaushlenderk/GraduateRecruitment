@@ -1,5 +1,7 @@
 var faculty_model = require("../model/faculty_model");
 var create_project_model = require("../model/create_project_model");
+var enrollment_model = require("../model/enrollment_model");
+
 var express = require("express");
 var bodyParser = require("body-parser");
 
@@ -10,6 +12,11 @@ router.use(bodyParser.urlencoded({extended:false}));
 
 /** faculty page link **/
 router.get("/faculty",function(req,res){
+	
+	if(req.session.user === undefined) {
+		res.redirect('/'); 
+	} 
+	
     res.render("faculty",{
         pageTitle:'Faculty Admin Page',
         pageID:'Faculty Admin Page'
@@ -238,6 +245,22 @@ router.post("/publishProject",function(req,res){
 	    	res.json(data);	
 	    } 
 	  });
+});
+
+/** enrollment_model **/
+ 
+router.get("/GetMappedStudentProfile",function(req,res){
+	enrollment_model.GetMappedStudentProfile(function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       console.log(data);
+	       res.json(data);	
+	    }	      
+	}); 
 });
 
 module.exports =router; 

@@ -139,6 +139,34 @@ $(document).ready(function () {
 	
 	/* end education */
 	
+	$('#rpiddlprogram').on('change', function() {
+		  var degree = this.value;
+		  
+		  $.post("/getResearchTitle",{
+			  degree : degree
+		  },fnResearchArea)
+	});
+	
+	function fnResearchArea(data)
+	{ 
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
+			$("#actionProfileStudentModalMessage").text(data.sqlMessage);
+			$('#myStudentModal').modal('show');
+		}
+		else { 
+			$('#rpiddlresearcharea option:not(:first)').remove(); 
+			
+			var select = document.getElementById("rpiddlresearcharea");
+			$.each(data,function(key,item){
+				var option = document.createElement("option");
+				option.text = item.researchTitle;
+				option.value = item.researchTitle;
+				select.appendChild(option);
+			});
+		} 
+	}
+	 
+	
 	/* start research publication */
 	
 	$("#addResearchPublicationModel").on("click", function () {
@@ -436,14 +464,16 @@ $(document).ready(function () {
 			    
 	    	var rpiddlprogram=$("#rpiddlprogram").val();
 	    	var rpiddlresearcharea=$("#rpiddlresearcharea").val();
-	    	var rpidescription=$("textarea#rpidescription").val();  
+	    	var rpidescription=$("textarea#rpidescription").val();
+	    	var skillSet = $("#select_item").val();
 	    	
 	        var newRow = $("<tr>");
 	        var cols = "";
 	
-	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpiddlprogram">' + rpiddlprogram + '</label> </td>';
-	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpiddlresearcharea">' + rpiddlresearcharea + '</label> </td>';
-	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="rpidescription">' + rpidescription + '</label> </td>';
+	        cols += '<td class="col-sm-2"><label class="form-control education_row" name="rpiddlprogram">' + rpiddlprogram + '</label> </td>';
+	        cols += '<td class="col-sm-2"><label class="form-control education_row" name="rpiddlresearcharea">' + rpiddlresearcharea + '</label> </td>';
+	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpidescription">' + rpidescription + '</label> </td>';
+	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="skillSet">' + skillSet + '</label> </td>';
 	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        
 	        newRow.append(cols);
@@ -500,6 +530,16 @@ function validateProgramResearchInterestSection() {
 			$('#RIE3').removeClass('show_error');
 			$('#RIE3').addClass('hide_error');
 		}	 
+		
+		if ($('#select_item').val()  === null) {
+			$('#RIE4').removeClass('hide_error');
+			$('#RIE4').addClass('show_error');
+			flag = false;
+		}
+		else {
+			$('#RIE4').removeClass('show_error');
+			$('#RIE4').addClass('hide_error');
+		}	 
  
 		if (flag == true) {
 			return true;
@@ -538,7 +578,9 @@ function validateProgramResearchInterestSection() {
 		$("#RIE2").addClass("hide_error");
 		$("#RIE3").removeClass("show_error");
 		$("#RIE3").addClass("hide_error");
-
+		$("#RIE4").removeClass("show_error");
+		$("#RIE4").addClass("hide_error");
+		
 		$('#rpiddlprogram option')[0].selected = true; 
 		$('#rpiddlresearcharea option')[0].selected = true;
         $("#rpidescription").val("");
@@ -711,9 +753,10 @@ function validateProgramResearchInterestSection() {
 	        var newRow = $("<tr>");
 	        var cols = "";
 	
-	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpiddlprogram">' + item.program + '</label> </td>';
-	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpiddlresearcharea">' + item.researchArea + '</label> </td>';
-	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="rpidescription">' + item.researchDescription + '</label> </td>';
+	        cols += '<td class="col-sm-2"><label class="form-control education_row" name="rpiddlprogram">' + item.program + '</label> </td>';
+	        cols += '<td class="col-sm-2"><label class="form-control education_row" name="rpiddlresearcharea">' + item.researchArea + '</label> </td>';
+	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpidescription">' + item.researchDescription + '</label> </td>';
+	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="skillSet">' + item.skillSet + '</label> </td>';
 	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        
 	        newRow.append(cols);
@@ -843,20 +886,23 @@ function validateProgramResearchInterestSection() {
 				userId : userId,
 				program : "",
 				researchArea : "",
-				researchDescription : ""
+				researchDescription : "",
+				skillSet:""
 			},funAlertProfile)
 			
 			$("#researchProgramResearchInterestTable").find('tbody tr').each(function (i, el) {
 		        var $tds = $(this).find('td'),
 		        program = $tds.eq(0).text(),
 		        researchArea = $tds.eq(1).text(),
-		        researchDescription = $tds.eq(2).text(); 
+		        researchDescription = $tds.eq(2).text(),
+		        skillSet = $tds.eq(3).text(); 
 		        
 		        $.post("/researchInterest",{
 					userId : userId,
 					program : program,
 					researchArea : researchArea,
-					researchDescription : researchDescription
+					researchDescription : researchDescription,
+					skillSet:skillSet
 				},funAlertProfile)
 		        	
 		    }); 
@@ -877,6 +923,12 @@ function validateProgramResearchInterestSection() {
 			}
 			else	
 			{ 
+				if(btnClick == "btnSubmitProfile")
+				{
+					$('#btnDraftProfile').addClass("hide_error");
+					$('#btnDraftProfile').removeClass("show_error");
+					$("#btnSubmitProfile").html('Update Profile');
+				}
 				$("#actionProfileStudentModalMessage").text("Profile has been successfully saved");
 				$('#myStudentModal').modal('show');
 			}

@@ -12,8 +12,23 @@ var studentModel = {
 	setEducationDetail:setEducationDetail,
 	setPublicationDetail:setPublicationDetail,
 	setWorkExperienceDetail:setWorkExperienceDetail,
-	setProgramResearchInterest:setProgramResearchInterest
+	setProgramResearchInterest:setProgramResearchInterest,
+	getResearchTitle:getResearchTitle
 }
+
+function getResearchTitle(data,result) {
+	 
+	db.query("SELECT DISTINCT rt.researchTitle from projectDetail p INNER JOIN projectResearchDetail rt ON " +
+			" p.id=rt.projectId WHERE p.isDraft=1 AND p.degree = '" + data.degree +"'", function (err, res) {
+	    if(err) {
+	            console.log("error: ", err);
+	            result(null, err);
+		    }
+		    else{   
+		        result(null, res);
+		}
+	});
+};
 
 function getProfile(data,result) { 
 	db.query("select * from userProfile WHERE userId= '" + data.userId +"'", function (err, res) {
@@ -240,9 +255,10 @@ function setProgramResearchInterest(data,result) {
 			"userId":data.userId,	
 		    "program":data.program,
 		    "researchArea":data.researchArea,
-		    "researchDescription":data.researchDescription
+		    "researchDescription":data.researchDescription,
+		    "skillSet":data.skillSet 
 	};
-	  
+	   	
 	db.query("DELETE FROM programResearchInterest WHERE userId= " + data.userId +"", function (err, res) {
 	    if(err) {
 	            console.log("error: ", err);

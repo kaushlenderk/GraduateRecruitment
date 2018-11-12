@@ -339,9 +339,6 @@
 						                 <label for="title">Research Area &nbsp;<span class="required">*</span></label>
 						                 <select class="form-control" name="rpiddlresearcharea" id="rpiddlresearcharea">
 			                                <option value="-select-">-select-</option>
-			                                <option value="Computer Research">Computer Research</option>
-			                                <option value="Artificial Intelligence">Artificial Intelligence</option>
-			                                <option value="Robotics Intelligence">Robotics Intelligence</option>
 			                             </select>
 						                 <label id="RIE2" class="text-danger hide_error">Required field</label>
 						             </div> 
@@ -350,6 +347,17 @@
 						                  <textarea class="form-control" id="rpidescription" placeholder="Research Description" style="height: 100px;"></textarea>
 						                  <label id="RIE3" class="text-danger hide_error">Required field</label>
 					             	</div>
+					             	<div class="form-group">
+					             	 <label for="title">Skill Set &nbsp;<span class="required">*</span></label>
+					             	 <select class="form-control" id="select_item" multiple="multiple" style="width:100%">
+										  <option>AI</option>
+										  <option>Machine Learning</option>
+										  <option>Database</option>
+										  <option>Computer Vision</option>
+										  <option>Data Science</option>
+									 </select>
+									 <label id="RIE4" class="text-danger hide_error">Required field</label>
+					             </div>
                            		</div>
 	                            <div class="modal-footer">
 	                           		  <button type="button" class="btn btn-primary" id="addResearchProgramResearchInterestModel">Add Research Program</button>	
@@ -366,6 +374,7 @@
 							            <td class="ed_td">Program</td>
 							            <td class="ed_td">Research Area</td>
 							            <td class="ed_td">Research Description</td>
+							            <td class="ed_td">Skill Set</td>
 							        </tr>
 							    </thead>
 							    <tbody>  

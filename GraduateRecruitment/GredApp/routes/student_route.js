@@ -1,14 +1,31 @@
 var student_model = require("../model/student_model");
 var express = require("express");
 var router = express.Router();
-
+ 
 /** student page link **/
 router.get("/student",function(req,res){
- 
+   
+	if(req.session.user === undefined) {
+		res.redirect('/'); 
+	} 
+	
     res.render("student",{
         pageTitle:'Student Admin Page',
         pageID:'Student Admin Page'
     })
+});
+
+router.post("/getResearchTitle",function(req,res){  
+	student_model.getResearchTitle(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
 });
 
 router.post("/getProfile",function(req,res){  

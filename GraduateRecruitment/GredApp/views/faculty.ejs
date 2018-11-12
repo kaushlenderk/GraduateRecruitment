@@ -67,14 +67,15 @@
         	</div>
         </div>
         <div class="row div_unactive" id="tab2">
-        	<div class="col-sm-12">
+        	<div class="col-sm-12" style="min-height:500px;">
         		<h4 class="form-title" style="text-align: left;font-weight: bold;">Create Project</h4>
         		<% include partials/template/faculty/create_project.ejs %>
         	</div>
         </div>
         <div class="row div_unactive" id="tab3">
         	<div class="col-sm-12">        		
-        		<h1 style="text-align: center;"><%= underConstruction %></h1>
+        		<h4 class="form-title" style="text-align: left;font-weight: bold;">Enrollment</h4>
+        		<% include partials/template/faculty/enrollment.ejs %>
         	</div>
         </div>
         <div class="row div_unactive" id="tab4">
@@ -101,7 +102,7 @@
 	
 	<script src="/js/gsdk-bootstrap-wizard.js"></script> 
 	<script src="/js/jquery.validate.min.js"></script>
-	<script src="/js/faculty/create_project.js"></script>
+	<script src="/js/faculty/create_project.js"></script> 
 	
 	<script>
 	 $(document).ready(function(){
@@ -194,8 +195,8 @@
 		});
 	});
 	</script>
-
-	<script>
+ 	
+ 	<script>
 	  $('#select_item').select2({
 	    placeholder: 'Select Research Interest'
 	  });
