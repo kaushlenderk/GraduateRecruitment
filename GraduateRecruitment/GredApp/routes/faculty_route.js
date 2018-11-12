@@ -149,7 +149,7 @@ router.post("/getDepartmentBranch",function(req,res){
 	  });
 });
 
-router.post("/setProjectData",function(req,res){ ;
+router.post("/setProjectDetail",function(req,res){ ;
 	create_project_model.setProjectDetail(req.body, function(err, data) {	    
 	    if (err)
 	    {
@@ -162,8 +162,73 @@ router.post("/setProjectData",function(req,res){ ;
 	  });
 });
 
+router.post("/getAddedProject",function(req,res){ ;
+create_project_model.getAddedProject(req.body, function(err, data) {	    
+    if (err)
+    {
+    	throw err
+    }
+    else
+    {
+    	res.json(data);	
+    } 
+  });
+});
+
+router.post("/getSelectedProject",function(req,res){ ;
+create_project_model.getSelectedProject(req.body, function(err, data) {	    
+    if (err)
+    {
+    	throw err
+    }
+    else
+    {
+    	res.json(data);	
+    } 
+  });
+});
+
+router.post("/getSelectedResearchProject",function(req,res){ ;
+create_project_model.getSelectedResearchProject(req.body, function(err, data) {	    
+    if (err)
+    {
+    	throw err
+    }
+    else
+    {
+    	res.json(data);	
+    } 
+  });
+});
+
 router.post("/setProjectResearchDetail",function(req,res){
 	create_project_model.setProjectResearchDetail(req.body, function(err, data) {	    
+	    if (err)
+	    {
+	    	throw err
+	    }
+	    else
+	    {
+	    	res.json(data);	
+	    } 
+	  });
+});
+
+router.post("/deleteProject",function(req,res){
+	create_project_model.deleteProject(req.body, function(err, data) {	    
+	    if (err)
+	    {
+	    	throw err
+	    }
+	    else
+	    {
+	    	res.json(data);	
+	    } 
+	  });
+});
+
+router.post("/publishProject",function(req,res){
+	create_project_model.publishProject(req.body, function(err, data) {	    
 	    if (err)
 	    {
 	    	throw err

@@ -14,11 +14,19 @@ $(function(){
 			option.value = item.DeptName;
 			select.appendChild(option);
 		});
+		
+		var select1 = document.getElementById("department_filter_id");
+		
+		$.each(data,function(key,item){
+			var option = document.createElement("option");
+			option.text = item.DeptName;
+			option.value = item.DeptName;
+			select1.appendChild(option);
+		});
 	}
 	
 	$('#department_id').on('change', function() {
-		  var data = this.value;
-		  
+		  var data = this.value; 
 		  $.post("/getDepartmentBranch",{
 			  DeptName : data
 		  },fnDepartmentBranch)
@@ -27,7 +35,8 @@ $(function(){
 	function fnDepartmentBranch(data)
 	{ 
 		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
-			$("#alertMessage").text(data.sqlMessage)
+			$("#actionMessage").text(data.sqlMessage);
+			$('#myCreateProjectModal').modal('show');
 		}
 		else { 
 			$('#program_id option:not(:first)').remove();
@@ -40,6 +49,300 @@ $(function(){
 				select.appendChild(option);
 			});
 		} 
+	}
+	
+	$('#department_filter_id').on('change', function() {
+		  var DeptName = this.value;
+		  
+		  $('#createProjectSection').addClass("hide_error");
+		  $('#createProjectSection').removeClass('show_error');
+		  $('#addedProjectDivData').addClass("hide_error");
+		  $('#addedProjectDivData').removeClass("show_error");
+		  
+		  $("#addedProjectTable > tbody").html("");
+		  
+		  $.post("/getAddedProject",{
+			  DeptName : DeptName
+		  },fnAddedProjectData)
+	});
+	
+	function fnAddedProjectData(data)
+	{ 
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
+			$("#actionMessage").text(data.sqlMessage);
+			$('#myCreateProjectModal').modal('show');
+		}
+		else {  
+			$("#addedProjectTable > tbody").html("");
+			
+			$.each(data,function(key,item){				
+				var count=0; 
+				$('#addedProjectDivData').addClass("show_error");
+				$('#addedProjectDivData').removeClass('hide_error');
+				     	    	
+				var isPublish = "Not Published";
+				if(item.isDraft==1)
+				{
+					isPublish="Published";
+				}
+				
+		        var newRow = $("<tr>");
+		        var cols = "";
+		
+		        cols += '<td class="col-sm-1"><label class="form-control education_row" name="id">' + item.id + '</label> </td>';
+		        cols += '<td class="col-sm-2"><label class="form-control education_row" name="program">' + item.program + '</label> </td>';
+		        cols += '<td class="col-sm-2"><label class="form-control education_row" name="programDuration">' + item.programDuration + '</label> </td>';
+		        cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.applicationEndDate + '</label> </td>';
+				cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + isPublish + '</label> </td>';
+				
+				if(item.isDraft==1)
+				{
+					cols += '<td class="col-sm-3"><input type="button" class="ibtnDel2 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View" id="btnViewProject"></td>';
+				}
+				else
+				{					
+					cols += '<td class="col-sm-2"><input type="button" class="ibtnDel3 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="Edit">&nbsp;<input type="button" class="ibtnDel4 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="Publish">&nbsp;<input type="button" class="ibtnDel1 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+				}
+				
+				
+		        newRow.append(cols);
+		        $("#addedProjectTable").append(newRow);
+		        
+		        counter++; 
+			}); 
+			 
+		} 
+	}
+	
+	//delete
+	$("#addedProjectTable").on("click", ".ibtnDel1", function (event) {
+		 
+		var table = document.getElementById('addedProjectTable');
+		var $tr = $("#addedProjectTable"); 
+		var row = $(this).closest("tr").index(); 
+		row = row + 1;
+		 
+		var projectId =document.getElementById("addedProjectTable").rows[row].cells[0].innerHTML;  
+		
+		if(projectId.length>0)
+		{
+			projectId = projectId.replace('<label class="form-control education_row" name="id">','');
+			projectId = projectId.replace('</label>','');
+		}
+			
+		fnDeleteExistingProject(projectId);
+		
+        $(this).closest("tr").remove();       
+        counter -= 1
+        var rowCount = $('#addedProjectTable tr').length;
+        
+        if(rowCount==1)
+        {
+        	$('#addedProjectDivData').addClass("hide_error");
+			$('#addedProjectDivData').removeClass('show_error');
+			
+			$('#createProjectSection').addClass("hide_error");
+			$('#createProjectSection').removeClass('show_error');
+			
+			$('#department_filter_id option')[0].selected = true;
+        }
+    });
+	
+	//view
+	$("#addedProjectTable").on("click", ".ibtnDel2", function (event) {
+		$('#createProjectSection').addClass("show_error");
+		$('#createProjectSection').removeClass('hide_error');
+		$('#divNewResearchProject1').addClass("hide_error");
+		$('#divNewResearchProject1').removeClass('show_error');
+		$('#divNewResearchProject2').addClass("hide_error");
+		$('#divNewResearchProject2').removeClass('show_error');		
+		$('#btnCreateProject').addClass("hide_error");
+		$('#btnCreateProject').removeClass("show_error");
+		
+		//get row 
+		var $tr = $("#addedProjectTable"); 
+		var row = $(this).closest("tr").index(); 
+		row = row + 1;
+		 
+		var projectId =document.getElementById("addedProjectTable").rows[row].cells[0].innerHTML;  
+		
+		if(projectId.length>0)
+		{
+			projectId = projectId.replace('<label class="form-control education_row" name="id">','');
+			projectId = projectId.replace('</label>','');
+		}
+		
+		if(projectId.length>0)
+		{
+			$.post("/getSelectedProject",{
+				projectId : projectId
+			},GetProjectData)
+			
+			$.post("/getSelectedResearchProject",{
+				projectId : projectId
+			},GetResearchProjectData)
+		} 
+    });
+	
+	function GetProjectData(data)
+	{
+		var tggCount=0;
+		
+		$.each(data,function(key,item){
+			$("#projectIdHidden").val(item.id);
+			$("#department_id").val(item.department);
+			
+			if(tggCount==0)
+			{	
+				$('#department_id')
+		        .val(item.department)
+		        .trigger('change');
+				tggCount=1;
+			}
+			
+			setTimeout(function(){
+				$("#program_id").val(item.program);
+		    }, 2000); 
+			
+			$("#degree_id").val(item.degree);
+			$("#program_duration_id").val(item.programDuration);
+			$("#program_start_date_id").val(item.programStartDate);
+			$("#application_end_date_id").val(item.applicationEndDate);
+			$("#number_of_position_id").val(item.numberOfPosition);
+			$("#other_requirement_id").val(item.financialSupport);
+			$("#available_amount_id").val(item.otherRequirement);
+			
+			
+		});  
+	}
+	
+	function GetResearchProjectData(data)
+	{
+		$("#offeredResearchTable > tbody").html("");
+		$('#offeredResearchDivData').addClass("hide_error");
+		$('#offeredResearchDivData').removeClass('show_error');
+		
+		$.each(data,function(key,item){
+			var count=0;
+			 
+			$('#offeredResearchDivData').addClass("show_error");
+			$('#offeredResearchDivData').removeClass('hide_error');
+			
+			var newRow = $("<tr>");
+	        var cols = "";
+	
+	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="research_title_id">' + item.researchTitle + '</label> </td>';
+	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="research_description_id">' + item.researchDescription	 + '</label> </td>';
+	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="project_fund_id">' + item.projectFund + '</label> </td>';
+			cols += '<td class="col-sm-2"><label class="form-control education_row" name="skill_set_select_id">' + item.skillSet + '</label> </td>';
+	        //cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        
+	        newRow.append(cols);
+	        $("#offeredResearchTable").append(newRow);
+	        counter++;
+		});  
+	}
+	
+	//edit
+	$("#addedProjectTable").on("click", ".ibtnDel3", function (event) {
+		$('#createProjectSection').addClass("show_error");
+		$('#createProjectSection').removeClass('hide_error'); 
+		$('#btnCreateProject').removeClass('show_error');
+		$('#btnCreateProject').removeClass('hide_error');
+		$("#btnCreateProject").html('Update Project');
+		
+		//get row 
+		var $tr = $("#addedProjectTable"); 
+		var row = $(this).closest("tr").index(); 
+		row = row + 1;
+		 
+		var projectId =document.getElementById("addedProjectTable").rows[row].cells[0].innerHTML;  
+		
+		if(projectId.length>0)
+		{
+			projectId = projectId.replace('<label class="form-control education_row" name="id">','');
+			projectId = projectId.replace('</label>','');
+		}
+		
+		if(projectId.length>0)
+		{
+			$('#divNewResearchProject1').addClass("show_error");
+			$('#divNewResearchProject1').removeClass('hide_error');
+			$('#divNewResearchProject2').addClass("show_error");
+			$('#divNewResearchProject2').removeClass('hide_error');
+				
+			$.post("/getSelectedProject",{
+				projectId : projectId
+			},GetProjectData)
+			
+			$.post("/getSelectedResearchProject",{
+				projectId : projectId
+			},GetResearchProjectData)
+		} 
+    });
+	
+	//publish
+	$("#addedProjectTable").on("click", ".ibtnDel4", function (event) {
+		var table = document.getElementById('addedProjectTable');
+		var $tr = $("#addedProjectTable"); 
+		var row = $(this).closest("tr").index(); 
+		row = row + 1;
+		 
+		var projectId =document.getElementById("addedProjectTable").rows[row].cells[0].innerHTML;  
+		
+		if(projectId.length>0)
+		{
+			projectId = projectId.replace('<label class="form-control education_row" name="id">','');
+			projectId = projectId.replace('</label>','');
+		}
+		 
+		if(projectId.length > 0)
+		{ 
+			$.post("/publishProject",{
+				projectId : projectId
+			},fnPublishProjectGrid)
+		}
+    });
+	
+	function fnPublishProjectGrid(data)
+	{
+		var DeptName =$("#department_filter_id").val();
+		
+		$.post("/getAddedProject",{
+			  DeptName : DeptName
+		  },fnAddedProjectData)
+	}
+	
+	//delete project
+	function fnDeleteExistingProject(projectId)
+	{
+		if(projectId.length > 0)
+		{ 
+			$.post("/deleteProject",{
+				projectId : projectId
+			},fnDelteProjectData)
+		}		
+	}
+	
+	function fnDelteProjectData(data)
+	{
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") { 
+			$("#actionMessage").text(data.sqlMessage);
+			$('#myCreateProjectModal').modal('show'); 
+		}
+		else { 
+			if(data.status==false)
+			{ 
+				$("#actionMessage").text(data.sqlMessage);
+				$('#myCreateProjectModal').modal('show');
+			}
+			else	
+			{ 
+				$("#actionMessage").text(data.message);
+				$('#myCreateProjectModal').modal('show'); 
+				
+			}
+		}
 	}
 	
 	/* start research interest */
@@ -85,7 +388,51 @@ $(function(){
 	    });
 	});
 	 
-	 
+	$("#btnCreateNewProject").on("click",function (event) {
+		$('#createProjectSection').addClass("show_error");
+		$('#createProjectSection').removeClass("hide_error");
+		
+		$('#btnCreateProject').addClass("show_error");
+		$('#btnCreateProject').removeClass("hide_error");
+		
+		resetProjectData();
+    });
+	
+	$("#btnCreateProjectClose").on("click",function (event) {
+		$('#createProjectSection').addClass("hide_error");
+		$('#createProjectSection').removeClass("show_error");
+		
+		resetProjectData();
+    });
+	
+	function resetProjectData()
+	{
+		$("#projectIdHidden").val("");
+		
+		$('#department_id option')[0].selected = true; 
+		$('#program_id option')[0].selected = true; 
+		$('#degree_id option')[0].selected = true; 
+        $("#program_duration_id").val("");
+        $("#program_start_date_id").val("");
+        $("#application_end_date_id").val("");
+        $("#number_of_position_id").val("");
+        $("#other_requirement_id").val("");
+        $("#available_amount_id").val(""); 
+        
+        $("#btnCreateProject").html('Create Project');
+        
+        $('#divNewResearchProject1').addClass("show_error");
+		$('#divNewResearchProject1').removeClass('hide_error');
+		$('#divNewResearchProject2').addClass("show_error");
+		$('#divNewResearchProject2').removeClass('hide_error');
+		
+		$('#offeredResearchDivData').addClass("hide_error");
+		$('#offeredResearchDivData').removeClass('show_error');
+		
+		$("#offeredResearchTable > tbody").html("");
+        
+	}
+	
 	function validateResearchSection() {
 		 
 		var flag = true;
@@ -198,7 +545,7 @@ $(function(){
 		
 		if(validateFormData())
 		{ 
-			$.post("/setProjectData",{
+			$.post("/setProjectDetail",{
 				department : $("#department_id").val(),
 				program : $("#program_id").val(),
 				degree : $("#degree_id").val(),
@@ -210,19 +557,25 @@ $(function(){
 				otherRequirement : $("#other_requirement_id").val(), 
 				isDraft : isDraft,
 				userId : userId,
-				projectId:"0"
-			},fnCreateProject)
+				projectId:$("#projectIdHidden").val(),
+			},fnCreateProject) 
 		}
 		
 	});
 	
 	function fnCreateProject(data){
 		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
-			$("#alertMessage").text(data.sqlMessage)
+			$("#actionMessage").text(data.sqlMessage);
+			$('#myCreateProjectModal').modal('show');
 		}
 		else { 
-			if(data>=1)
+			if(data>=0)
 			{
+				if(data==0)
+				{
+					data = $("#projectIdHidden").val();
+				}
+				
 				//publication
 				$.post("/setProjectResearchDetail",{
 					projectId : data,
@@ -249,30 +602,42 @@ $(function(){
 			        	
 			    }); 
 			} 
+			
+			fnRefreshProjectData();
 		} 
+	}
+	
+	function fnRefreshProjectData()
+	{
+		$('#createProjectSection').addClass("hide_error");
+		$('#createProjectSection').removeClass('show_error');
+		
+		var DeptName =$("#department_filter_id").val();
+		
+		$.post("/getAddedProject",{
+			  DeptName : DeptName
+		  },fnAddedProjectData)
 	}
 	
 	function funDeleteResearchAlert(data)
 	{
-		
+		console.log("delete existing research");
 	}
 	
 	function funCreateProjectAlert(data)
 	{
 		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
-			$("#alertMessage").text(data.sqlMessage)
+			$("#actionMessage").text(data.sqlMessage);
+			$('#myCreateProjectModal').modal('show');
 		}
 		else {
 			if(data.status==false)
 			{
-				$("#alertMessage").text(data.message)
-			}
-			else	
-			{
-				document.getElementById('alertMessage').style.opacity = 0.7;
-				$("#alertMessage").text("Profile has been successfully saved");
-			}
+				$("#actionMessage").text(data.sqlMessage);
+				$('#myCreateProjectModal').modal('show');
+			}  
 		} 
+		
 	}
 	
 	function validateFormData()

@@ -1,9 +1,72 @@
 <section>
 	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h4 class="form-section-title">Filter Project</h4>
+			<hr class="custom-hr hr_width">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="form-group">
+	             <div class="form-group">
+	                <label for="description">Filter Project By Department</label>
+	              </div>
+                </div>
+	        </div>
+	        <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+	               <div class="form-group">
+	                     <select class="form-control" name="department_filter_id" id="department_filter_id">
+	                          <option value="-select-">-select-</option>
+	                     </select>
+	               </div>
+                </div>
+	         </div>
+	         <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="form-group">
+	             <div class="form-group">
+	                <label for="description">Create New Project</label>
+	              </div>
+                </div>
+	        </div>
+	        <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+	              <button type="button" class="btn btn-success btn-left" id="btnCreateNewProject" style="margin-left: 0px;">Create New Project</button>
+                </div>
+	         </div>
+		</div>
+	</div>
+<section>
+<br/>
+<section id="addedProjectDivData" class="hide_error">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h4 class="form-section-title">Added Project</h4>
+            <hr class="custom-hr hr_width">           
+             <div class="col-lg-12 col-md-12 col-sm-12" style="padding-right: 0px;padding-left: 0px;">
+                   <div style="padding-left: 0px;"> 
+					    <table id="addedProjectTable" class="table order-list">
+						    <thead>
+						        <tr>
+						        	<td class="ed_td">Id</td>
+						            <td class="ed_td">Program</td>
+						            <td class="ed_td">Program Duration</td>
+						            <td class="ed_td">Application End Date</td>
+						            <td class="ed_td">Publish Status</td>
+						        </tr>
+						    </thead>
+						    <tbody>  
+						    </tbody>							    
+						</table>
+				   </div>
+	        </div>
+		</div>
+	</div>
+</section>
+<br/>
+<section id="createProjectSection" class="hide_error">
+	<div class="row">
             <form role="form" id="createProjectForm">
                 <!-- left section -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <h4 class="form-section-title">Project Information</h4>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+                    <h4 class="form-section-title">Create New Project : Project Information</h4>
                     <hr class="custom-hr hr_width">
                                         
                     <div class="col-lg-6 col-md-6 col-sm-6">
@@ -94,12 +157,12 @@
                		<h4 class="form-section-title">Project Detail</h4>
                     <hr class="custom-hr hr_width">
                                         
-                    <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="col-lg-3 col-md-3 col-sm-3" id="divNewResearchProject1">
                     	<div class="form-group">
                             <label for="title" style="font-weight:bold;">Add Research Project Detail</label>
                     	</div>
 	                </div>
-	                <div class="col-lg-6 col-md-6 col-sm-6">
+	                <div class="col-lg-6 col-md-6 col-sm-6" id="divNewResearchProject2">
                     	<div class="form-group">
                             <a type="button" class="btn btn-info btn-sm btn-left" data-toggle="modal" data-target="#researchProjectModel">
                               	  <i class="fa fa-plus"></i>
@@ -178,7 +241,8 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:10px;"></div>
 				
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <button type="submit" class="btn btn-success btn-right">Create Project</button>
+                    <button type="submit" class="btn btn-success btn-left" id="btnCreateProject">Create Project</button>
+                    <button type="button" class="btn btn-success btn-left" id="btnCreateProjectClose" style="margin-left: 15px;">Close</button>
                 </div>
 
 				<% if(locals.user) { %>
@@ -186,10 +250,30 @@
 					<input type="hidden" id="userIdData" value="<%=locals.user[0].memorialNumber %>"/> 
 					     
 				<% } %>	
+				<input type="hidden" id="projectIdHidden" value=""/> 
             </form>
         </div>
 </section>
 
+<div class="modal fade" id="myCreateProjectModal" role="dialog">
+    <div class="modal-dialog"> 
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Action Status</h4>
+        </div>
+        <div class="modal-body">
+          <p style="font-weight:bold;" id="actionMessage"></p>
+          <p id="newUserId"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+ </div>
+ 
 <!--   Core JS Files   --> 
 <script src="/js/jquery-2.2.4.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>

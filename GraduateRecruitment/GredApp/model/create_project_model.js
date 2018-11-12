@@ -5,7 +5,12 @@ var modelData = {
 	getDepartmentList:getDepartmentList,
 	getDepartmentBranch:getDepartmentBranch,
 	setProjectDetail:setProjectDetail,
-	setProjectResearchDetail:setProjectResearchDetail
+	setProjectResearchDetail:setProjectResearchDetail,
+	getAddedProject:getAddedProject,
+	deleteProject:deleteProject,
+	publishProject:publishProject,
+	getSelectedProject: getSelectedProject,
+	getSelectedResearchProject:getSelectedResearchProject
 }
 
 function getDepartmentList(result) {
@@ -32,8 +37,82 @@ function getDepartmentBranch(data,result) {
     });   
 }
 
+function getAddedProject(data,result) { 
+    db.query("SELECT * FROM projectDetail WHERE department='"+ data.DeptName +"'", function (err, res) {
+	    if(err) {
+	        console.log("error: ", err);
+	        result(null, err);
+	    }
+	    else{  
+	        result(null, res);
+	    }
+    });   
+}
+
+function getSelectedProject(data,result) { 
+    db.query("SELECT * FROM projectDetail WHERE id='"+ data.projectId +"'", function (err, res) {
+	    if(err) {
+	        console.log("error: ", err);
+	        result(null, err);
+	    }
+	    else{  
+	        result(null, res);
+	    }
+    });   
+}
+
+function getSelectedResearchProject(data,result) { 
+    db.query("SELECT * FROM projectResearchDetail WHERE projectId='"+ data.projectId +"'", function (err, res) {
+	    if(err) {
+	        console.log("error: ", err);
+	        result(null, err);
+	    }
+	    else{  
+	        result(null, res);
+	    }
+    });   
+}
+
+function deleteProject(data,result) {
+	console.log("data.projectId" + data.projectId);
+    db.query("DELETE FROM projectDetail WHERE id="+data.projectId, function (err, res) {
+	    if(err) {
+	        console.log("error: ", err);
+	        result(null, err);
+	    }
+	    else{  
+	    	var sendData={
+			  status:true,    
+			  message:"Record deleted successfully"
+			};
+			result(null, sendData); 
+	    }
+    });   
+}
+
+function publishProject(data,result) {
+    db.query("UPDATE projectDetail SET isDraft=1 WHERE id=" + data.projectId , function (err, res) {
+	    if(err) {
+	        console.log("error: ", err);
+	        result(null, err);
+	    }
+	    else{  
+	    	var sendData={
+			  status:true,    
+			  message:"Record update successfully"
+			};
+			result(null, sendData); 
+	    }
+    });   
+}
 
 function setProjectDetail(data,result) {  
+	
+	console.log("data.projectId :"+data.projectId);
+	if(data.projectId=="")
+	{
+		data.projectId=0;
+	}
 	
 	var project={
 			"department":data.department,	
@@ -73,7 +152,7 @@ function setProjectDetail(data,result) {
 		    	else
 		    	{
 		    		db.query("UPDATE projectDetail set department='"+data.department+"',program='"+data.program+"',degree='"+data.degree+"',programDuration='"+ data.programDuration
-		    				+"',programStartDate='"+data.programStartDate+"',applicationEndDate='"+data.applicationEndDate +"',numberOfPosition="+data.numberOfPosition 
+		    				+"',programStartDate='"+data.programStartDate+"',applicationEndDate='"+data.applicationEndDate +"',numberOfPosition='"+data.numberOfPosition 
 		    				+"',financialSupport='"+data.financialSupport +"',otherRequirement='"+data.otherRequirement +"',isDraft="+data.isDraft +",createdBy='"+ data.userId+"' WHERE id="+data.projectId,function(err,res){
 		    			if(err) {
 			   			    console.log("error: ", err);

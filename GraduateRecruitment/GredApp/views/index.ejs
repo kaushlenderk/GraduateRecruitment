@@ -66,21 +66,35 @@
     </div>
 </div>
 
+<div class="image-container set-full-height div_unactive" style="background-image: url(/images/research_large.jpg);" id="tab31">    
+    <!--   Big container   -->
+    <div class="container">
+        &nbsp;
+    </div>
+</div>
+
+
+<div class="image-container set-full-height div_unactive" style="background-image: url(/images/become_a_student_large.jpg);" id="tab21">    
+    <!--   Big container   -->
+    <div class="container">
+        &nbsp;
+    </div>
+</div>
+
 <div class="container">
         <div class="row div_active" id="tab1">
         	<div class="col-sm-12">        		
-        		<h1 style="text-align: center;"><%= underConstruction %></h1>
+        		<% include partials/template/home/about.ejs %>
         	</div>
         </div>
         <div class="row div_unactive" id="tab2">
         	<div class="col-sm-12">        		
-        		<h1 style="text-align: center;"><%= underConstruction %></h1>
-        	</div>
-        	<div class="dd1">ssssssssa</div>
+        		<% include partials/template/home/student_section.ejs %>
+        	</div> 
         </div>
         <div class="row div_unactive" id="tab3">
         	<div class="col-sm-12">        		
-        		<h1 style="text-align: center;"><%= underConstruction %></h1>
+        		<% include partials/template/home/research.ejs %>
         	</div>
         </div>
         <div class="row div_unactive" id="tab4">
@@ -124,6 +138,11 @@
 		    $('#tab11').removeClass("div_unactive");
 		    $('#tab11').addClass("div_active1");
 		    
+		    $('#tab31').removeClass("div_active1");
+		    $('#tab31').addClass("div_unactive");
+		    $('#tab21').removeClass("div_active1");
+		    $('#tab21').addClass("div_unactive");
+		    
 		});
 		$('#Tab2').click(function() {
 			$('#tab2').addClass("div_active");
@@ -138,6 +157,10 @@
 		    
 		    $('#tab11').addClass("div_unactive");
 		    $('#tab11').removeClass("div_active1");
+		    $('#tab21').removeClass("div_unactive");
+		    $('#tab21').addClass("div_active1");		    
+		    $('#tab31').removeClass("div_active1");
+		    $('#tab31').addClass("div_unactive");
 		});
 		$('#Tab3').click(function() {
 			$('#tab3').addClass("div_active");
@@ -152,6 +175,10 @@
 		    
 		    $('#tab11').addClass("div_unactive");
 		    $('#tab11').removeClass("div_active1");
+		    $('#tab21').addClass("div_unactive");
+		    $('#tab21').removeClass("div_active1");
+			$('#tab31').removeClass("div_unactive");
+		    $('#tab31').addClass("div_active1");
 		});
 		$('#Tab4').click(function() { 	
 			$('#tab4').addClass("div_active");
@@ -166,6 +193,10 @@
 		    
 		    $('#tab11').addClass("div_unactive");
 		    $('#tab11').removeClass("div_active1");
+		    $('#tab21').removeClass("div_active1");
+			$('#tab31').removeClass("div_unactive");
+		    $('#tab31').addClass("div_unactive");
+		    $('#tab31').removeClass("div_active1");
 		});
 	});
 	</script>

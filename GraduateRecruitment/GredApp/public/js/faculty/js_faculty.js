@@ -661,18 +661,20 @@ $(document).ready(function () {
 	
 	function funAlertProfile(data)
 	{ 
-		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
-			$("#alertMessage").text(data.sqlMessage)
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") { 
+			$("#actionProfileModalMessage").text(data.sqlMessage);
+			$('#myCreatefProfileModal').modal('show');
 		}
 		else {
 			if(data.status==false)
-			{
-				$("#alertMessage").text(data.message)
+			{ 
+				$("#actionProfileModalMessage").text(data.message);
+				$('#myCreatefProfileModal').modal('show');
 			}
 			else	
 			{ 
-				document.getElementById('alertMessage').style.opacity = 0.7;
-				$("#alertMessage").text("Profile has been successfully saved");
+				$("#actionProfileModalMessage").text("Profile has been successfully saved");
+				$('#myCreatefProfileModal').modal('show'); 
 			}
 		} 
 	}

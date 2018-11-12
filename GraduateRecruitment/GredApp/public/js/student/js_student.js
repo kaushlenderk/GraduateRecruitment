@@ -865,18 +865,20 @@ function validateProgramResearchInterestSection() {
 	
 	function funAlertProfile(data)
 	{ 
-		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
-			$("#alertMessage").text(data.sqlMessage)
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") { 
+			$("#actionProfileStudentModalMessage").text(data.sqlMessage);
+			$('#myStudentModal').modal('show');
 		}
 		else {
 			if(data.status==false)
-			{
-				$("#alertMessage").text(data.message)
+			{ 
+				$("#actionProfileStudentModalMessage").text(data.message);
+				$('#myStudentModal').modal('show');
 			}
 			else	
-			{
-				document.getElementById('alertMessage').style.opacity = 0.7;
-				$("#alertMessage").text("Profile has been successfully saved");
+			{ 
+				$("#actionProfileStudentModalMessage").text("Profile has been successfully saved");
+				$('#myStudentModal').modal('show');
 			}
 		} 
 	}
