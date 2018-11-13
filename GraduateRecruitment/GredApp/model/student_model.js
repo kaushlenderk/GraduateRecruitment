@@ -309,9 +309,7 @@ function GetStudentOfferAdmissionDetail(data,result) {
 
 
 function setAcceptAdmissions(data,result) { 
-	
-	console.log("data.userId"+data.userId);
-	
+	 
 	db.query("UPDATE enrollment SET status=4,acceptanceStatus=4 WHERE userId= '" + data.userId +"' and offerStatus<>2", function (err, res) {
 	    if(err) {
 	            console.log("error: ", err);
@@ -350,6 +348,20 @@ function setRejectAdmissionsOffer(data,result) {
 			  result(null, sendData);  
 		}
 	}); 
+};
+
+function getResearchTitle(data,result) {
+	 
+	db.query("SELECT DISTINCT rt.researchTitle from projectDetail p INNER JOIN projectResearchDetail rt ON " +
+			" p.id=rt.projectId WHERE p.isDraft=1 AND p.degree = '" + data.degree +"'", function (err, res) {
+	    if(err) {
+	            console.log("error: ", err);
+	            result(null, err);
+		    }
+		    else{   
+		        result(null, res);
+		}
+	});
 };
 
 module.exports = studentModel;

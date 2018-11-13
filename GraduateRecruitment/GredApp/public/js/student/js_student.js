@@ -754,10 +754,10 @@ function validateProgramResearchInterestSection() {
 	        var cols = "";
 	
 	        cols += '<td class="col-sm-2"><label class="form-control education_row" name="rpiddlprogram">' + item.program + '</label> </td>';
-	        cols += '<td class="col-sm-2"><label class="form-control education_row" name="rpiddlresearcharea">' + item.researchArea + '</label> </td>';
+	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpiddlresearcharea">' + item.researchArea + '</label> </td>';
 	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpidescription">' + item.researchDescription + '</label> </td>';
-	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="skillSet">' + item.skillSet + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="skillSet">' + item.skillSet + '</label> </td>';
+	        //cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        
 	        newRow.append(cols);
 	        $("#researchProgramResearchInterestTable").append(newRow);
