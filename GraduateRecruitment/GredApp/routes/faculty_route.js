@@ -263,4 +263,30 @@ router.get("/GetMappedStudentProfile",function(req,res){
 	}); 
 });
 
+router.post("/getProgramResearchInterest",function(req,res){  
+	create_project_model.getProgramResearchInterest(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
+router.post("/setOfferAdmissions",function(req,res){ 
+	enrollment_model.setOfferAdmissions(req.body, function(err, data) {	    
+	    if (err)
+	    {
+	    	throw err
+	    }
+	    else
+	    {
+	    	res.json(data);	
+	    } 
+	  });
+});
+
 module.exports =router; 

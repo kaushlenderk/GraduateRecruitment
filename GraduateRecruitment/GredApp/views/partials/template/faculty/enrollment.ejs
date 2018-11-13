@@ -1,18 +1,134 @@
-<section>
+<section id="mappedStudentProfileDivData">
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<h4 class="form-section-title">Filter Project</h4>
-			<hr class="custom-hr hr_width">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <div class="form-group">
-	             <div class="form-group">
-	                <label for="description">Filter Project By Department</label>
-	              </div>
-                </div>
-	        </div> 
+			<h4 class="form-section-title">Student Mapped Profile</h4>
+            <hr class="custom-hr hr_width">           
+             <div class="col-lg-12 col-md-12 col-sm-12" style="padding-right: 0px;padding-left: 0px;">
+                   <div style="padding-left: 0px;"> 
+					    <table id="mappedStudentProfileTable" class="table order-list">
+						    <thead>
+						        <tr>
+						        	<td class="ed_td">Id</td>
+						            <td class="ed_td">Name</td>
+						            <td class="ed_td">Research Area</td>
+						            <td class="ed_td">Skill Set</td>
+						            <td class="ed_td">Status</td>
+						        </tr>
+						    </thead>
+						    <tbody>  
+						    </tbody>							    
+						</table>
+				   </div>
+	        </div>
+	         <div class="col-lg-12 col-md-12 col-sm-12" style="padding-right: 0px;padding-left: 0px;" id="noMappedDivResult">
+                   <div style="padding-left: 0px;text-align:center;"> 
+					    <span>no mapped student</span>
+				   </div>
+	        </div>
 		</div>
 	</div>
-<section>
+</section>
+
+<section id="studentPofileDivData" class="hide_error">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h4 class="form-section-title">Student Details</h4>
+            <hr class="custom-hr hr_width"> 
+			<h4 class="form-section-title">Program Research Detail</h4>
+            <hr class="custom-hr hr_width">  
+            <div class="col-lg-12 col-md-12 col-sm-12" style="padding-right: 0px;padding-left: 0px;" id="researchProgramInterestStudentDivData">
+                   <div style="padding-left: 0px;"> 
+					    <table id="researchProgramInterestStudentTable" class="table order-list">
+						    <thead>
+						        <tr>
+						        	<td class="ed_td">Program</td>
+							        <td class="ed_td">Research Area</td>
+							        <td class="ed_td">Research Description</td>
+								    <td class="ed_td">Skill Set</td>
+						        </tr>
+						    </thead>
+						    <tbody>  
+						    </tbody>							    
+						</table>
+				   </div>
+	        </div>   
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h4 class="form-section-title">Education Detail</h4>
+            <hr class="custom-hr hr_width">     
+            <div class="col-lg-12 col-md-12 col-sm-12" style="padding-right: 0px;padding-left: 0px;" id="educationStudentDivData" >
+                <div style="padding-left: 0px;"> 
+				    <table id="educationStudentTable" class="table order-list">
+					    <thead>
+					        <tr>
+					            <td class="ed_td">Program</td>
+					            <td class="ed_td">Field of Study</td>
+					            <td class="ed_td">Institute Name and Address</td>
+					            <td class="ed_td">Year of Graduation</td>
+					        </tr>
+					    </thead>
+					    <tbody>  
+					    </tbody>							    
+				    </table>
+				</div>
+	         </div>
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h4 class="form-section-title">Research Publication Detail</h4>
+            <hr class="custom-hr hr_width"> 
+            <div class="col-lg-12 col-md-12 col-sm-12" id="publicationResearchStudentDivData" style="padding-right: 0px;padding-left: 0px;">
+                <div style="padding-left: 0px;"> 
+				    <table id="publicationResearchStudentTable" class="table order-list">
+					    <thead>
+					        <tr>
+					            <td class="ed_td">Name</td>
+					            <td class="ed_td">Publication Area</td>
+					            <td class="ed_td">Description</td>
+					            <td class="ed_td">Publication Date</td>
+					        </tr>
+					    </thead>
+					    <tbody>  
+					    </tbody>							    
+				    </table>
+				</div>
+	         </div>
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h4 class="form-section-title">Work Experience Detail</h4>
+            <hr class="custom-hr hr_width">        
+             <div class="col-lg-12 col-md-12 col-sm-12" id="workExperienceStudentDivData" style="padding-right: 0px;padding-left: 0px;">
+                <div style="padding-left: 0px;"> 
+				    <table id="workExperienceStudentTable" class="table order-list">
+					    <thead>
+					        <tr>
+					            <td class="ed_td">Institution</td>
+					            <td class="ed_td">Position</td>
+					            <td class="ed_td">Location</td>
+					            <td class="ed_td">Month of Experience</td>
+					        </tr>
+					    </thead>
+					    <tbody>  
+					    </tbody>							    
+				    </table>
+				</div>
+	         </div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: right;">
+			<input type="button" class="btn btn-md btn-danger" style="padding: 5px 35px;font-weight: bold;" value="Hide Student View" id="btnHideStudentView">
+		</div>
+	</div>
+</section>
 
 <!--   Core JS Files   --> 
 <script src="/js/jquery-2.2.4.min.js" type="text/javascript"></script>

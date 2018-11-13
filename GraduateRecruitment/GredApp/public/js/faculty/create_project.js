@@ -836,14 +836,323 @@ $(function(){
 	/* end research data */
 	 
 	/* start enrollment data */
-	  	
-	 $.getJSON('/GetMappedStudentProfile',fnDepartment1);
+	 
+ 
+	var admissionStatus = {
+			0:'Pending Decision',
+			1:'Offered',
+			2:'Reject',
+			3:'Accept',
+			4:'Decline'
+	 };
+ 
+	 $.getJSON('/GetMappedStudentProfile',fnMappedStudentProfile);
 		
-		function fnDepartment1()
-		{
+	 function fnMappedStudentProfile(data)
+	 { 
+		 $("#mappedStudentProfileTable > tbody").html("");
 			
-		} 
+			$.each(data,function(key,item){	
+				var count=0; 
+				$.each(item,function(keyValue,itemValue){	
+					console.log("status" + admissionStatus[itemValue.status]);
+					
+					var status = admissionStatus[itemValue.status];
+					
+					if(status != undefined)
+					{ 
+						$('#noMappedDivResult').addClass("hide_error");
+						$('#noMappedDivResult').removeClass('show_error');
+						
+						$('#mappedStudentProfileTable').addClass("show_error");
+						$('#mappedStudentProfileTable').removeClass('hide_error');
+						
+						var newRow = $("<tr>");
+				        var cols = "";
+				        
+				        cols += '<td style="display:none;"><label class="form-control education_row" name="id">' + itemValue.id + '</label> </td>';
+				        cols += '<td class="col-sm-1"><label class="form-control education_row" name="userId">' + itemValue.userId + '</label> </td>';
+				        cols += '<td class="col-sm-2"><label class="form-control education_row" name="name">' + itemValue.name + '</label> </td>';
+				        cols += '<td class="col-sm-2"><label class="form-control education_row" name="researchArea">' + itemValue.researchArea + '</label> </td>';
+				        cols += '<td class="col-sm-3"><label class="form-control education_row" name="skillset">' + itemValue.skillSet + '</label> </td>';
+				        cols += '<td class="col-sm-2"><label class="form-control education_row" name="admissionStatus">' + status + '</label> </td>';
+					
+						if(itemValue.status == 0)
+						{
+							cols += '<td class="col-sm-2"><input type="button" class="ibtnDels2 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View">&nbsp;<input type="button" class="ibtnDels3 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="Offer">&nbsp;<input type="button" class="ibtnDels4 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Decline"></td>';
+						} 
+						else
+						{
+							cols += '<td class="col-sm-2"><input type="button" class="ibtnDels1 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View" id="btnViewProject"></td>';
+						}					
+							
+						
+						
+				        newRow.append(cols);
+				        $("#mappedStudentProfileTable").append(newRow);
+					}
+			        
+				});
+				 
+		      counter++; 
+		}); 
+	 } 
 		
+		//view
+		$("#mappedStudentProfileTable").on("click", ".ibtnDels2", function (event) {
+			$('#studentPofileDivData').addClass("show_error");
+			$('#studentPofileDivData').removeClass('hide_error'); 
+			 
+			//get row 
+			var $tr = $("#mappedStudentProfileTable"); 
+			var row = $(this).closest("tr").index(); 
+			row = row + 1;
+			 
+			var userId =document.getElementById("mappedStudentProfileTable").rows[row].cells[1].innerHTML;  
+			
+			
+			if(userId.length>0)
+			{
+				userId = userId.replace('<label class="form-control education_row" name="userId">','');
+				userId = userId.replace('</label>','');
+			}
+			  
+			if(userId.length>0)
+			{
+				$.post("/getProgramResearchInterest",{
+					userId : userId
+				},getResearchProjectStudentData)
+				
+				$.post("/getEducation",{
+					userId : userId
+				},getEducationProjectStudentData)
+				
+				$.post("/getPublication",{
+					userId : userId
+				},getPublicationStudentData)
+				
+				$.post("/getWorkExperience",{
+					userId : userId
+				},getWorkExperienceStudentData)
+			}
+	    });
+		
+		$("#mappedStudentProfileTable").on("click", ".ibtnDels1", function (event) {
+			$('#studentPofileDivData').addClass("show_error");
+			$('#studentPofileDivData').removeClass('hide_error'); 
+			 
+			//get row 
+			var $tr = $("#mappedStudentProfileTable"); 
+			var row = $(this).closest("tr").index(); 
+			row = row + 1;
+			 
+			var userId =document.getElementById("mappedStudentProfileTable").rows[row].cells[1].innerHTML;  
+			
+			
+			if(userId.length>0)
+			{
+				userId = userId.replace('<label class="form-control education_row" name="userId">','');
+				userId = userId.replace('</label>','');
+			}
+			  
+			if(userId.length>0)
+			{
+				$.post("/getProgramResearchInterest",{
+					userId : userId
+				},getResearchProjectStudentData)
+			}
+	    });
+		 
+		function getResearchProjectStudentData(data)
+		{
+			$("#researchProgramInterestStudentTable > tbody").html("");
+			 
+			$.each(data,function(key,item){
+				var count=0; 
+				
+				console.log(item);
+				var newRow = $("<tr>");
+		        var cols = "";
+		
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="program">' + item.program + '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="researchArea">' + item.researchArea	 + '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="researchDescription">' + item.researchDescription + '</label> </td>';
+				cols += '<td class="col-sm-3"><label class="form-control education_row" name="skill_set_select_id">' + item.skillSet + '</label> </td>';
+		 
+		        newRow.append(cols);
+		        $("#researchProgramInterestStudentTable").append(newRow);
+		        counter++;
+			});  
+		}
+		
+
+		function getEducationProjectStudentData(data)
+		{   
+			$.each(data,function(key,item){
+				var count=0;
+				 
+				$('#educationStudentTable').addClass("show_error");
+				$('#educationStudentTable').removeClass('hide_error');
+				
+				var newRow = $("<tr>");
+		        var cols = "";
+		
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="eddlprogram">' + item.program+ '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.fieldOfStudy + '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.instituteNameAddress + '</label> </td>';
+				cols += '<td class="col-sm-3"><label class="form-control education_row" name="egraduationdate">' + item.graduationDate + '</label> </td>';
+		        newRow.append(cols);
+		        $("#educationStudentTable").append(newRow);
+		        counter++;
+			});  
+		}
+		
+		function getPublicationStudentData(data)
+		{  
+			$.each(data,function(key,item){
+				var count=0;
+				 
+				$('#publicationResearchStudentTable').addClass("show_error");
+				$('#publicationResearchStudentTable').removeClass('hide_error');
+				     	    	
+		        var newRow = $("<tr>");
+		        var cols = "";
+		
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="publicationName">' + item.publicationName + '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="publicationArea">' + item.publicationArea + '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="publicationDescription">' + item.publicationDescription + '</label> </td>';
+				cols += '<td class="col-sm-3"><label class="form-control education_row" name="publicationDate">' + item.publicationDate + '</label> </td>';
+
+		        newRow.append(cols);
+		        $("#publicationResearchStudentTable").append(newRow);
+		        
+		        counter++; 
+			});  
+		}
+		
+		function getWorkExperienceStudentData(data)
+		{  
+			$.each(data,function(key,item){
+				var count=0;
+				 
+				$('#workExperienceStudentTable').addClass("show_error");
+				$('#workExperienceStudentTable').removeClass('hide_error');
+				     	    	
+		        var newRow = $("<tr>");
+		        var cols = "";
+		
+		        cols += '<td class="col-md-3"><label class="form-control education_row" name="institution">' + item.institution + '</label> </td>';
+		        cols += '<td class="col-md-3"><label class="form-control education_row" name="position">' + item.position + '</label> </td>';
+		        cols += '<td class="col-md-3"><label class="form-control education_row" name="location">' + item.location + '</label> </td>';
+				cols += '<td class="col-md-3"><label class="form-control education_row" name="monthOfExperience">' + item.monthOfExperience + '</label> </td>';
+				
+		        newRow.append(cols);
+		        $("#workExperienceStudentTable").append(newRow);
+		        counter++; 
+			});  
+		}
+		
+		$('#btnHideStudentView').on('click', function() {
+			$('#studentPofileDivData').addClass("hide_error");
+			$('#studentPofileDivData').removeClass("show_error"); 
+		});
+		
+		//Offer admission
+		$("#mappedStudentProfileTable").on("click", ".ibtnDel3", function (event) {
+			$('#createProjectSection').addClass("hide_error");
+			$('#createProjectSection').removeClass("show_error"); 
+			
+			var table = document.getElementById('addedProjectTable');
+			var $tr = $("#addedProjectTable"); 
+			var row = $(this).closest("tr").index(); 
+			row = row + 1;
+			 
+			var projectId =document.getElementById("addedProjectTable").rows[row].cells[0].innerHTML;  
+			
+			if(projectId.length>0)
+			{
+				projectId = projectId.replace('<label class="form-control education_row" name="id">','');
+				projectId = projectId.replace('</label>','');
+			}
+			 
+			if(projectId.length > 0)
+			{ 
+				$.post("/publishProject",{
+					projectId : projectId
+				},fnPublishProjectGrid)
+			}
+	    });
+		
+		function fnGetPublication(data)
+		{  
+			$.each(data,function(key,item){
+				var count=0;
+				 
+				$('#publicationResearchDivData').addClass("show_error");
+				$('#publicationResearchDivData').removeClass('hide_error');
+				     	    	
+		        var newRow = $("<tr>");
+		        var cols = "";
+		
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="eddlprogram">' + item.publicationName + '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.publicationArea + '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.publicationDescription + '</label> </td>';
+				cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.publicationDate + '</label> </td>';
+		        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+		        newRow.append(cols);
+		        $("#publicationResearchTable").append(newRow);
+		        
+		        counter++; 
+			});  
+		}
+		 
+		
+		//publish
+		$("#mappedStudentProfileTable").on("click", ".ibtnDels3", function (event) {
+			$('#createProjectSection').addClass("hide_error");
+			$('#createProjectSection').removeClass("show_error"); 
+			
+			var $tr = $("#mappedStudentProfileTable"); 
+			var row = $(this).closest("tr").index(); 
+			row = row + 1;
+			 
+			var id =document.getElementById("mappedStudentProfileTable").rows[row].cells[0].innerHTML;  
+			var userId =document.getElementById("mappedStudentProfileTable").rows[row].cells[1].innerHTML;  
+			
+			if(id.length>0)
+			{
+				id = id.replace('<label class="form-control education_row" name="id">','');
+				id = id.replace('</label>','');
+			} 
+			
+			if(userId.length>0)
+			{
+				userId = userId.replace('<label class="form-control education_row" name="userId">','');
+				userId = userId.replace('</label>','');
+			} 
+			 
+			if(id.length>0)
+			{
+				$.post("/setOfferAdmissions",{
+					id : id,
+					userId:userId
+				},setOfferStudentData)
+			}
+	    });
+		
+		function setOfferStudentData(data)
+		{
+			if (typeof(data.errno) != "undefined" &&  data.errno!="") {
+				//$("#alertMessage").text(data.sqlMessage)
+			} 
+			else { 			
+				if(data.status==true)
+				{
+					alert(1);
+					$.getJSON('/GetMappedStudentProfile',fnMappedStudentProfile);
+				} 
+			} 
+		}
 	/* end research data */ 
 	 
 	 

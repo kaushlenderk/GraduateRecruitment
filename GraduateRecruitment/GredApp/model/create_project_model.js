@@ -10,7 +10,8 @@ var modelData = {
 	deleteProject:deleteProject,
 	publishProject:publishProject,
 	getSelectedProject: getSelectedProject,
-	getSelectedResearchProject:getSelectedResearchProject
+	getSelectedResearchProject:getSelectedResearchProject,
+	getProgramResearchInterest:getProgramResearchInterest
 }
 
 function getDepartmentList(result) {
@@ -206,5 +207,15 @@ function setProjectResearchDetail(data,result) {
 	 
 }
 
-
+function getProgramResearchInterest(data,result) { 
+	db.query("select * from programResearchInterest WHERE userId= '" + data.userId +"'", function (err, res) {
+	    if(err) {
+	            console.log("error: ", err);
+	            result(null, err);
+		    }
+		    else{   
+		        result(null, res);
+		}
+	});
+};
 module.exports = modelData;
