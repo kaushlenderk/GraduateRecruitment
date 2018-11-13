@@ -289,4 +289,17 @@ router.post("/setOfferAdmissions",function(req,res){
 	  });
 });
 
+router.post("/setRejectAdmissions",function(req,res){ 
+	enrollment_model.setRejectAdmissions(req.body, function(err, data) {	    
+	    if (err)
+	    {
+	    	throw err
+	    }
+	    else
+	    {
+	    	res.json(data);	
+	    } 
+	  });
+});
+
 module.exports =router; 

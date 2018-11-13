@@ -13,7 +13,10 @@ var studentModel = {
 	setPublicationDetail:setPublicationDetail,
 	setWorkExperienceDetail:setWorkExperienceDetail,
 	setProgramResearchInterest:setProgramResearchInterest,
-	getResearchTitle:getResearchTitle
+	getResearchTitle:getResearchTitle,
+	GetStudentOfferAdmissionDetail:GetStudentOfferAdmissionDetail,
+	setAcceptAdmissions:setAcceptAdmissions,
+	setRejectAdmissionsOffer:setRejectAdmissionsOffer
 }
 
 function getResearchTitle(data,result) {
@@ -284,6 +287,70 @@ function setProgramResearchInterest(data,result) {
 	 });  
 	 
 }
+
+/* Enrollment and program detail*/
+
+function GetStudentOfferAdmissionDetail(data,result) {
+	 
+	var sql="call GetStudentOfferAdmissionDetail('"+data.studentId+"')";
+	
+    db.query(sql, function (err, res) {
+	    if(err) {
+	        console.log("error: ", err);
+	        result(null, err);
+	    }
+	    else{  
+	    	console.log("res:"+res);
+	        result(null, res);
+	        
+	    }
+    });   
+}
+
+
+function setAcceptAdmissions(data,result) { 
+	
+	console.log("data.userId"+data.userId);
+	
+	db.query("UPDATE enrollment SET status=4,acceptanceStatus=4 WHERE userId= '" + data.userId +"' and offerStatus<>2", function (err, res) {
+	    if(err) {
+	            console.log("error: ", err);
+	            result(null, err);
+		    }
+		    else{   
+		    	db.query("UPDATE enrollment SET status=3,acceptanceStatus=3 WHERE id= '" + data.id +"'", function (err, res) {
+		    	    if(err) {
+		    	            console.log("error: ", err);
+		    	            result(null, err);
+		    		    }
+		    		    else{   
+		    		    	var sendData={
+		    				 status:true,    
+		    				 message:"Admission acceptance sent successfully"
+		    		       };
+		    			  result(null, sendData);  
+		    		}
+		    	}); 
+		}
+	}); 
+};
+
+function setRejectAdmissionsOffer(data,result) { 
+	
+	db.query("UPDATE enrollment SET status=4,acceptanceStatus=4 WHERE id= '" + data.id +"'", function (err, res) {
+	    if(err) {
+	            console.log("error: ", err);
+	            result(null, err);
+		    }
+		    else{   
+		    	var sendData={
+				 status:true,    
+				 message:"Decline acceptance letter"
+		       };
+			  result(null, sendData);  
+		}
+	}); 
+};
 
 module.exports = studentModel;
 

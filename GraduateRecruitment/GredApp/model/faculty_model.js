@@ -26,6 +26,7 @@ function getProfile(data,result) {
 };
 
 function getEducationDetail(data,result) { 
+	
 	db.query("select * from educationDetail WHERE userId= '" + data.userId +"'", function (err, res) {
 	    if(err) {
 	            console.log("error: ", err);

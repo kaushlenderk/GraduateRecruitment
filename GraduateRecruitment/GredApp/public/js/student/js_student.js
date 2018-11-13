@@ -1073,6 +1073,201 @@ function validateProgramResearchInterestSection() {
 	}); 
 	
 	/*end save form data */
+	
+	/* start Student enrollment and view program section */
+
+	var admissionStatus = {
+			0:'Pending Decision',
+			1:'Offered',
+			2:'Reject',
+			3:'Accept',
+			4:'Decline'
+	 };
+	
+	var studentId = $("#userIdData").val(); 
+	
+	$.post("/GetStudentOfferAdmissionDetail",{
+		studentId : studentId
+	},GetStudentOfferAdmissionDetail)
+ 
+	function GetStudentOfferAdmissionDetail(data)
+	{  
+		$("#studentEnrollmentProfileTable > tbody").html("");
+		
+		$.each(data,function(key,item){	
+			var count=0; 
+			$.each(item,function(keyValue,itemValue){	
+				console.log("status" + admissionStatus[itemValue.status]);
+				
+				var status = admissionStatus[itemValue.status];
+				
+				if(status != undefined)
+				{ 
+					$('#noRecordDivResult').addClass("hide_error");
+					$('#noRecordDivResult').removeClass('show_error');
+					
+					$('#studentEnrollmentProfileTable').addClass("show_error");
+					$('#studentEnrollmentProfileTable').removeClass('hide_error');
+					
+					var newRow = $("<tr>");
+			        var cols = "";
+			        
+			        cols += '<td style="display:none;"><label class="form-control education_row" name="id">' + itemValue.id + '</label> </td>';
+			        cols += '<td class="col-sm-1"><label class="form-control education_row" name="userId">' + itemValue.userId + '</label> </td>';
+			        cols += '<td class="col-sm-2"><label class="form-control education_row" name="name">' + itemValue.name + '</label> </td>';
+			        cols += '<td class="col-sm-2"><label class="form-control education_row" name="researchArea">' + itemValue.researchArea + '</label> </td>';
+			        cols += '<td class="col-sm-3"><label class="form-control education_row" name="skillset">' + itemValue.skillSet + '</label> </td>';
+			        cols += '<td class="col-sm-1"><label class="form-control education_row" name="admissionStatus">' + status + '</label> </td>';
+				 
+					if(itemValue.status == 1)
+					{
+						cols += '<td class="col-sm-3"><input type="button" class="ibtnDeles1 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View">&nbsp;<input type="button" class="ibtnDeles2 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Accept">&nbsp;<input type="button" class="ibtnDeles3 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Decline"></td>';
+					}
+					if(itemValue.status == 3 || itemValue.status==4)
+					{
+						cols += '<td class="col-sm-3"><input type="button" class="ibtnDeles1 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View"></td>';
+					}
+					else
+					{
+						cols += '<td class="col-sm-3">&nbsp;</td>';
+					}
+			        newRow.append(cols);
+			        $("#studentEnrollmentProfileTable").append(newRow);
+				}
+		        
+			});
+			 
+	      counter++; 
+		}); 
+	}
+	
+	//view
+	$("#studentEnrollmentProfileTable").on("click", ".ibtnDeles1", function (event) {
+		$('#programDetailDivData').addClass("show_error");
+		$('#programDetailDivData').removeClass('hide_error'); 
+		 
+		//get row 
+		var $tr = $("#mappedStudentProfileTable"); 
+		var row = $(this).closest("tr").index(); 
+		row = row + 1;
+		 
+		var userId =document.getElementById("studentEnrollmentProfileTable").rows[row].cells[1].innerHTML;  
+		
+		
+		/*if(userId.length>0)
+		{
+			userId = userId.replace('<label class="form-control education_row" name="userId">','');
+			userId = userId.replace('</label>','');
+		}
+		  
+		
+		if(userId.length>0)
+		{
+			$.post("/getProgramResearchInterest",{
+				userId : userId
+			},getResearchProjectStudentData)
+			
+			$.post("/getEducation",{
+				userId : userId
+			},getEducationProjectStudentData)
+			
+			$.post("/getPublication",{
+				userId : userId
+			},getPublicationStudentData)
+			
+			$.post("/getWorkExperience",{
+				userId : userId
+			},getWorkExperienceStudentData)
+		} */
+    });
+	
+	
+	//accept admission
+	$("#studentEnrollmentProfileTable").on("click", ".ibtnDeles2", function (event) {
+		$('#programDetailDivData').addClass("hide_error");
+		$('#programDetailDivData').removeClass("show_error"); 
+		
+		var $tr = $("#studentEnrollmentProfileTable"); 
+		var row = $(this).closest("tr").index(); 
+		row = row + 1;
+		 
+		var id =document.getElementById("studentEnrollmentProfileTable").rows[row].cells[0].innerHTML;  
+		var userId =document.getElementById("studentEnrollmentProfileTable").rows[row].cells[1].innerHTML;  
+		
+		if(id.length>0)
+		{
+			id = id.replace('<label class="form-control education_row" name="id">','');
+			id = id.replace('</label>','');
+		} 
+		
+		if(userId.length>0)
+		{
+			userId = userId.replace('<label class="form-control education_row" name="userId">','');
+			userId = userId.replace('</label>','');
+		} 
+		 
+		if(id.length>0)
+		{
+			$.post("/setAcceptAdmissions",{
+				id : id,
+				userId:userId
+			},setEnrollmetStatus)
+		}
+    });
+	
+	//reject admission
+	$("#studentEnrollmentProfileTable").on("click", ".ibtnDeles3", function (event) {
+		$('#programDetailDivData').addClass("hide_error");
+		$('#programDetailDivData').removeClass("show_error"); 
+		
+		var $tr = $("#mappedStudentProfileTable"); 
+		var row = $(this).closest("tr").index(); 
+		row = row + 1;
+		 
+		var id =document.getElementById("studentEnrollmentProfileTable").rows[row].cells[0].innerHTML;  
+		var userId =document.getElementById("studentEnrollmentProfileTable").rows[row].cells[1].innerHTML;  
+		
+		if(id.length>0)
+		{
+			id = id.replace('<label class="form-control education_row" name="id">','');
+			id = id.replace('</label>','');
+		} 
+		
+		if(userId.length>0)
+		{
+			userId = userId.replace('<label class="form-control education_row" name="userId">','');
+			userId = userId.replace('</label>','');
+		} 
+		 
+		if(id.length>0)
+		{
+			$.post("/setRejectAdmissionsOffer",{
+				id : id,
+				userId:userId
+			},setEnrollmetStatus)
+		}
+    });
+	function setEnrollmetStatus(data)
+	{
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
+			//$("#alertMessage").text(data.sqlMessage)
+		} 
+		else { 			
+			if(data.status==true)
+			{ 
+				$.post("/GetStudentOfferAdmissionDetail",{
+					studentId : studentId
+				},GetStudentOfferAdmissionDetail)
+			} 
+		} 
+	}
+	
+	$('#btnHideprogramDetailDivDataView').on('click', function() {
+		$('#programDetailDivData').addClass("hide_error");
+		$('#programDetailDivData').removeClass("show_error"); 
+	});
+	/* end Student enrollment and view program section */
+
 });
 
 

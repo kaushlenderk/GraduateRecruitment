@@ -917,6 +917,7 @@ $(function(){
 				userId = userId.replace('</label>','');
 			}
 			  
+			
 			if(userId.length>0)
 			{
 				$.post("/getProgramResearchInterest",{
@@ -954,12 +955,24 @@ $(function(){
 				userId = userId.replace('<label class="form-control education_row" name="userId">','');
 				userId = userId.replace('</label>','');
 			}
-			  
+			   
 			if(userId.length>0)
 			{
 				$.post("/getProgramResearchInterest",{
 					userId : userId
 				},getResearchProjectStudentData)
+				
+				$.post("/getEducation",{
+					userId : userId
+				},getEducationProjectStudentData)
+				
+				$.post("/getPublication",{
+					userId : userId
+				},getPublicationStudentData)
+				
+				$.post("/getWorkExperience",{
+					userId : userId
+				},getWorkExperienceStudentData)
 			}
 	    });
 		 
@@ -1058,7 +1071,7 @@ $(function(){
 		});
 		
 		//Offer admission
-		$("#mappedStudentProfileTable").on("click", ".ibtnDel3", function (event) {
+		/*$("#mappedStudentProfileTable").on("click", ".ibtnDel3", function (event) {
 			$('#createProjectSection').addClass("hide_error");
 			$('#createProjectSection').removeClass("show_error"); 
 			
@@ -1105,9 +1118,9 @@ $(function(){
 		        counter++; 
 			});  
 		}
-		 
+		*/
 		
-		//publish
+		//offer admission
 		$("#mappedStudentProfileTable").on("click", ".ibtnDels3", function (event) {
 			$('#createProjectSection').addClass("hide_error");
 			$('#createProjectSection').removeClass("show_error"); 
@@ -1140,6 +1153,38 @@ $(function(){
 			}
 	    });
 		
+		//reject admission
+		$("#mappedStudentProfileTable").on("click", ".ibtnDels4", function (event) {
+			$('#createProjectSection').addClass("hide_error");
+			$('#createProjectSection').removeClass("show_error"); 
+			
+			var $tr = $("#mappedStudentProfileTable"); 
+			var row = $(this).closest("tr").index(); 
+			row = row + 1;
+			 
+			var id =document.getElementById("mappedStudentProfileTable").rows[row].cells[0].innerHTML;  
+			var userId =document.getElementById("mappedStudentProfileTable").rows[row].cells[1].innerHTML;  
+			
+			if(id.length>0)
+			{
+				id = id.replace('<label class="form-control education_row" name="id">','');
+				id = id.replace('</label>','');
+			} 
+			
+			if(userId.length>0)
+			{
+				userId = userId.replace('<label class="form-control education_row" name="userId">','');
+				userId = userId.replace('</label>','');
+			} 
+			 
+			if(id.length>0)
+			{
+				$.post("/setRejectAdmissions",{
+					id : id,
+					userId:userId
+				},setOfferStudentData)
+			}
+	    });
 		function setOfferStudentData(data)
 		{
 			if (typeof(data.errno) != "undefined" &&  data.errno!="") {
@@ -1147,8 +1192,7 @@ $(function(){
 			} 
 			else { 			
 				if(data.status==true)
-				{
-					alert(1);
+				{ 
 					$.getJSON('/GetMappedStudentProfile',fnMappedStudentProfile);
 				} 
 			} 

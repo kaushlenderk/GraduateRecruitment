@@ -159,4 +159,45 @@ router.post("/researchInterest",function(req,res){
 });
 
 
+/* Student enrollment and view program section */
+
+router.post("/GetStudentOfferAdmissionDetail",function(req,res){  
+	student_model.GetStudentOfferAdmissionDetail(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
+router.post("/setAcceptAdmissions",function(req,res){ 
+	student_model.setAcceptAdmissions(req.body, function(err, data) {	    
+	    if (err)
+	    {
+	    	throw err
+	    }
+	    else
+	    {
+	    	res.json(data);	
+	    } 
+	  });
+});
+
+router.post("/setRejectAdmissionsOffer",function(req,res){ 
+	student_model.setRejectAdmissionsOffer(req.body, function(err, data) {	    
+	    if (err)
+	    {
+	    	throw err
+	    }
+	    else
+	    {
+	    	res.json(data);	
+	    } 
+	  });
+});
+
 module.exports =router; 
