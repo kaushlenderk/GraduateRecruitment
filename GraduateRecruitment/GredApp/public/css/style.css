@@ -45,6 +45,17 @@
 	font-weight: bold;
 }
 
+.div_border{
+    border-radius: 5px;
+    border: 1px solid grey; 
+    min-height: 150px; 
+    background-color: transparent;		 
+}
+
+.div_border1{ 
+    border-bottom: 1px solid grey; 		 
+}
+
 /*  
 	student
 ================================================*/

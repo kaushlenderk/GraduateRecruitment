@@ -1199,5 +1199,129 @@ $(function(){
 		}
 	/* end research data */ 
 	 
+	/* start Assessment data */ 
+		$("#addGrade").on("click", function () {
+		    	
+		    	if(validateAssessmentData())
+		    	{
+		    		
+		    	}
+		});
+		 
+		function validateAssessmentData()
+		{
+			var flag = true;
 	 
+			if ($('#assignment_id').val() == "-select-") {
+				$('#AE1').removeClass('hide_error');
+				$('#AE1').addClass('show_error');
+				flag = false;
+			}
+			else {
+				$('#AE1').removeClass('show_error');
+				$('#AE1').addClass('hide_error');
+			} 
+			 
+			if ($('#point_id').val() == "") {
+				$('#AE2').removeClass('hide_error');
+				$('#AE2').addClass('show_error');
+				flag = false;
+			}
+			else {
+				$('#AE2').removeClass('show_error');
+				$('#AE2').addClass('hide_error');
+			} 
+			
+			if ($('#point_id1').val() == "") {
+				$('#AE3').removeClass('hide_error');
+				$('#AE3').addClass('show_error');
+				flag = false;
+			}
+			else {
+				$('#AE3').removeClass('show_error');
+				$('#AE3').addClass('hide_error');
+			} 
+			
+			if ($('#project_grade_id').val() == "") {
+				$('#AE4').removeClass('hide_error');
+				$('#AE4').addClass('show_error');
+				flag = false;
+			}
+			else {
+				$('#AE4').removeClass('show_error');
+				$('#AE4').addClass('hide_error');
+			} 
+			
+			if ($('#feedback_id').val() == "") {
+				$('#AE5').removeClass('hide_error');
+				$('#AE5').addClass('show_error');
+				flag = false;
+			}
+			else {
+				$('#AE5').removeClass('show_error');
+				$('#AE5').addClass('hide_error');
+			} 
+			
+			if (flag == true) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		
+		$("#assignment_id").on('change', function() {
+		    if ($(this).val() != '-select-'){
+		        $("#AE1").removeClass("show_error");
+				$("#AE1").addClass("hide_error");
+		    } 
+		});
+		
+		
+		$('#point_id').on('change',function(e){
+			if($("#point_id").val()!= null || $("#point_id").val()!= '')
+			{ 
+				$("#AE2").removeClass("show_error");
+				$("#AE2").addClass("hide_error");
+			}
+		});
+		
+		$('#point_id1').on('change',function(e){
+			if($("#point_id1").val()!= null || $("#point_id1").val()!= '')
+			{ 
+				$("#AE3").removeClass("show_error");
+				$("#AE3").addClass("hide_error");
+			}
+		});
+		
+		$('#project_grade_id').on('change',function(e){
+			if($("#project_grade_id").val()!= null || $("#project_grade_id").val()!= '')
+			{ 
+				$("#AE4").removeClass("show_error");
+				$("#AE4").addClass("hide_error");
+			}
+		});
+		
+		$('#feedback_id').on('change',function(e){
+			if($("#feedback_id").val()!= null || $("#feedback_id").val()!= '')
+			{ 
+				$("#AE5").removeClass("show_error");
+				$("#AE5").addClass("hide_error");
+			}
+		});
+		
+		$("#point_id").on("keypress keyup blur",function (event) { 
+			 $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+	         if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+	             event.preventDefault();
+	         }
+	     });
+		
+		$("#point_id1").on("keypress keyup blur",function (event) { 
+			 $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+	         if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+	             event.preventDefault();
+	         }
+	     });
+	/* end Assessment data */ 
 });

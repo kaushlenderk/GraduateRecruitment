@@ -1,0 +1,157 @@
+<section>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h4 class="form-section-title">Search or Filter</h4>
+			<hr class="custom-hr hr_width">
+            <div class="col-lg-2 col-md-2 col-sm-2">
+              <div class="form-group">
+	                <label for="description">Select a Term</label>
+	          </div>
+	        </div>
+	        <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="form-group">
+	               <div class="form-group">
+	                     <select class="form-control" name="university_term_id" id="university_term_id">
+	                          <option value="2018-2019 Fall">2018-2019 Fall</option>
+	                          <option value="2018-2019 Winter">2018-2019 Winter</option>	                          
+	                          <option value="2018-2019 Spring">2018-2019 Spring</option>
+	                     </select>
+	               </div>
+                </div>
+	         </div>
+	         <div class="col-lg-2 col-md-2 col-sm-2">
+              <div class="form-group">
+	                <label for="description">Student</label>
+	          </div>
+	        </div>
+	        <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="form-group">
+	               <div class="form-group">
+	                     <select class="form-control" name="university_term_id" id="university_term_id">
+	                          <option value="-select-">-select-</option>
+	                          <option value="2018-2019 Winter">2018-2019 Winter</option>
+	                          <option value="2018-2019 Fall">2018-2019 Fall</option>
+	                          <option value="2018-2019 Spring">2018-2019 Spring</option>
+	                     </select>
+	               </div>
+                </div>
+	         </div>
+		</div>
+	</div>
+<section>
+<br/><br/>
+<section> 
+	<div class="row div_border">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;"/>
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6">
+					<h4 class="form-section-title" style="margin-top: 15px;">Grades</h4>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6">
+					<a type="button" class="btn btn-success btn-right" data-toggle="modal" data-target="#addNewProjectModel" style="margin-right: 40px;padding: 4px 18px;">Add New Grades</a>
+				</div>
+			</div>
+		</div> 
+		<div class="col-lg-12 col-md-12 col-sm-12 div_border1" style="padding-right: 0px;padding-left: 0px;margin-top: 10px;">
+        		<div>
+        			<div class="col-lg-12 col-md-12 col-sm-12">
+		        		 
+		                  <div style="padding-left: 0px;"> 
+							  <table class="table order-list">
+								<thead>
+								   <tr>
+								      <td class="ed_td">Section</td>
+								      <td class="ed_td">Date</td>
+								      <td class="ed_td">Points</td>
+								      <td class="ed_td">Grade</td>
+								      <td class="ed_td">Feedback</td>
+								   </tr>
+								</thead>
+							  </table>
+						  </div>
+			        </div>
+        		</div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;"/>
+			<h4 class="form-section-title">Assignments</h4>
+		</div> 
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;" id="assignments_section_id"/>
+			No data
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;"/>
+			<h4 class="form-section-title">Presentations</h4>
+		</div> 
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;" id="presentations_section_id"/>
+			No data
+		</div>
+		
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;"/>
+			<h4 class="form-section-title">Exams</h4>
+		</div> 
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;" id="exams_section_id"/>
+			No data
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;"/>
+			<h4 class="form-section-title">Projects</h4>
+		</div> 
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;" id="projects_section_id"/>
+			No data
+		</div>
+        <form role="form" id="createProjectForm">
+        	  <!-- Modal -->
+              <div class="modal fade" id="addNewProjectModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                           <div class="modal-dialog" role="document">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                         <h4 class="modal-title" id="myModalLabel">Add New Grade</h4>
+                                     </div>
+                                 <div class="modal-body">
+					             <div class="form-group">
+					             	 <label for="description">Assignment Type &nbsp;<span class="required">*</span></label>
+				                     <select class="form-control" name="assignment_id" id="assignment_id">
+				                          <option value="-select-">-select-</option>
+				                          <option value="Assignment">Assignment</option>
+				                          <option value="Presentation">Presentation</option>
+				                          <option value="Exam">Exam</option>
+				                          <option value="Project">Project</option>
+				                     </select>
+				                     <label id="AE1" class="text-danger hide_error">Required field</label>
+				                 </div>	
+					             <div class="form-group">
+					                  <label for="description">Points &nbsp;<span class="required">*</span></label>
+					                  <table style="width:100%">
+					                  	<tr>
+					                  		<td>
+					                  			<input type="text" class="form-control" id="point_id" placeholder="10">
+					                  			<label id="AE2" class="text-danger hide_error">Required field</label>
+					                  		</td>
+					                  		<td>&nbsp; / &nbsp;</td>
+					                  		<td>
+					                  			<input type="text" class="form-control" id="point_id1" placeholder="15">
+					                  			<label id="AE3" class="text-danger hide_error">Required field</label>
+					                  		</td>
+					                  	</tr>
+					                  </table> 
+					             </div>
+					             <div class="form-group">
+					                 <label for="title">Grade &nbsp;<span class="required">*</span></label>
+                           			 <input type="text" class="form-control" id="project_grade_id" placeholder="Grade">
+                          			 <label id="AE4" class="text-danger hide_error">Required field</label>
+					             </div>
+					             <div class="form-group">
+					                 <label for="title">Feedback &nbsp;<span class="required">*</span></label>
+                           			 <textarea class="form-control" id="feedback_id" placeholder="Feedback"></textarea>
+                          			 <label id="AE5" class="text-danger hide_error">Required field</label>
+					             </div>
+                           </div>
+                           <div class="modal-footer">
+                           		  <button type="button" class="btn btn-primary" id="addGrade">Add Grade</button>	
+                                  <button type="button" class="btn btn-default" data-dismiss="modal" id="closeGradeModel">Close</button>                                  
+                           </div>
+                          </div>
+                         </div> 
+               </div> 
+        </form>
+    </div>
+</section>

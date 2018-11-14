@@ -59,6 +59,7 @@
 
 <% include partials/template/headfaculty.ejs %>
 
+	
 <div class="container">
         <div class="row div_active" id="tab1">
         	<div class="col-sm-12">
@@ -79,8 +80,9 @@
         	</div>
         </div>
         <div class="row div_unactive" id="tab4">
-        	<div class="col-sm-12">        		
-        		<h1 style="text-align: center;"><%= underConstruction %></h1>
+        	<div class="col-sm-12" style="min-height:500px;">        		
+        		<h4 class="form-title" style="text-align: left;font-weight: bold;">Assessment</h4>
+        		<% include partials/template/faculty/assessment.ejs %>
         	</div>
         </div>
         <div class="row div_unactive" id="tab5">
@@ -89,9 +91,9 @@
         	</div>
         </div>
 </div>
-    
+
 <% include partials/template/footer.ejs %>
-		
+	
 </body>
 
 	<!--   Core JS Files   --> 
