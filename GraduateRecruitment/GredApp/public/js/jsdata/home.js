@@ -33,9 +33,7 @@ $(function(){
 	function funAlertSuccess(data)
 	{ 
 		if(typeof(data.errno) != "undefined" &&  data.errno!="")
-		{
-			//alert(data.errno);
-			//alert(data.sqlMessage);
+		{ 
 			$("#alertMessage").text(data.sqlMessage);
 		}
 		else
@@ -58,7 +56,12 @@ $(function(){
 		    $('#ddlDepartment option')[0].selected = true;
 		    $("#message").val("");
 		     
-		    $("#alertMessage").text("Message submitted successfully.");
+		    $('#myContactUsModal').modal('show');
+		    setTimeout(function () {
+		    	$('#myContactUsModal').modal('hide');
+			},5000);
+		    
+		    //$("#alertMessage").text("Message submitted successfully.");
 		}
 	}
 	
