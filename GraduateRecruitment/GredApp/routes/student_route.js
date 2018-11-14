@@ -200,4 +200,17 @@ router.post("/setRejectAdmissionsOffer",function(req,res){
 	  });
 });
 
+router.post("/GetStudentProgramDetail",function(req,res){  
+	student_model.GetStudentProgramDetail(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
 module.exports =router; 

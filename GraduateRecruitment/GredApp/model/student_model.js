@@ -16,7 +16,8 @@ var studentModel = {
 	getResearchTitle:getResearchTitle,
 	GetStudentOfferAdmissionDetail:GetStudentOfferAdmissionDetail,
 	setAcceptAdmissions:setAcceptAdmissions,
-	setRejectAdmissionsOffer:setRejectAdmissionsOffer
+	setRejectAdmissionsOffer:setRejectAdmissionsOffer,
+	GetStudentProgramDetail:GetStudentProgramDetail
 }
 
 function getResearchTitle(data,result) {
@@ -363,6 +364,28 @@ function getResearchTitle(data,result) {
 		}
 	});
 };
+
+//get program detail
+
+function GetStudentProgramDetail(data,result) {
+	 
+	console.log(" data.id : "+  data.id);
+	
+	var sql="call GetStudentProgramDetail('"+ data.id +"')";
+	
+    db.query(sql, function (err, res) {
+	    if(err) {
+	        console.log("error: ", err);
+	        result(null, err);
+	    }
+	    else{  
+	    	console.log("res:"+res);
+	        result(null, res);
+	        
+	    }
+    });   
+}
+
 
 module.exports = studentModel;
 

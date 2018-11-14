@@ -1147,40 +1147,61 @@ function validateProgramResearchInterestSection() {
 		$('#programDetailDivData').removeClass('hide_error'); 
 		 
 		//get row 
-		var $tr = $("#mappedStudentProfileTable"); 
+		var $tr = $("#studentEnrollmentProfileTable"); 
 		var row = $(this).closest("tr").index(); 
 		row = row + 1;
 		 
-		var userId =document.getElementById("studentEnrollmentProfileTable").rows[row].cells[1].innerHTML;  
+		var id =document.getElementById("studentEnrollmentProfileTable").rows[row].cells[0].innerHTML;  
 		
 		
-		/*if(userId.length>0)
+		if(id.length>0)
 		{
-			userId = userId.replace('<label class="form-control education_row" name="userId">','');
-			userId = userId.replace('</label>','');
+			id = id.replace('<label class="form-control education_row" name="id">','');
+			id = id.replace('</label>','');
 		}
-		  
-		
-		if(userId.length>0)
+		   
+		if(id.length>0)
 		{
-			$.post("/getProgramResearchInterest",{
-				userId : userId
-			},getResearchProjectStudentData)
-			
-			$.post("/getEducation",{
-				userId : userId
-			},getEducationProjectStudentData)
-			
-			$.post("/getPublication",{
-				userId : userId
-			},getPublicationStudentData)
-			
-			$.post("/getWorkExperience",{
-				userId : userId
-			},getWorkExperienceStudentData)
-		} */
+			$.post("/GetStudentProgramDetail",{
+				id : id
+			},GetStudentProgramDetailData) 
+		}
     });
 	
+	function GetStudentProgramDetailData(data)
+	{
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
+			//$("#alertMessage").text(data.sqlMessage)
+		} 
+		else { 		
+			 
+			$.each(data,function(key,item){	
+				var count=0; 
+				$.each(item,function(keyValue,itemValue){
+					if(itemValue.department != undefined)
+					{  
+						$("#department_id").html(itemValue.department);
+						$("#program_id").html(itemValue.program);
+						$("#degree_id").html(itemValue.degree); 
+						
+						$("#programduration_id").html(itemValue.programduration);
+						$("#programStartDate_id").html(itemValue.programStartDate);
+						$("#financialSupport_id").html(itemValue.financialSupport);						
+						$("#otherRequirement_id").html(itemValue.otherRequirement);
+						
+						$("#researchTitle_id").html(itemValue.researchTitle);
+						$("#projectFund_id").html(itemValue.projectFund); 
+						$("#skillSet_id").html(itemValue.skillSet); 
+						 
+						$("#researchDescription_id").html(itemValue.researchDescription); 
+					}
+					
+				});
+				 
+		      counter++; 
+			}); 
+		} 
+	}
 	
 	//accept admission
 	$("#studentEnrollmentProfileTable").on("click", ".ibtnDeles2", function (event) {

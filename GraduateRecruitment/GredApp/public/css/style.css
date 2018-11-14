@@ -40,6 +40,11 @@
 	font-size: 20px;
 	line-height: 1.4em;
 }
+
+.p_label{
+	font-weight: bold;
+}
+
 /*  
 	student
 ================================================*/
