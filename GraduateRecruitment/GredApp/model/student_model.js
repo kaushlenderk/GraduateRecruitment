@@ -17,7 +17,8 @@ var studentModel = {
 	GetStudentOfferAdmissionDetail:GetStudentOfferAdmissionDetail,
 	setAcceptAdmissions:setAcceptAdmissions,
 	setRejectAdmissionsOffer:setRejectAdmissionsOffer,
-	GetStudentProgramDetail:GetStudentProgramDetail
+	GetStudentProgramDetail:GetStudentProgramDetail,
+	getEnrollmentStatus:getEnrollmentStatus
 }
 
 function getResearchTitle(data,result) {
@@ -368,9 +369,7 @@ function getResearchTitle(data,result) {
 //get program detail
 
 function GetStudentProgramDetail(data,result) {
-	 
-	console.log(" data.id : "+  data.id);
-	
+	  
 	var sql="call GetStudentProgramDetail('"+ data.id +"')";
 	
     db.query(sql, function (err, res) {
@@ -386,6 +385,18 @@ function GetStudentProgramDetail(data,result) {
     });   
 }
 
+function getEnrollmentStatus(data,result) {
+	 
+	db.query("SELECT * FROM enrollment where status=1 and userId =" + data.userId , function (err, res) {
+	    if(err) {
+	            console.log("error: ", err);
+	            result(null, err);
+		    }
+		    else{   
+		        result(null, res);
+		}
+	});
+};
 
 module.exports = studentModel;
 

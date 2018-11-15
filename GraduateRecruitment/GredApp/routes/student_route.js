@@ -213,4 +213,18 @@ router.post("/GetStudentProgramDetail",function(req,res){
 	}); 
 });
 
+router.post("/getEnrollmentStatus",function(req,res){  
+	student_model.getEnrollmentStatus(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
+
 module.exports =router; 

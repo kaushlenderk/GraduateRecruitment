@@ -112,4 +112,41 @@
 			<input type="button" class="btn btn-md btn-danger" style="padding: 5px 35px;font-weight: bold;" value="Hide Program View" id="btnHideprogramDetailDivDataView">
 		</div>
 	</div>
-</div>
+</section>
+<br/>
+<section id="registerCourseDivData" class="hide_error">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h4 class="form-section-title">Register Courses</h4>
+            <hr class="custom-hr hr_width">           
+            
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="form-group">
+	             <div class="form-group">
+	                <label for="description">Register offerd course</label>
+	              </div>
+                </div>
+	        </div>
+	        <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group">
+	               <select class="form-control" id="select_register_item" multiple="multiple" style="width:100%">
+							<option>AI</option>
+							<option>Machine Learning</option>
+							<option>Database</option>
+							<option>Computer Vision</option>
+							<option>Data Science</option>
+					 </select>
+                </div>
+	         </div>  
+		</div>
+	</div>
+</section>
+
+<!--   Core JS Files   -->  
+<script src="/js/select2.min.js"></script> 
+ 
+<script>
+	  $('#select_register_item').select2({
+	    placeholder: 'select courses to register'
+	  });
+</script>

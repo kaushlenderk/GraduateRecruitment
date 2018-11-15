@@ -1,186 +1,156 @@
-<section>
+<section id="studentEnrollmentProfileDivData">
 	<div class="row">
-            <form role="form" id="createProjectForm">
-                <!-- left section -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <h4 class="form-section-title">Project Information</h4>
-                    <hr class="custom-hr hr_width">
-                                        
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                    	<div class="form-group">
-                    		<!--Departments-->
-	                        <div class="form-group">
-	                            <label for="description">Select Department</label>
-	                            <select class="form-control" name="department_id" id="department_id">
-	                                <option value="-select-">-select-</option>
-	                            </select>
-	                            <label id="ES1" class="text-danger hide_error">Required field</label>
-	                        </div>
-                    	</div>
-	                </div>
-	                <div class="col-lg-6 col-md-6 col-sm-6">
-                    	<div class="form-group">
-                    	 	<!--Programs-->
-	                        <div class="form-group">
-	                            <label for="description">Select Program</label>
-	                            <select class="form-control" name="program_id" id="program_id">
-	                                <option value="-select-">-select-</option>
-	                            </select>
-	                            <label id="ES2" class="text-danger hide_error">Required field</label>
-	                        </div>
-                    	</div>
-	                </div> 
-	                <div class="col-lg-6 col-md-6 col-sm-6">
-                    	<div class="form-group">
-                    	 	<!--Programs-->
-	                        <div class="form-group">
-	                            <label for="description">Program Degree&nbsp;<span class="required">*</span></label>
-	                            <select class="form-control" name="program_id" id="degree_id">
-	                                <option value="-select-">-select-</option>
-	                                <option value="Ph.D (Post-Graduate)">Ph.D (Post-Graduate)</option>
-			                         <option value="Master (Post-Graduate)">Master (Post-Graduate)</option>
-	                            </select>
-	                            <label id="ES3" class="text-danger hide_error">Required field</label>
-	                        </div>
-                    	</div>
-	                </div>
-	                <div class="col-lg-6 col-md-6 col-sm-6">
-                    	<div class="form-group">
-                            <label for="title">Program Duration&nbsp;<span class="required">*</span></label>
-                            <input type="text" class="form-control" id="program_duration_id" placeholder="Program Duration">
-                            <label id="ES4" class="text-danger hide_error">Required field</label>
-                    	</div>
-	                </div>
-	                <div class="col-lg-6 col-md-6 col-sm-6">
-                    	<div class="form-group">
-                    	 	<label for="title">Program Start Date &nbsp;<span class="required">*</span></label>
-                            <input type="date" class="form-control" name="amount" id="program_start_date_id" placeholder="Program Start Date">
-                            <label id="ES5" class="text-danger hide_error">Required field</label>
-                    	</div>
-	                </div>
-	                <div class="col-lg-6 col-md-6 col-sm-6">
-                    	<div class="form-group">
-                    	 	<label for="title">Application End Date &nbsp;<span class="required">*</span></label>
-                            <input type="date" class="form-control" name="amount" id="application_end_date_id" placeholder="Program Start Date">
-                            <label id="ES6" class="text-danger hide_error">Required field</label>
-                    	</div>
-	                </div> 
-	                <div class="col-lg-6 col-md-6 col-sm-6">
-                    	<div class="form-group">
-                    	 	<label for="title">Number of Position &nbsp;<span class="required">*</span></label>
-                            <input type="text" class="form-control" id="number_of_position_id" placeholder="Number of Position">
-                            <label id="ES7" class="text-danger hide_error">Required field</label>
-                    	</div>
-	                </div>	               
-	                <div class="col-lg-6 col-md-6 col-sm-6">
-                    	<div class="form-group">
-                            <label for="title">Available Fund For Financial Support</label>
-                            <input type="text" class="form-control" id="available_amount_id" placeholder="Available Amount">
-                    	</div>
-	                </div>
-	                <div class="col-lg-6 col-md-6 col-sm-6">
-                    	<div class="form-group">
-                            <label for="title">Other Requirement &nbsp;<span class="required">*</span></label>
-                            <textarea class="form-control" id="other_requirement_id" placeholder="Other Requirement"></textarea>
-                            <label id="ES8" class="text-danger hide_error">Required field</label>
-                    	</div>
-	                </div>
-                </div>  <!--end project information-->
-                
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:20px;">&nbsp;</div>
-                
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-               		<h4 class="form-section-title">Project Detail</h4>
-                    <hr class="custom-hr hr_width">
-                                        
-                    <div class="col-lg-3 col-md-3 col-sm-3">
-                    	<div class="form-group">
-                            <label for="title" style="font-weight:bold;">Add Research Project Detail</label>
-                    	</div>
-	                </div>
-	                <div class="col-lg-6 col-md-6 col-sm-6">
-                    	<div class="form-group">
-                            <a type="button" class="btn btn-info btn-sm btn-left" data-toggle="modal" data-target="#researchProjectModel">
-                              	  <i class="fa fa-plus"></i>
-                            </a>
-                    	</div>
-	                </div> 
-	                <!-- Modal -->
-                    <div class="modal fade" id="researchProjectModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                           <div class="modal-dialog" role="document">
-                                 <div class="modal-content">
-                                     <div class="modal-header">
-                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                         <h4 class="modal-title" id="myModalLabel">Add New Research Project Detail</h4>
-                                     </div>
-                                 <div class="modal-body">
-					             <div class="form-group">
-					                 <label for="title">Research Title &nbsp;<span class="required">*</span></label>
-					                 <input type="text" class="form-control" id="research_title_id" placeholder="Research Title">
-					                 <label id="SE1" class="text-danger hide_error">Required field</label>
-					             </div> 
-					             <div class="form-group">
-					                  <label for="description">Research Description &nbsp;<span class="required">*</span></label>
-					                  <textarea class="form-control" id="research_description_id" placeholder="Research Description"></textarea>
-					                  <label id="SE2" class="text-danger hide_error">Required field</label>
-					             </div>
-					             <div class="form-group">
-					                 <label for="title">Project Fund &nbsp;<span class="required">*</span></label>
-                           			 <input type="text" class="form-control" id="project_fund_id" placeholder="Project Fund">
-                          			 <label id="SE3" class="text-danger hide_error">Required field</label>
-					             </div>
-					             <div class="form-group">
-					             	 <select class="form-control" id="select_item" multiple="multiple" style="width:100%">
-										  <option>AI</option>
-										  <option>Machine Learning</option>
-										  <option>Database</option>
-										  <option>Computer Vision</option>
-										  <option>Data Science</option>
-									 </select>
-									 <label id="SE4" class="text-danger hide_error">Required field</label>
-					             </div>
-                           </div>
-                           <div class="modal-footer">
-                           		  <button type="button" class="btn btn-primary" id="addResearchDetail">Add Offered Research</button>	
-                                  <button type="button" class="btn btn-default" data-dismiss="modal" id="closeResearchDetailModel">Close</button>                                  
-                           </div>
-                          </div>
-                         </div> 
-                     </div> 
-                     
-                     <div class="col-lg-12 col-md-12 col-sm-12 hide_error" id="offeredResearchDivData" style="padding-right: 0px;padding-left: 0px;">
-                    	<div style="padding-left: 0px;"> 
-						    <table id="offeredResearchTable" class="table order-list">
-							    <thead>
-							        <tr>
-							            <td class="ed_td">Research Title</td>
-							            <td class="ed_td">Description</td>
-							            <td class="ed_td">Available Fund</td>
-							            <td class="ed_td">Skill Set</td>
-							        </tr>
-							    </thead>
-							    <tbody>  
-							    </tbody>							    
-						     </table>
-						</div>
-	                </div>
-                </div> <!--end project detail-->
-                 
-
-                <!--right section-->
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>
-
-
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <button type="submit" class="btn btn-success btn-right">Create Project</button>
-                </div>
-
-				<% if(locals.user) { %>
-						 
-					<input type="hidden" id="userIdData" value="<%=locals.user[0].memorialNumber %>"/> 
-					     
-				<% } %>	
-            </form>
-        </div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h4 class="form-section-title">Enrollment Detail</h4>
+            <hr class="custom-hr hr_width">           
+             <div class="col-lg-12 col-md-12 col-sm-12" style="padding-right: 0px;padding-left: 0px;">
+                   <div style="padding-left: 0px;"> 
+					    <table id="studentEnrollmentProfileTable" class="table order-list">
+						    <thead>
+						        <tr>
+						        	<td class="ed_td">Student Id</td>
+						            <td class="ed_td">Name</td>
+						            <td class="ed_td">Research Area</td>
+						            <td class="ed_td">Skill Set</td>
+						            <td class="ed_td">Status</td>
+						        </tr>
+						    </thead>
+						    <tbody>  
+						    </tbody>							    
+						</table>
+				   </div>
+	        </div>
+	         <div class="col-lg-12 col-md-12 col-sm-12" style="padding-right: 0px;padding-left: 0px;" id="noRecordDivResult">
+                   <div style="padding-left: 0px;text-align:center;"> 
+					    <span>no admission offer letter</span>
+				   </div>
+	        </div>
+		</div>
+	</div>
 </section>
- 
+<section id="programDetailDivData" class="hide_error">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h4 class="form-section-title">Progam Details</h4>
+            <hr class="custom-hr hr_width">
+            
+            <div class="col-lg-4 col-md-4 col-sm-4">
+               <div class="form-group">
+               	  <label for="title" class="p_label">Department</label><br/>
+                  <label for="title" id="department_id"></label>
+               </div>
+	        </div> 
+	        <div class="col-lg-4 col-md-4 col-sm-4">
+               <div class="form-group">
+               	  <label for="title" class="p_label">Program</label><br/>	
+                  <label for="title" id="program_id"></label>
+               </div>
+	        </div> 
+	        <div class="col-lg-4 col-md-4 col-sm-4">
+               <div class="form-group">
+               	  <label for="title" class="p_label">Degree</label><br/>	
+                  <label for="title" id="degree_id"></label>
+               </div>
+	        </div> 
+	        
+	        <div class="col-lg-4 col-md-4 col-sm-4">
+               <div class="form-group">
+               	  <label for="title" class="p_label">Program Duration</label><br/>
+                  <label for="title" id="programduration_id"></label>
+               </div>
+	        </div> 
+	        <div class="col-lg-4 col-md-4 col-sm-4">
+               <div class="form-group">
+               	  <label for="title" class="p_label">Program Start Date</label><br/>	
+                  <label for="title" id="programStartDate_id"></label>
+               </div>
+	        </div> 
+	        <div class="col-lg-4 col-md-4 col-sm-4">
+               <div class="form-group">
+               	  <label for="title" class="p_label">Financial Support (CAD)</label><br/>	
+                  <label for="title" id="financialSupport_id"></label>
+               </div>
+	        </div> 
+	        
+	        <div class="col-lg-12 col-md-12 col-sm-12">
+               <div class="form-group">
+               	  <label for="title" class="p_label">Other Requirement</label><br/>
+                  <label for="title" id="otherRequirement_id"></label>
+               </div>
+	        </div> 
+	        
+	        <div class="col-lg-4 col-md-4 col-sm-4">
+               <div class="form-group">
+               	  <label for="title" class="p_label">Research Title</label><br/>	
+                  <label for="title" id="researchTitle_id"></label>
+               </div>
+	        </div> 
+	        <div class="col-lg-4 col-md-4 col-sm-4">
+               <div class="form-group">
+               	  <label for="title" class="p_label">Project Fund (CAD)</label><br/>	
+                  <label for="title" id="projectFund_id"></label>
+               </div>
+	        </div> 	        
+	        <div class="col-lg-4 col-md-4 col-sm-4">
+               <div class="form-group">
+               	  <label for="title" class="p_label">Skill Set</label><br/>
+                  <label for="title" id="skillSet_id"></label>
+               </div>
+	        </div> 
+	        <div class="col-lg-12 col-md-12 col-sm-12">
+               <div class="form-group">
+               	  <label for="title" class="p_label">Research Project Description</label><br/>
+                  <label for="title" id="researchDescription_id"></label>
+               </div>
+	        </div> 
+		</div>
+	</div>
+	
+	
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: right;">
+			<input type="button" class="btn btn-md btn-danger" style="padding: 5px 35px;font-weight: bold;" value="Hide Program View" id="btnHideprogramDetailDivDataView">
+		</div>
+	</div>
+</div>
+</section>
+
+<section id="registerCourseDivData">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h4 class="form-section-title">Register Courses</h4>
+            <hr class="custom-hr hr_width">           
+            
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="form-group">
+	             <div class="form-group">
+	                <label for="description">Filter Project By Department</label>
+	              </div>
+                </div>
+	        </div>
+	        <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+	               <div class="form-group">
+	                    <select class="form-control" id="select_register_item" multiple="multiple" style="width:100%">
+							<option>AI</option>
+							<option>Machine Learning</option>
+							<option>Database</option>
+							<option>Computer Vision</option>
+							<option>Data Science</option>
+						</select>
+	               </div>
+                </div>
+	         </div>  
+		</div>
+	</div>
+</section>
+
+<!--   Core JS Files   -->  
+<script src="/js/select2.min.js"></script> 
+
+
+<script>
+	  $('#select_register_item').select2({
+	    placeholder: 'select courses to register'
+	  });
+</script>

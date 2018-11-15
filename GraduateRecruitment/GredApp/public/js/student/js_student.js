@@ -1287,6 +1287,24 @@ function validateProgramResearchInterestSection() {
 		$('#programDetailDivData').addClass("hide_error");
 		$('#programDetailDivData').removeClass("show_error"); 
 	});
+	
+
+	$.post("/getEnrollmentStatus",{
+		userId : UserId 
+	},getEnrollmentStatus)
+	
+	function getEnrollmentStatus(data)
+	{
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
+			//$("#alertMessage").text(data.sqlMessage)
+		} 
+		else { 		
+			console.log(data);
+			$('#registerCourseDivData').addClass("show_error");
+			$('#registerCourseDivData').removeClass("hide_error");
+		} 
+	}
+	
 	/* end Student enrollment and view program section */
 
 });

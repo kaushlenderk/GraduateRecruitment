@@ -129,8 +129,8 @@ router.post("/workExperience",function(req,res){
 
 /** create project link **/
 
-router.get("/getDepartmentList",function(req,res){
-	create_project_model.getDepartmentList(function(err, data) {
+router.post("/getDepartmentList",function(req,res){
+	create_project_model.getDepartmentList(req.body, function(err, data) {	 
 		if (err)
 	    {
 	    	throw err;
@@ -249,8 +249,9 @@ router.post("/publishProject",function(req,res){
 
 /** enrollment_model **/
  
-router.get("/GetMappedStudentProfile",function(req,res){
-	enrollment_model.GetMappedStudentProfile(function(err, data) {
+router.post("/GetMappedStudentProfile",function(req,res){
+	console.log("GetMappedStudentProfile:");
+	enrollment_model.GetMappedStudentProfile(req.body,function(err, data) {
 		if (err)
 	    {
 	    	throw err;
@@ -302,4 +303,46 @@ router.post("/setRejectAdmissions",function(req,res){
 	  });
 });
 
+/* start Assessment data */ 
+
+router.post("/setAssessmentData",function(req,res){ ;
+create_project_model.setAssessmentData(req.body, function(err, data) {	    
+    if (err)
+    {
+    	throw err
+    }
+    else
+    {
+    	res.json(data);	
+    } 
+  });
+});
+
+
+router.post("/getAssessment",function(req,res){ ;
+create_project_model.getAssessment(req.body, function(err, data) {	    
+    if (err)
+    {
+    	throw err
+    }
+    else
+    {
+    	res.json(data);	
+    } 
+  });
+});
+
+router.post("/deleteAssessment",function(req,res){ ;
+create_project_model.deleteAssessment(req.body, function(err, data) {	    
+    if (err)
+    {
+    	throw err
+    }
+    else
+    {
+    	res.json(data);	
+    } 
+  });
+});
+/* end Assessment data */ 
 module.exports =router; 

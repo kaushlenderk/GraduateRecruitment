@@ -8,9 +8,11 @@ var modelData = {
 }
   
 
-function GetMappedStudentProfile(result) {
+function GetMappedStudentProfile(data,result) {
 	
-	var sql="call GetMappedStudentProfile('')";
+	console.log("data.loginUserId"+data.loginUserId);
+	
+	var sql="call GetMappedStudentProfile('"+ data.loginUserId +"')";
 	
     db.query(sql, function (err, res) {
 	    if(err) {

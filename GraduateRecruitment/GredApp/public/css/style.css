@@ -3,7 +3,7 @@
 }
 
 .show_error {
-	display: in-block;
+	display: block;
 }
 
 .hide_error {
@@ -54,6 +54,11 @@
 
 .div_border1{ 
     border-bottom: 1px solid grey; 		 
+}
+
+.tr_style
+{
+	border-top: 0px solid #ddd;
 }
 
 /*  

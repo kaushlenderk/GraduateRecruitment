@@ -11,16 +11,33 @@ var modelData = {
 	publishProject:publishProject,
 	getSelectedProject: getSelectedProject,
 	getSelectedResearchProject:getSelectedResearchProject,
-	getProgramResearchInterest:getProgramResearchInterest
+	getProgramResearchInterest:getProgramResearchInterest,
+	setAssessmentData:setAssessmentData,
+	getAssessment:getAssessment,
+	deleteAssessment:deleteAssessment
 }
 
-function getDepartmentList(result) {
+/*function getDepartmentList(result) {
     db.query("SELECT DISTINCT DeptName FROM DEPARTMENT", function (err, res) {
 	    if(err) {
 	        console.log("error: ", err);
 	        result(null, err);
 	    }
 	    else{  
+	        result(null, res);
+	    }
+    });   
+}
+*/
+
+function getDepartmentList(data,result) {
+	 
+    db.query("SELECT DISTINCT deptName AS DeptName FROM facultyDeptMapping where trim(facultyid) in (select trim(facultyid) as facultyid from user where id = "+ data.loginInId +")", function (err, res) {
+	    if(err) {
+	        console.log("error: ", err);
+	        result(null, err);
+	    }
+	    else{   
 	        result(null, res);
 	    }
     });   
@@ -172,8 +189,7 @@ function setProjectDetail(data,result) {
 }
 
 function setProjectResearchDetail(data,result) {  
-	
-	console.log("researchTitle :" +data.researchTitle);
+	 
 	var model={	
 		    "projectId":data.projectId,
 		    "researchTitle":data.researchTitle,
@@ -218,4 +234,63 @@ function getProgramResearchInterest(data,result) {
 		}
 	});
 };
+
+/* start Assessment data */ 
+
+function setAssessmentData(data,result) { 
+	
+	var model={	
+			"term":data.term,
+			"studentId":data.studentId,
+		    "assignmentType":data.assignment,		    
+		    "marks":data.marks,
+		    "outoff":data.outoff,
+		    "grade":data.grade,
+		    "feedback":data.feedback,
+		    "createdBy":data.userId 
+	};
+	 
+	db.query("INSERT INTO assessment set ? " , model ,function(err,res){
+		if(err) {
+		    console.log("error: ", err);
+		    result(null,err);
+		}
+		else{
+		    console.log(res.insertId);
+		    result(null, res.insertId);
+		}
+   });
+};
+
+function getAssessment(data,result) { 
+	db.query("select * from assessment WHERE studentId= '" + data.studentId +"'", function (err, res) {
+	    if(err) {
+	            console.log("error: ", err);
+	            result(null, err);
+		    }
+		    else{   
+		        result(null, res);
+		}
+	});
+};
+
+function deleteAssessment(data,result) { 
+	 
+    db.query("DELETE FROM assessment WHERE id="+data.id, function (err, res) {
+	    if(err) {
+	        console.log("error: ", err);
+	        result(null, err);
+	    }
+	    else{  
+	    	var sendData={
+			  status:true,    
+			  message:"Record deleted successfully"
+			};
+			result(null, sendData); 
+	    }
+    });   
+}
+
+/* end Assessment data */ 
+
 module.exports = modelData;

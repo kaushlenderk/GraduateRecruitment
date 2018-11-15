@@ -1,13 +1,17 @@
 $(function(){
 	
 	var counter = 0;
+	var loginInId = $("#userIdData").val();
 	
-	$.getJSON('/getDepartmentList',fnDepartment);
+	//$.getJSON('/getDepartmentList',fnDepartment);
+	$.post("/getDepartmentList",{
+		  loginInId : loginInId
+	},fnDepartment)
 	
 	function fnDepartment(data)
 	{ 
 		var select = document.getElementById("department_id");
-		
+		 
 		$.each(data,function(key,item){
 			var option = document.createElement("option");
 			option.text = item.DeptName;
@@ -841,17 +845,24 @@ $(function(){
 	var admissionStatus = {
 			0:'Pending Decision',
 			1:'Offered',
-			2:'Reject',
-			3:'Accept',
+			2:'Rejected',
+			3:'Accepted',
 			4:'Decline'
 	 };
  
-	 $.getJSON('/GetMappedStudentProfile',fnMappedStudentProfile);
+	 	
+	 $.post("/GetMappedStudentProfile",{
+		loginUserId : loginInId
+	 },fnMappedStudentProfile);	
+	
+	 //$.getJSON('/GetMappedStudentProfile',fnMappedStudentProfile);
 		
 	 function fnMappedStudentProfile(data)
 	 { 
-		 $("#mappedStudentProfileTable > tbody").html("");
-			
+		 	$("#mappedStudentProfileTable > tbody").html(""); 
+		 	
+		 	var student_list_id = document.getElementById("student_list_id");
+			 
 			$.each(data,function(key,item){	
 				var count=0; 
 				$.each(item,function(keyValue,itemValue){	
@@ -866,7 +877,7 @@ $(function(){
 						
 						$('#mappedStudentProfileTable').addClass("show_error");
 						$('#mappedStudentProfileTable').removeClass('hide_error');
-						
+						 
 						var newRow = $("<tr>");
 				        var cols = "";
 				        
@@ -885,11 +896,16 @@ $(function(){
 						{
 							cols += '<td class="col-sm-2"><input type="button" class="ibtnDels1 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View" id="btnViewProject"></td>';
 						}					
-							
-						
-						
+												
 				        newRow.append(cols);
 				        $("#mappedStudentProfileTable").append(newRow);
+				        
+				        //assesment section : student list
+				        var option = document.createElement("option");
+						option.text = itemValue.name;
+						option.value = itemValue.userId;
+						student_list_id.appendChild(option);
+						 
 					}
 			        
 				});
@@ -897,7 +913,7 @@ $(function(){
 		      counter++; 
 		}); 
 	 } 
-		
+	 
 		//view
 		$("#mappedStudentProfileTable").on("click", ".ibtnDels2", function (event) {
 			$('#studentPofileDivData').addClass("show_error");
@@ -1187,13 +1203,19 @@ $(function(){
 	    });
 		function setOfferStudentData(data)
 		{
+			var loginUserId = $("#userIdData").val();
+			
 			if (typeof(data.errno) != "undefined" &&  data.errno!="") {
 				//$("#alertMessage").text(data.sqlMessage)
 			} 
 			else { 			
 				if(data.status==true)
 				{ 
-					$.getJSON('/GetMappedStudentProfile',fnMappedStudentProfile);
+					$.post("/GetMappedStudentProfile",{
+						loginUserId : loginUserId
+			    	},fnMappedStudentProfile);	
+					
+					//$.getJSON('/GetMappedStudentProfile',fnMappedStudentProfile);
 				} 
 			} 
 		}
@@ -1202,12 +1224,246 @@ $(function(){
 	/* start Assessment data */ 
 		$("#addGrade").on("click", function () {
 		    	
-		    	if(validateAssessmentData())
-		    	{
-		    		
-		    	}
+			var userId = $("#userIdData").val();
+			
+		    if(validateAssessmentData())
+		    {
+		    	var project_grade = $("#project_grade_id").val().toLowerCase().replace(/\b[a-z]/g, function(letter) {
+				    return letter.toUpperCase();
+				}); 
+		    	
+		    	$.post("/setAssessmentData",{
+		    		term:$("#university_term_id").val(),
+		    		assignment : $("#assignment_id").val(),
+		    		marks : $("#point_id").val(),
+		    		outoff : $("#point_id1").val(),
+		    		grade : project_grade,
+		    		feedback : $("#feedback_id").val(), 
+					studentId : $("#student_list_id").val(),
+					userId : userId 
+				},setAssessmentData) 
+				
+		    }
 		});
 		 
+		function setAssessmentData(data)
+		{
+			if (typeof(data.errno) != "undefined" &&  data.errno!="") { 
+				$("#actionAssessmentMessage").text(data.sqlMessage);
+				$('#myAssessmentModal').modal('show'); 
+			}
+			else { 
+				 
+				$('#assignment_id option')[0].selected = true; 
+		        $("#point_id").val("");
+		        $("#point_id").val("");
+		        $("#project_grade_id").val("");
+		        $("#feedback_id").val("");
+		        
+		        $.post("/getAssessment",{
+		    		studentId : $("#student_list_id").val()
+		    	},fnGradeData);		         
+			}
+		}
+		
+			
+		$("#btnHideGradeView").on("click", function () {
+			$('#assessmentSectionDiv').addClass("hide_error");
+			$('#assessmentSectionDiv').removeClass("show_error"); 
+			$('#student_list_id option')[0].selected = true;
+		});
+		
+		
+		$('#student_list_id').on('change', function() {
+			  var studentId = this.value;  
+			  $('#assessmentSectionDiv').addClass("show_error");
+			  $('#assessmentSectionDiv').removeClass("hide_error"); 
+			  
+			  $.post("/getAssessment",{
+		    		studentId : studentId
+		      },fnGradeData);	
+		});
+		 
+		function fnGradeData(data)
+		{ 
+			var counter = 0;
+			
+			if (typeof(data.errno) != "undefined" &&  data.errno!="") { 
+				$("#actionAssessmentMessage").text(data.sqlMessage);
+				$('#myAssessmentModal').modal('show'); 
+			}
+			else { 
+				$("#assignments_table_section_id > tbody").html("");
+				$("#presentations_table_section_id > tbody").html("");
+				$("#exams_table_section_id > tbody").html("");
+				$("#pojects_table_section_id > tbody").html("");
+				 
+				$.each(data,function(key,item){
+					
+					var count=0;
+					  
+					var assType="";
+					
+					var newRow = $("<tr>");
+			        var cols = "";
+			        
+					if(item.assignmentType=="Assignment")
+					{
+						var createdData = new Date(item.createdOn);
+						createdData = createdData.getFullYear() +"-" + createdData.getMonth() + "-" + createdData.getDay();
+						
+						cols += '<td style="display:none;border-top: 0px solid #ddd;"><label class="form-control education_row" name="id">' + item.id + '</label> </td>';
+						cols += '<td class="col-sm-2" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="createdOn">' + createdData + '</label> </td>';
+				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="marks">' + item.marks +" / " + item.outoff + '</label> </td>';
+				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="grade">' + item.grade + '</label> </td>';
+						cols += '<td class="col-sm-5 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="egraduationdate">' + item.feedback + '</label> </td>';
+				        cols += '<td class="col-sm-1 tr_style" style="border-top: 0px solid #ddd;"><input type="button" class="ibtnDeld1 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+				        newRow.append(cols);
+				        $("#assignments_table_section_id").append(newRow);
+					}
+					else if(item.assignmentType=="Presentation")
+					{
+						var createdData = new Date(item.createdOn);
+						createdData = createdData.getFullYear() +"-" + createdData.getMonth() + "-" + createdData.getDay();
+						
+						cols += '<td style="display:none;border-top: 0px solid #ddd;"><label class="form-control education_row" name="id">' + item.id + '</label> </td>';
+						cols += '<td class="col-sm-2" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="createdOn">' + createdData + '</label> </td>';
+				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="marks">' + item.marks +" / " + item.outoff + '</label> </td>';
+				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="grade">' + item.grade + '</label> </td>';
+						cols += '<td class="col-sm-5 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="egraduationdate">' + item.feedback + '</label> </td>';
+				        cols += '<td class="col-sm-1 tr_style" style="border-top: 0px solid #ddd;"><input type="button" class="ibtnDeld2 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+				        newRow.append(cols);
+				        $("#presentations_table_section_id").append(newRow);
+					}
+					else if(item.assignmentType=="Exam")
+					{
+						var createdData = new Date(item.createdOn);
+						createdData = createdData.getFullYear() +"-" + createdData.getMonth() + "-" + createdData.getDay();
+						
+						cols += '<td style="display:none;border-top: 0px solid #ddd;"><label class="form-control education_row" name="id">' + item.id + '</label> </td>';
+						cols += '<td class="col-sm-2" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="createdOn">' + createdData + '</label> </td>';
+				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="marks">' + item.marks +" / " + item.outoff + '</label> </td>';
+				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="grade">' + item.grade + '</label> </td>';
+						cols += '<td class="col-sm-5 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="egraduationdate">' + item.feedback + '</label> </td>';
+				        cols += '<td class="col-sm-1 tr_style" style="border-top: 0px solid #ddd;"><input type="button" class="ibtnDeld3 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+				        newRow.append(cols);
+				        $("#exams_table_section_id").append(newRow);
+					}
+					else if(item.assignmentType=="Project")
+					{
+						var createdData = new Date(item.createdOn);
+						createdData = createdData.getFullYear() +"-" + createdData.getMonth() + "-" + createdData.getDay();
+						
+						cols += '<td style="display:none;border-top: 0px solid #ddd;"><label class="form-control education_row" name="id">' + item.id + '</label> </td>';
+						cols += '<td class="col-sm-2" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="createdOn">' + createdData + '</label> </td>';
+				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="marks">' + item.marks +" / " + item.outoff + '</label> </td>';
+				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="grade">' + item.grade + '</label> </td>';
+						cols += '<td class="col-sm-5 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="egraduationdate">' + item.feedback + '</label> </td>';
+				        cols += '<td class="col-sm-1 tr_style" style="border-top: 0px solid #ddd;"><input type="button" class="ibtnDeld4 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+				        newRow.append(cols);
+				        $("#pojects_table_section_id").append(newRow);
+					}
+					 
+			        counter++;
+				}); 
+				
+				$("#assignments_table_section_id").on("click", ".ibtnDeld1", function (event) {
+					var $tr = $("#assignments_table_section_id"); 
+					var row = $(this).closest("tr").index(); 
+					 
+					var id =document.getElementById("assignments_table_section_id").rows[row].cells[0].innerHTML;  
+					  
+					if(id.length>0)
+					{
+						id = id.replace('<label class="form-control education_row" name="id">','');
+						id = id.replace('</label>','');
+					} 
+					 
+					fnDeleteAssessment(id);
+					
+			        $(this).closest("tr").remove();       
+			        counter -= 1
+			        var rowCount = $('#assignments_table_section_id tr').length; 
+			    });
+				
+				$("#presentations_table_section_id").on("click", ".ibtnDeld2", function (event) {
+					var $tr = $("#assignments_table_section_id"); 
+					var row = $(this).closest("tr").index(); 
+					 
+					var id =document.getElementById("presentations_table_section_id").rows[row].cells[0].innerHTML;  
+					  
+					if(id.length>0)
+					{
+						id = id.replace('<label class="form-control education_row" name="id">','');
+						id = id.replace('</label>','');
+					} 
+					 
+					fnDeleteAssessment(id);
+					
+			        $(this).closest("tr").remove();       
+			        counter -= 1
+			        var rowCount = $('#presentations_table_section_id tr').length; 
+			    });
+				
+				$("#exams_table_section_id").on("click", ".ibtnDeld3", function (event) {
+					var $tr = $("#exams_table_section_id"); 
+					var row = $(this).closest("tr").index(); 
+					 
+					var id =document.getElementById("exams_table_section_id").rows[row].cells[0].innerHTML;  
+					  
+					if(id.length>0)
+					{
+						id = id.replace('<label class="form-control education_row" name="id">','');
+						id = id.replace('</label>','');
+					} 
+					 
+					fnDeleteAssessment(id);
+					
+			        $(this).closest("tr").remove();       
+			        counter -= 1
+			        var rowCount = $('#exams_table_section_id tr').length; 
+			    });
+				
+				$("#pojects_table_section_id").on("click", ".ibtnDeld4", function (event) {
+					var $tr = $("#pojects_table_section_id"); 
+					var row = $(this).closest("tr").index(); 
+					 
+					var id =document.getElementById("pojects_table_section_id").rows[row].cells[0].innerHTML;  
+					  
+					if(id.length>0)
+					{
+						id = id.replace('<label class="form-control education_row" name="id">','');
+						id = id.replace('</label>','');
+					} 
+					 
+					fnDeleteAssessment(id);
+					
+			        $(this).closest("tr").remove();       
+			        counter -= 1
+			        var rowCount = $('#pojects_table_section_id tr').length; 
+			    });
+			}
+		}
+		
+		function fnDeleteAssessment(id)
+		{
+			alert(id);
+			if(id.length>0)
+			{
+				$.post("/deleteAssessment",{
+					id : id 
+				},fnDeleteAssessmentStatus)
+			}
+		}
+		
+		function fnDeleteAssessmentStatus(data)
+		{
+			if (typeof(data.errno) != "undefined" &&  data.errno!="") { 
+				//$("#actionAssessmentMessage").text(data.sqlMessage);
+				//$('#myAssessmentModal').modal('show'); 
+			}
+		}
+		
 		function validateAssessmentData()
 		{
 			var flag = true;
@@ -1241,6 +1497,21 @@ $(function(){
 				$('#AE3').removeClass('show_error');
 				$('#AE3').addClass('hide_error');
 			} 
+			
+			/*if ($('#point_id').val() != "" && $('#point_id1').val() != "") {
+				
+				if($('#point_id').val() > $('#point_id1').val())
+				{
+					$('#AE23').removeClass('hide_error');
+					$('#AE23').addClass('show_error');
+					flag = false;
+				}
+				else
+				{
+					$('#AE23').removeClass('show_error');
+					$('#AE23').addClass('hide_error');
+				}
+			}*/
 			
 			if ($('#project_grade_id').val() == "") {
 				$('#AE4').removeClass('hide_error');
@@ -1323,5 +1594,8 @@ $(function(){
 	             event.preventDefault();
 	         }
 	     });
+		
+		 
+		  
 	/* end Assessment data */ 
 });

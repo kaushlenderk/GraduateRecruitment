@@ -27,11 +27,8 @@
 	        <div class="col-lg-4 col-md-4 col-sm-4">
                 <div class="form-group">
 	               <div class="form-group">
-	                     <select class="form-control" name="university_term_id" id="university_term_id">
+	                     <select class="form-control" name="student_list_id" id="student_list_id">
 	                          <option value="-select-">-select-</option>
-	                          <option value="2018-2019 Winter">2018-2019 Winter</option>
-	                          <option value="2018-2019 Fall">2018-2019 Fall</option>
-	                          <option value="2018-2019 Spring">2018-2019 Spring</option>
 	                     </select>
 	               </div>
                 </div>
@@ -40,7 +37,7 @@
 	</div>
 <section>
 <br/><br/>
-<section> 
+<section id="assessmentSectionDiv" class="hide_error"> 
 	<div class="row div_border">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;"/>
 			<div class="row">
@@ -48,54 +45,80 @@
 					<h4 class="form-section-title" style="margin-top: 15px;">Grades</h4>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6">
-					<a type="button" class="btn btn-success btn-right" data-toggle="modal" data-target="#addNewProjectModel" style="margin-right: 40px;padding: 4px 18px;">Add New Grades</a>
+					<input type="button" class="btn btn-danger btn-right" style="padding: 4px 18px;font-weight: bold;margin-right: 20px;" value="Hide Grade View" id="btnHideGradeView"> &nbsp;
+					<a type="button" class="btn btn-success btn-right" data-toggle="modal" data-target="#addNewProjectModel" style="margin-right: 20px;padding: 4px 18px;font-weight: bold">Add New Grades</a>
+					
 				</div>
 			</div>
 		</div> 
 		<div class="col-lg-12 col-md-12 col-sm-12 div_border1" style="padding-right: 0px;padding-left: 0px;margin-top: 10px;">
-        		<div>
-        			<div class="col-lg-12 col-md-12 col-sm-12">
-		        		 
-		                  <div style="padding-left: 0px;"> 
-							  <table class="table order-list">
-								<thead>
-								   <tr>
-								      <td class="ed_td">Section</td>
-								      <td class="ed_td">Date</td>
-								      <td class="ed_td">Points</td>
-								      <td class="ed_td">Grade</td>
-								      <td class="ed_td">Feedback</td>
-								   </tr>
-								</thead>
-							  </table>
-						  </div>
-			        </div>
-        		</div>
+        	 <div class="col-lg-12 col-md-12 col-sm-12"> 
+		         <div style="padding-left: 0px;"> 
+				   <table class="table order-list">
+						<thead>
+						   <tr> 
+						      <td class="col-sm-2 ed_td">Date</td>
+						      <td class="col-sm-2 ed_td">Points</td>
+						      <td class="col-sm-2 ed_td">Grade</td>
+						      <td class="col-sm-5 ed_td">Feedback</td>
+						      <td class="col-sm-1 ed_td">&nbsp;</td>
+						   </tr>
+						</thead>
+				  </table>
+				</div>
+			 </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;"/>
 			<h4 class="form-section-title">Assignments</h4>
 		</div> 
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;" id="assignments_section_id"/>
-			No data
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-left: 0px;margin-top: 10px;" id="assignments_section_id"/>
+			<div class="col-lg-12 col-md-12 col-sm-12"> 
+		         <div style="padding-left: 0px;"> 
+					 <table class="table order-list" id="assignments_table_section_id">
+						<tbody>
+						</tbody>
+					  </table>
+				</div>
+		    </div>
 		</div>
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;"/>
 			<h4 class="form-section-title">Presentations</h4>
 		</div> 
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;" id="presentations_section_id"/>
-			No data
-		</div>
-		
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-left: 0px;margin-top: 10px;" id="presentations_section_id"/>
+			 <div class="col-lg-12 col-md-12 col-sm-12"> 
+				 <div style="padding-left: 0px;"> 
+					 <table class="table order-list" id="presentations_table_section_id">
+						<tbody>
+						</tbody>
+					  </table>
+				 </div>
+			 </div>
+		</div>		
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;"/>
 			<h4 class="form-section-title">Exams</h4>
 		</div> 
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;" id="exams_section_id"/>
-			No data
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-left: 0px;margin-top: 10px;" id="exams_section_id"/>
+			<div class="col-lg-12 col-md-12 col-sm-12"> 
+				<div style="padding-left: 0px;"> 
+					 <table class="table order-list" id="exams_table_section_id">
+						<tbody>
+						</tbody>
+					  </table>
+				 </div>
+			 </div>
 		</div>
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;"/>
 			<h4 class="form-section-title">Projects</h4>
 		</div> 
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-right: 0px;margin-top: 10px;" id="projects_section_id"/>
-			No data
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div_border1" style="padding-left: 0px;margin-top: 10px;" id="projects_section_id"/>
+			<div class="col-lg-12 col-md-12 col-sm-12"> 
+				<div style="padding-left: 0px;"> 
+					 <table class="table order-list" id="pojects_table_section_id">
+						<tbody>
+						</tbody>
+					  </table>
+				 </div>
+			 </div>
 		</div>
         <form role="form" id="createProjectForm">
         	  <!-- Modal -->
@@ -119,8 +142,17 @@
 				                     <label id="AE1" class="text-danger hide_error">Required field</label>
 				                 </div>	
 					             <div class="form-group">
-					                  <label for="description">Points &nbsp;<span class="required">*</span></label>
+					                  <label for="description">Points</label>
 					                  <table style="width:100%">
+					                  	<tr>
+					                  		<td>
+					                  			<label for="description">Mark &nbsp;<span class="required">*</span></label>
+					                  		</td>
+					                  		<td>&nbsp;  &nbsp;</td>
+					                  		<td>
+					                  			<label for="description">Total &nbsp;<span class="required">*</span></label>
+					                  		</td>
+					                  	</tr>
 					                  	<tr>
 					                  		<td>
 					                  			<input type="text" class="form-control" id="point_id" placeholder="10">
@@ -133,10 +165,11 @@
 					                  		</td>
 					                  	</tr>
 					                  </table> 
+					                   <label id="AE23" class="text-danger hide_error">Mark can not excced total</label>
 					             </div>
 					             <div class="form-group">
 					                 <label for="title">Grade &nbsp;<span class="required">*</span></label>
-                           			 <input type="text" class="form-control" id="project_grade_id" placeholder="Grade">
+                           			 <input type="text" class="form-control" id="project_grade_id" placeholder="Grade (A, A+ etc.)">
                           			 <label id="AE4" class="text-danger hide_error">Required field</label>
 					             </div>
 					             <div class="form-group">
@@ -155,3 +188,22 @@
         </form>
     </div>
 </section>
+
+<div class="modal fade" id="myAssessmentModal" role="dialog">
+    <div class="modal-dialog"> 
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Confirmation</h4>
+        </div>
+        <div class="modal-body">
+          <p style="font-weight:bold;" id="actionAssessmentMessage">Assessment save successfully.</p>
+          <p id="newUserId"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
