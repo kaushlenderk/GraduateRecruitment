@@ -1079,8 +1079,8 @@ function validateProgramResearchInterestSection() {
 	var admissionStatus = {
 			0:'Pending Decision',
 			1:'Offered',
-			2:'Reject',
-			3:'Accept',
+			2:'Rejected',
+			3:'Accepted',
 			4:'Decline'
 	 };
 	
@@ -1133,8 +1133,14 @@ function validateProgramResearchInterestSection() {
 					}
 			        newRow.append(cols);
 			        $("#studentEnrollmentProfileTable").append(newRow);
-				}
-		        
+			        
+			        if(itemValue.status == 3)
+			        { 
+						$('#registerCourseDivData').addClass("show_error");
+						$('#registerCourseDivData').removeClass("hide_error");
+			        }
+				} 
+				
 			});
 			 
 	      counter++; 
@@ -1297,13 +1303,151 @@ function validateProgramResearchInterestSection() {
 	{
 		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
 			//$("#alertMessage").text(data.sqlMessage)
-		} 
-		else { 		
-			console.log(data);
-			$('#registerCourseDivData').addClass("show_error");
-			$('#registerCourseDivData').removeClass("hide_error");
+		}  
+	}
+	
+	
+	$("#btnRegistorCourses").on("click", function () {
+	    	
+	   if(fnRegisterCourses())
+	   { 
+		   var courses = $('#txtSelectRegisterCourse').val();		   
+		   
+		   $.post("/deleteRegisterCourses",{ 
+			   studentId:UserId 
+		   },fnRegisterCoursesData)	
+		   
+		   if(courses.includes(","))
+		   {
+			   var course =courses.split(",");
+				
+			   for ( var i = 0, l = course.length; i < l; i++ ) {  			    
+				   $.post("/setRegisterCourses",{ 
+					   studentId:UserId,
+					   coursesName: course[i]
+				   },fnRegisterDeleteStatus)	
+			   } 
+		   }
+		   else
+		   { 
+			   $.post("/setRegisterCourses",{ 
+				   studentId:UserId,
+				   coursesName: courses
+			   },fnRegisterCoursesData)	      
+		   }	   
+		   
+	   }
+	});
+	 
+	function fnRegisterDeleteStatus(data)
+	{
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
+			$("#actionEnrollmentModalMessage").text(data.sqlMessage);
+			$('#myEnrollmentModal').modal('show');
 		} 
 	}
+	
+	function fnRegisterCoursesData(data)
+	{
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
+			$("#actionEnrollmentModalMessage").text(data.sqlMessage);
+			$('#myEnrollmentModal').modal('show');
+		}
+		else { 
+			$.post("/getRegisterCourses",{ 
+				   studentId:UserId 
+			 },getRegisterCoursesData)	
+			   
+			$("#actionEnrollmentModalMessage").text("Course registration successful");
+			$('#myEnrollmentModal').modal('show');
+		} 
+	}
+	
+	$.post("/getRegisterCourses",{ 
+		   studentId:UserId 
+	},getRegisterCoursesData);
+	 
+	function getRegisterCoursesData(data)
+	{ 
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
+			$("#actionEnrollmentModalMessage").text(data.sqlMessage);
+			$('#myEnrollmentModal').modal('show');
+		}
+		else {  
+			
+			var courses = []; 
+			
+			$.each(data,function(key,item){ 
+				courses[key] = item.coursesName;
+			});
+			
+			courses = courses.join();
+
+			if (courses.length > 0) {
+				$('#txtSelectRegisterCourse').removeClass('hide_error');
+				$('#txtSelectRegisterCourse').addClass('show_error');
+				
+				$('#txtSelectRegisterCourse').val(courses);
+			}
+			else {
+				$('#txtSelectRegisterCourse').removeClass('hide_error');
+				$('#txtSelectRegisterCourse').addClass('show_error');
+			}  
+		} 
+	}
+	
+	function fnRegisterCourses()
+	{
+		var flag=true;
+		    
+		if ($('#txtSelectRegisterCourse').val()  == "") { 
+			$('#REE1').removeClass('hide_error');
+			$('#REE1').addClass('show_error');
+			flag = false;
+		}
+		else {
+			$('#REE1').removeClass('show_error');
+			$('#REE1').addClass('hide_error');
+		}	 
+  
+		if (flag == true) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	  
+	$("#select_register_course").on('change', function() {
+		 var courses = [];
+		
+		 if ($(this).val() != ''){ 
+			$('#select_register_course :selected').each(function (i, selected) {
+				courses[i] = $(selected).text();
+			});
+			
+			courses = courses.join();
+
+			if (courses.length > 0) {
+				$('#txtSelectRegisterCourse').removeClass('hide_error');
+				$('#txtSelectRegisterCourse').addClass('show_error');
+				
+				$('#txtSelectRegisterCourse').val(courses);
+			}
+			else {
+				$('#txtSelectRegisterCourse').removeClass('hide_error');
+				$('#txtSelectRegisterCourse').addClass('show_error');
+			}
+		 } 
+	});
+	
+	$('#txtSelectRegisterCourse').on('change',function(e){
+		if($("#txtSelectRegisterCourse").val()!= null || $("#txtSelectRegisterCourse").val()!= '')
+		{ 
+			$('#REE1').removeClass('show_error');
+			$('#REE1').addClass('hide_error');
+		}
+	}); 
 	
 	/* end Student enrollment and view program section */
 

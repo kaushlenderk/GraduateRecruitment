@@ -14,7 +14,8 @@ var modelData = {
 	getProgramResearchInterest:getProgramResearchInterest,
 	setAssessmentData:setAssessmentData,
 	getAssessment:getAssessment,
-	deleteAssessment:deleteAssessment
+	deleteAssessment:deleteAssessment,
+	getStudentSubject:getStudentSubject
 }
 
 /*function getDepartmentList(result) {
@@ -242,7 +243,8 @@ function setAssessmentData(data,result) {
 	var model={	
 			"term":data.term,
 			"studentId":data.studentId,
-		    "assignmentType":data.assignment,		    
+		    "assignmentType":data.assignment,	
+		    "subject":data.subject,
 		    "marks":data.marks,
 		    "outoff":data.outoff,
 		    "grade":data.grade,
@@ -263,7 +265,20 @@ function setAssessmentData(data,result) {
 };
 
 function getAssessment(data,result) { 
-	db.query("select * from assessment WHERE studentId= '" + data.studentId +"'", function (err, res) {
+	db.query("select * from assessment WHERE studentId= '" + data.studentId +"' AND subject='"+ data.subject +"' AND term='"+ data.term +"'", function (err, res) {
+	    if(err) {
+	            console.log("error: ", err);
+	            result(null, err);
+		    }
+		    else{   
+		        result(null, res);
+		}
+	});
+};
+
+function getStudentSubject(data,result) { 
+	console.log(" data.studentId"+ data.studentId);
+	db.query("select * from registercourse WHERE studentId=" + data.studentId, function (err, res) {
 	    if(err) {
 	            console.log("error: ", err);
 	            result(null, err);

@@ -3,36 +3,34 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<h4 class="form-section-title">Search or Filter</h4>
 			<hr class="custom-hr hr_width">
-            <div class="col-lg-2 col-md-2 col-sm-2">
-              <div class="form-group">
-	                <label for="description">Select a Term</label>
-	          </div>
-	        </div>
 	        <div class="col-lg-4 col-md-4 col-sm-4">
                 <div class="form-group">
-	               <div class="form-group">
-	                     <select class="form-control" name="university_term_id" id="university_term_id">
-	                          <option value="2018-2019 Fall">2018-2019 Fall</option>
-	                          <option value="2018-2019 Winter">2018-2019 Winter</option>	                          
-	                          <option value="2018-2019 Spring">2018-2019 Spring</option>
-	                     </select>
-	               </div>
-                </div>
+	             	 <label for="description">Select a Term &nbsp;<span class="required">*</span></label> 	
+	                 <select class="form-control" name="university_term_id" id="university_term_id">
+	                     <option value="2018-2019 Fall">2018-2019 Fall</option>
+	                     <option value="2018-2019 Winter">2018-2019 Winter</option>	                          
+	                     <option value="2018-2019 Spring">2018-2019 Spring</option>
+	                 </select>
+	             </div>
 	         </div>
-	         <div class="col-lg-2 col-md-2 col-sm-2">
-              <div class="form-group">
-	                <label for="description">Student</label>
-	          </div>
-	        </div>
-	        <div class="col-lg-4 col-md-4 col-sm-4">
+	         <div class="col-lg-4 col-md-4 col-sm-4">
                 <div class="form-group">
-	               <div class="form-group">
-	                     <select class="form-control" name="student_list_id" id="student_list_id">
-	                          <option value="-select-">-select-</option>
-	                     </select>
-	               </div>
-                </div>
+	               	<label for="description">Select Student &nbsp;<span class="required">*</span></label>
+	                <select class="form-control" name="student_list_id" id="student_list_id">
+	                    <option value="-select-">-select-</option>
+	                </select>
+	                <label id="SEE1" class="text-danger hide_error">Required field</label>
+	            </div>
 	         </div>
+	         <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="form-group">
+	               	<label for="description">Select Subject &nbsp;<span class="required">*</span></label> 	
+	                <select class="form-control" name="subject_id" id="subject_id">
+	                	<option value="-select-">-select-</option>  
+	                </select>
+	                <label id="SEE2" class="text-danger hide_error">Required field</label>
+	             </div>
+	         </div>  
 		</div>
 	</div>
 <section>

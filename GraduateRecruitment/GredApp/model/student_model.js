@@ -18,7 +18,10 @@ var studentModel = {
 	setAcceptAdmissions:setAcceptAdmissions,
 	setRejectAdmissionsOffer:setRejectAdmissionsOffer,
 	GetStudentProgramDetail:GetStudentProgramDetail,
-	getEnrollmentStatus:getEnrollmentStatus
+	getEnrollmentStatus:getEnrollmentStatus,
+	deleteRegisterCourses:deleteRegisterCourses,
+	setRegisterCourses:setRegisterCourses,
+	getRegisterCourses:getRegisterCourses
 }
 
 function getResearchTitle(data,result) {
@@ -397,6 +400,52 @@ function getEnrollmentStatus(data,result) {
 		}
 	});
 };
+
+function deleteRegisterCourses(data,result)
+{
+	db.query("DELETE FROM registercourse where studentId=" +data.studentId,function(err,res){
+		if(err) {
+		    console.log("error: ", err);
+		    result(null,err);
+		}
+		else{
+			console.log(res.insertId);
+		    result(null, res.insertId);
+		}
+	}); 
+}
+
+function setRegisterCourses(data,result) { 
+	
+	var registerCourse={
+			"studentId":data.studentId,	
+		    "coursesName":data.coursesName
+	}; 
+    
+    db.query("INSERT INTO registercourse set ? ",registerCourse,function(err,res){
+		if(err) {
+		    console.log("error: ", err);
+		    result(null,err);
+		}
+		else{ 
+		    result(null, res.insertId);
+		}
+	});
+};
+
+function getRegisterCourses(data,result)
+{
+	console.log("data.studentId : " + data.studentId);
+	db.query("SELECT * FROM registercourse where studentId=" +data.studentId,function(err,res){
+		if(err) {
+		    console.log("error: ", err);
+		    result(null,err);
+		}
+		else{ 
+		    result(null, res);
+		}
+	}); 
+}
 
 module.exports = studentModel;
 

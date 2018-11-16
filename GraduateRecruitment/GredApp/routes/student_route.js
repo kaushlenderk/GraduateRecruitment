@@ -226,5 +226,44 @@ router.post("/getEnrollmentStatus",function(req,res){
 	}); 
 });
 
+router.post("/deleteRegisterCourses",function(req,res){  
+	student_model.deleteRegisterCourses(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
+router.post("/setRegisterCourses",function(req,res){  
+	student_model.setRegisterCourses(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
+router.post("/getRegisterCourses",function(req,res){  
+	student_model.getRegisterCourses(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
 
 module.exports =router; 

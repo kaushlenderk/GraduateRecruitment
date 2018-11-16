@@ -105,8 +105,7 @@
 	        </div> 
 		</div>
 	</div>
-	
-	
+	 
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: right;">
 			<input type="button" class="btn btn-md btn-danger" style="padding: 5px 35px;font-weight: bold;" value="Hide Program View" id="btnHideprogramDetailDivDataView">
@@ -123,30 +122,57 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
               <div class="form-group">
 	             <div class="form-group">
-	                <label for="description">Register offerd course</label>
+	                <label for="description">Register offered course  &nbsp;<span class="required">*</span></label>
 	              </div>
                 </div>
 	        </div>
 	        <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="form-group">
-	               <select class="form-control" id="select_register_item" multiple="multiple" style="width:100%">
-							<option>AI</option>
+	               <select class="form-control" id="select_register_course" multiple="multiple" size="4" style="width:100%;height: 78px;">
+							<option>Concurrent Computing</option>
 							<option>Machine Learning</option>
-							<option>Database</option>
-							<option>Computer Vision</option>
-							<option>Data Science</option>
+							<option>Software Engineering</option>
+							<option>Data Mining</option>
+							<option>Database Technology and Applications</option>							
+							<option>Bio-inspired Computing</option>
+							<option>Bioinformatics</option>
+							<option>Digital Image Processing</option>							
+							<option>Advanced Operating Systems</option> 
 					 </select>
+					 <br/>
+					 <textarea class="form-control hide_error" id="txtSelectRegisterCourse" placeholder="registered course"></textarea>
+					 <label id="REE1" class="text-danger hide_error">Required field</label> 
                 </div>
 	         </div>  
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left: 29px;">
+			<input type="button" class="btn btn-md btn-danger" style="padding: 5px 35px;font-weight: bold;" value="Register Course" id="btnRegistorCourses">
+		</div>
+	</div>
 </section>
 
+<div class="modal fade" id="myEnrollmentModal" role="dialog">
+    <div class="modal-dialog"> 
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Action Status</h4>
+        </div>
+        <div class="modal-body">
+          <p style="font-weight:bold;" id="actionEnrollmentModalMessage"></p>
+          <p id="newUserId"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+ </div>
 <!--   Core JS Files   -->  
 <script src="/js/select2.min.js"></script> 
  
-<script>
-	  $('#select_register_item').select2({
-	    placeholder: 'select courses to register'
-	  });
+<script> 
 </script>

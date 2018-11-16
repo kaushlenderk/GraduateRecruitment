@@ -332,6 +332,19 @@ create_project_model.getAssessment(req.body, function(err, data) {
   });
 });
 
+router.post("/getStudentSubject",function(req,res){ ;
+create_project_model.getStudentSubject(req.body, function(err, data) {	    
+    if (err)
+    {
+    	throw err
+    }
+    else
+    {
+    	res.json(data);	
+    } 
+  });
+}); 
+
 router.post("/deleteAssessment",function(req,res){ ;
 create_project_model.deleteAssessment(req.body, function(err, data) {	    
     if (err)

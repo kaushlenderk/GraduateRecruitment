@@ -902,10 +902,13 @@ $(function(){
 				        
 				        //assesment section : student list
 				        var option = document.createElement("option");
-						option.text = itemValue.name;
-						option.value = itemValue.userId;
-						student_list_id.appendChild(option);
-						 
+				        if(itemValue.status==3)
+				        {
+				        	option.text = itemValue.name;
+							option.value = itemValue.userId;
+							student_list_id.appendChild(option);
+				        }
+						
 					}
 			        
 				});
@@ -1235,6 +1238,7 @@ $(function(){
 		    	$.post("/setAssessmentData",{
 		    		term:$("#university_term_id").val(),
 		    		assignment : $("#assignment_id").val(),
+		    		subject:$("#subject_id").val(),
 		    		marks : $("#point_id").val(),
 		    		outoff : $("#point_id1").val(),
 		    		grade : project_grade,
@@ -1261,29 +1265,93 @@ $(function(){
 		        $("#feedback_id").val("");
 		        
 		        $.post("/getAssessment",{
-		    		studentId : $("#student_list_id").val()
+		        	term : $("#university_term_id").val(),
+		    		studentId : $("#student_list_id").val(),
+		    		subject : $("#subject_id").val()
 		    	},fnGradeData);		         
 			}
-		}
-		
+		} 
 			
 		$("#btnHideGradeView").on("click", function () {
 			$('#assessmentSectionDiv').addClass("hide_error");
 			$('#assessmentSectionDiv').removeClass("show_error"); 
 			$('#student_list_id option')[0].selected = true;
-		});
-		
+		});		
 		
 		$('#student_list_id').on('change', function() {
 			  var studentId = this.value;  
-			  $('#assessmentSectionDiv').addClass("show_error");
-			  $('#assessmentSectionDiv').removeClass("hide_error"); 
+			  
+			  if(studentId == "-select-")
+			  {
+				  
+			  }
+			  else
+		      {
+				  $.post("/getStudentSubject",{
+			    		studentId : studentId 
+			      },getStudentSubjectsList);
+		      } 	
+		});
+		
+		function getStudentSubjectsList(data)
+		{
+			if (typeof(data.errno) != "undefined" &&  data.errno!="") {
+				$("#actionMessage").text(data.sqlMessage);
+				$('#myCreateProjectModal').modal('show');
+			}
+			else { 
+				$('#subject_id option:not(:first)').remove();
+				
+				console.log(data);
+				var icount=0;
+				
+				var select = document.getElementById("subject_id");
+				$.each(data,function(key,item){
+					if(icount==0)
+					{
+						$('#subject_id option').remove(); 
+						icount = 1;
+					}
+					var option = document.createElement("option");
+					option.text = item.coursesName;
+					option.value = item.coursesName;
+					select.appendChild(option);
+				});
+				
+				if(icount==1)
+				{
+				   $('#assessmentSectionDiv').addClass("show_error");
+				   $('#assessmentSectionDiv').removeClass("hide_error"); 
+					  
+				   $.post("/getAssessment",{
+					    term: $("#university_term_id").val(),
+			    		studentId : $("#student_list_id").val(),
+			    		subject : $("#subject_id").val()
+			       },fnGradeData);
+				} 
+			}  
+		}
+		
+		$('#subject_id').on('change', function() {
+			  var subject = this.value; 
 			  
 			  $.post("/getAssessment",{
-		    		studentId : studentId
-		      },fnGradeData);	
+				    term: $("#university_term_id").val(),
+		    		studentId : $("#student_list_id").val(),
+		    		subject : subject
+		      },fnGradeData); 	
 		});
 		 
+		$('#university_term_id').on('change', function() {
+			  var term = this.value; 
+			  
+			  $.post("/getAssessment",{
+				    term:term,
+		    		studentId : $("#student_list_id").val(),
+		    		subject : $("#student_list_id").val()
+		      },fnGradeData); 	
+		}); 
+		
 		function fnGradeData(data)
 		{ 
 			var counter = 0;
@@ -1446,8 +1514,7 @@ $(function(){
 		}
 		
 		function fnDeleteAssessment(id)
-		{
-			alert(id);
+		{ 
 			if(id.length>0)
 			{
 				$.post("/deleteAssessment",{
@@ -1468,6 +1535,26 @@ $(function(){
 		{
 			var flag = true;
 	 
+			if ($('#student_list_id').val() == "-select-") {
+				$('#SEE1').removeClass('hide_error');
+				$('#SEE1').addClass('show_error');
+				flag = false;
+			}
+			else {
+				$('#SEE1').removeClass('show_error');
+				$('#SEE1').addClass('hide_error');
+			} 
+			
+			if ($('#subject_id').val() == "-select-") {
+				$('#SEE2').removeClass('hide_error');
+				$('#SEE2').addClass('show_error');
+				flag = false;
+			}
+			else {
+				$('#SEE2').removeClass('show_error');
+				$('#SEE2').addClass('hide_error');
+			} 
+			
 			if ($('#assignment_id').val() == "-select-") {
 				$('#AE1').removeClass('hide_error');
 				$('#AE1').addClass('show_error');
@@ -1548,6 +1635,19 @@ $(function(){
 		    } 
 		});
 		
+		$("#student_list_id").on('change', function() {
+		    if ($(this).val() != '-select-'){
+		        $("#SEE1").removeClass("show_error");
+				$("#SEE1").addClass("hide_error");
+		    } 
+		});
+		
+		$("#subject_id").on('change', function() {
+		    if ($(this).val() != '-select-'){
+		        $("#SEE2").removeClass("show_error");
+				$("#SEE2").addClass("hide_error");
+		    } 
+		});
 		
 		$('#point_id').on('change',function(e){
 			if($("#point_id").val()!= null || $("#point_id").val()!= '')
