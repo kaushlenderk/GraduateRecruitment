@@ -6,6 +6,10 @@
 	display: block;
 }
 
+.show_error1 {
+	display: inline-table;
+}
+
 .hide_error {
 	display: none;
 }
@@ -47,13 +51,13 @@
 
 .div_border{
     border-radius: 5px;
-    border: 1px solid grey; 
+    border: 1px solid #E3E3E3;
     min-height: 150px; 
     background-color: transparent;		 
 }
 
 .div_border1{ 
-    border-bottom: 1px solid grey; 		 
+    border-bottom: 1px solid #E3E3E3; 		 
 }
 
 .tr_style

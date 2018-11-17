@@ -21,7 +21,8 @@ var studentModel = {
 	getEnrollmentStatus:getEnrollmentStatus,
 	deleteRegisterCourses:deleteRegisterCourses,
 	setRegisterCourses:setRegisterCourses,
-	getRegisterCourses:getRegisterCourses
+	getRegisterCourses:getRegisterCourses,
+	getAssessment:getAssessment
 }
 
 function getResearchTitle(data,result) {
@@ -446,6 +447,18 @@ function getRegisterCourses(data,result)
 		}
 	}); 
 }
+
+function getAssessment(data,result) { 
+	db.query("select * from assessment WHERE studentId= '" + data.studentId +"' AND subject='"+ data.subject +"' AND term='"+ data.term +"'", function (err, res) {
+	    if(err) {
+	            console.log("error: ", err);
+	            result(null, err);
+		    }
+		    else{   
+		        result(null, res);
+		}
+	});
+};
 
 module.exports = studentModel;
 

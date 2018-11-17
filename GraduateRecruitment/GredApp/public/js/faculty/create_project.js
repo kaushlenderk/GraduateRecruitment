@@ -101,11 +101,11 @@ $(function(){
 				
 				if(item.isDraft==1)
 				{
-					cols += '<td class="col-sm-3"><input type="button" class="ibtnDel2 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View" id="btnViewProject"></td>';
+					cols += '<td class="col-sm-3" style="text-align: right;"><input type="button" class="ibtnDel2 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View" id="btnViewProject"></td>';
 				}
 				else
 				{					
-					cols += '<td class="col-sm-2"><input type="button" class="ibtnDel3 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="Edit">&nbsp;<input type="button" class="ibtnDel4 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="Publish">&nbsp;<input type="button" class="ibtnDel1 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+					cols += '<td class="col-sm-2" style="text-align: right;"><input type="button" class="ibtnDel3 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="Edit">&nbsp;<input type="button" class="ibtnDel4 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="Publish">&nbsp;<input type="button" class="ibtnDel1 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 				}
 				
 				
@@ -266,7 +266,7 @@ $(function(){
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="research_description_id">' + item.researchDescription	 + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="project_fund_id">' + item.projectFund + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="skill_set_select_id">' + item.skillSet + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        
 	        newRow.append(cols);
 	        $("#offeredResearchTable").append(newRow);
@@ -404,7 +404,7 @@ $(function(){
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="research_description_id">' + research_description_id + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="project_fund_id">' + project_fund_id + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="skill_set_select_id">' + skill_set_select_id + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        newRow.append(cols);
 	        $("#offeredResearchTable").append(newRow);
 	        counter++;
@@ -875,7 +875,7 @@ $(function(){
 						$('#noMappedDivResult').addClass("hide_error");
 						$('#noMappedDivResult').removeClass('show_error');
 						
-						$('#mappedStudentProfileTable').addClass("show_error");
+						$('#mappedStudentProfileTable').addClass("show_error1");
 						$('#mappedStudentProfileTable').removeClass('hide_error');
 						 
 						var newRow = $("<tr>");
@@ -890,11 +890,11 @@ $(function(){
 					
 						if(itemValue.status == 0)
 						{
-							cols += '<td class="col-sm-2"><input type="button" class="ibtnDels2 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View">&nbsp;<input type="button" class="ibtnDels3 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="Offer">&nbsp;<input type="button" class="ibtnDels4 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Decline"></td>';
+							cols += '<td class="col-sm-2" style="text-align: right;"><input type="button" class="ibtnDels2 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View">&nbsp;<input type="button" class="ibtnDels3 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="Offer">&nbsp;<input type="button" class="ibtnDels4 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Decline"></td>';
 						} 
 						else
 						{
-							cols += '<td class="col-sm-2"><input type="button" class="ibtnDels1 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View" id="btnViewProject"></td>';
+							cols += '<td class="col-sm-2" style="text-align: right;"><input type="button" class="ibtnDels1 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View" id="btnViewProject"></td>';
 						}					
 												
 				        newRow.append(cols);
@@ -1023,7 +1023,7 @@ $(function(){
 			$.each(data,function(key,item){
 				var count=0;
 				 
-				$('#educationStudentTable').addClass("show_error");
+				//$('#educationStudentTable').addClass("show_error");
 				$('#educationStudentTable').removeClass('hide_error');
 				
 				var newRow = $("<tr>");
@@ -1044,7 +1044,7 @@ $(function(){
 			$.each(data,function(key,item){
 				var count=0;
 				 
-				$('#publicationResearchStudentTable').addClass("show_error");
+				//$('#publicationResearchStudentTable').addClass("show_error");
 				$('#publicationResearchStudentTable').removeClass('hide_error');
 				     	    	
 		        var newRow = $("<tr>");
@@ -1067,7 +1067,7 @@ $(function(){
 			$.each(data,function(key,item){
 				var count=0;
 				 
-				$('#workExperienceStudentTable').addClass("show_error");
+				//$('#workExperienceStudentTable').addClass("show_error");
 				$('#workExperienceStudentTable').removeClass('hide_error');
 				     	    	
 		        var newRow = $("<tr>");
@@ -1385,7 +1385,7 @@ $(function(){
 				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="marks">' + item.marks +" / " + item.outoff + '</label> </td>';
 				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="grade">' + item.grade + '</label> </td>';
 						cols += '<td class="col-sm-5 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="egraduationdate">' + item.feedback + '</label> </td>';
-				        cols += '<td class="col-sm-1 tr_style" style="border-top: 0px solid #ddd;"><input type="button" class="ibtnDeld1 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+				        cols += '<td class="col-sm-1 tr_style" style="border-top: 0px solid #ddd;text-align: right;"><input type="button" class="ibtnDeld1 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 				        newRow.append(cols);
 				        $("#assignments_table_section_id").append(newRow);
 					}
@@ -1399,7 +1399,7 @@ $(function(){
 				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="marks">' + item.marks +" / " + item.outoff + '</label> </td>';
 				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="grade">' + item.grade + '</label> </td>';
 						cols += '<td class="col-sm-5 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="egraduationdate">' + item.feedback + '</label> </td>';
-				        cols += '<td class="col-sm-1 tr_style" style="border-top: 0px solid #ddd;"><input type="button" class="ibtnDeld2 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+				        cols += '<td class="col-sm-1 tr_style" style="border-top: 0px solid #ddd;text-align: right;"><input type="button" class="ibtnDeld2 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 				        newRow.append(cols);
 				        $("#presentations_table_section_id").append(newRow);
 					}
@@ -1413,7 +1413,7 @@ $(function(){
 				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="marks">' + item.marks +" / " + item.outoff + '</label> </td>';
 				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="grade">' + item.grade + '</label> </td>';
 						cols += '<td class="col-sm-5 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="egraduationdate">' + item.feedback + '</label> </td>';
-				        cols += '<td class="col-sm-1 tr_style" style="border-top: 0px solid #ddd;"><input type="button" class="ibtnDeld3 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+				        cols += '<td class="col-sm-1 tr_style" style="border-top: 0px solid #ddd;text-align: right;"><input type="button" class="ibtnDeld3 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 				        newRow.append(cols);
 				        $("#exams_table_section_id").append(newRow);
 					}
@@ -1427,7 +1427,7 @@ $(function(){
 				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="marks">' + item.marks +" / " + item.outoff + '</label> </td>';
 				        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="grade">' + item.grade + '</label> </td>';
 						cols += '<td class="col-sm-5 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="egraduationdate">' + item.feedback + '</label> </td>';
-				        cols += '<td class="col-sm-1 tr_style" style="border-top: 0px solid #ddd;"><input type="button" class="ibtnDeld4 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+				        cols += '<td class="col-sm-1 tr_style" style="border-top: 0px solid #ddd;text-align: right;"><input type="button" class="ibtnDeld4 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 				        newRow.append(cols);
 				        $("#pojects_table_section_id").append(newRow);
 					}

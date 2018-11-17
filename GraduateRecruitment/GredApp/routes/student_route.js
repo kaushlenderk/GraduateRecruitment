@@ -265,5 +265,17 @@ router.post("/getRegisterCourses",function(req,res){
 	}); 
 });
 
+router.post("/getAssessment",function(req,res){ ;
+student_model.getAssessment(req.body, function(err, data) {	    
+    if (err)
+    {
+    	throw err
+    }
+    else
+    {
+    	res.json(data);	
+    } 
+  });
+});
 
 module.exports =router; 

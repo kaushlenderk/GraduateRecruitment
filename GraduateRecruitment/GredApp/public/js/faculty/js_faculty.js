@@ -22,7 +22,7 @@ $(document).ready(function () {
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + field_of_study + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + institute_name_address + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + graduation_date + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        newRow.append(cols);
 	        $("#educationTable").append(newRow);
 	        counter++;
@@ -160,7 +160,7 @@ $(document).ready(function () {
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + rppublicationArea + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + rpdescription + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + rppublicationdate + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        newRow.append(cols);
 	        $("#publicationResearchTable").append(newRow);
 	        counter++;
@@ -298,7 +298,7 @@ $(document).ready(function () {
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="rpposition">' + rpposition + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="rplocation">' + rplocation + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="rpnumberofmonthexperience">' + rpnumberofmonthexperience + '</label> </td>'; 
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        
 	        newRow.append(cols);
 	        $("#workExperienceTable").append(newRow);
@@ -468,7 +468,7 @@ $(document).ready(function () {
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.fieldOfStudy + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.instituteNameAddress + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.graduationDate + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        newRow.append(cols);
 	        $("#educationTable").append(newRow);
 	        counter++;
@@ -494,7 +494,7 @@ $(document).ready(function () {
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.publicationArea + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.publicationDescription + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.publicationDate + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        newRow.append(cols);
 	        $("#publicationResearchTable").append(newRow);
 	        
@@ -521,7 +521,7 @@ $(document).ready(function () {
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.position + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.location + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.monthOfExperience + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        newRow.append(cols);
 	        $("#workExperienceTable").append(newRow);
 	        counter++; 
@@ -546,7 +546,7 @@ $(document).ready(function () {
 	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpiddlprogram">' + item.program + '</label> </td>';
 	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpiddlresearcharea">' + item.researchArea + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="rpidescription">' + item.researchDescription + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        
 	        newRow.append(cols);
 	        $("#researchProgramResearchInterestTable").append(newRow);

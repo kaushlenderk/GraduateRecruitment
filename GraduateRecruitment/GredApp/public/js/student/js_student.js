@@ -22,7 +22,7 @@ $(document).ready(function () {
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + field_of_study + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + institute_name_address + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + graduation_date + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        newRow.append(cols);
 	        $("#educationTable").append(newRow);
 	        counter++;
@@ -188,7 +188,7 @@ $(document).ready(function () {
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + rppublicationArea + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + rpdescription + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + rppublicationdate + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        newRow.append(cols);
 	        $("#publicationResearchTable").append(newRow);
 	        counter++;
@@ -326,7 +326,7 @@ $(document).ready(function () {
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="rpposition">' + rpposition + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="rplocation">' + rplocation + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="rpnumberofmonthexperience">' + rpnumberofmonthexperience + '</label> </td>'; 
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        
 	        newRow.append(cols);
 	        $("#workExperienceTable").append(newRow);
@@ -474,7 +474,7 @@ $(document).ready(function () {
 	        cols += '<td class="col-sm-2"><label class="form-control education_row" name="rpiddlresearcharea">' + rpiddlresearcharea + '</label> </td>';
 	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpidescription">' + rpidescription + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="skillSet">' + skillSet + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        
 	        newRow.append(cols);
 	        $("#researchProgramResearchInterestTable").append(newRow);
@@ -678,7 +678,7 @@ function validateProgramResearchInterestSection() {
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.fieldOfStudy + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.instituteNameAddress + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.graduationDate + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        newRow.append(cols);
 	        $("#educationTable").append(newRow);
 	        counter++;
@@ -704,7 +704,7 @@ function validateProgramResearchInterestSection() {
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.publicationArea + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.publicationDescription + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.publicationDate + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        newRow.append(cols);
 	        $("#publicationResearchTable").append(newRow);
 	        
@@ -731,7 +731,7 @@ function validateProgramResearchInterestSection() {
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.position + '</label> </td>';
 	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.location + '</label> </td>';
 			cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.monthOfExperience + '</label> </td>';
-	        cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
 	        newRow.append(cols);
 	        $("#workExperienceTable").append(newRow);
 	        counter++; 
@@ -1121,11 +1121,11 @@ function validateProgramResearchInterestSection() {
 				 
 					if(itemValue.status == 1)
 					{
-						cols += '<td class="col-sm-3"><input type="button" class="ibtnDeles1 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View">&nbsp;<input type="button" class="ibtnDeles2 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Accept">&nbsp;<input type="button" class="ibtnDeles3 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Decline"></td>';
+						cols += '<td class="col-sm-3" style="text-align: right;"><input type="button" class="ibtnDeles1 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View">&nbsp;<input type="button" class="ibtnDeles2 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Accept">&nbsp;<input type="button" class="ibtnDeles3 btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Decline"></td>';
 					}
 					if(itemValue.status == 3 || itemValue.status==4)
 					{
-						cols += '<td class="col-sm-3"><input type="button" class="ibtnDeles1 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View"></td>';
+						cols += '<td class="col-sm-3" style="text-align: right;"><input type="button" class="ibtnDeles1 btn btn-md btn-danger" style="padding: 1px 6px;font-weight: bold;" value="View"></td>';
 					}
 					else
 					{
@@ -1393,7 +1393,189 @@ function validateProgramResearchInterestSection() {
 				$('#txtSelectRegisterCourse').removeClass('hide_error');
 				$('#txtSelectRegisterCourse').addClass('show_error');
 			}  
+			
+			var selectSubject = document.getElementById("subject_id");
+			$.each(data,function(key,item){
+				var option = document.createElement("option");
+				option.text = item.coursesName;
+				option.value = item.coursesName;
+				selectSubject.appendChild(option);
+			});
 		} 
+	}
+	
+	$('#assessmentSectionDiv').addClass("hide_error");
+	$('#assessmentSectionDiv').removeClass("show_error");
+	
+	$('#subject_id').on('change', function() {
+		  var subject = this.value; 
+		  
+		  $.post("/getAssessment",{
+			    term: $("#university_term_id").val(),
+	    		studentId : UserId,
+	    		subject : subject
+	      },fnGradeData); 	
+	});
+	
+	function fnGradeData(data)
+	{
+		var counter = 0;
+		
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") { 
+			$("#actionAssessmentMessage").text(data.sqlMessage);
+			$('#myAssessmentModal').modal('show'); 
+		}
+		else { 
+			$('#assessmentSectionDiv').addClass('show_error');
+			$('#assessmentSectionDiv').removeClass('hide_error');
+			
+			$("#assignments_table_section_id > tbody").html("");
+			$("#presentations_table_section_id > tbody").html("");
+			$("#exams_table_section_id > tbody").html("");
+			$("#pojects_table_section_id > tbody").html("");
+			 
+			$.each(data,function(key,item){
+				
+				var count=0;
+				  
+				var assType="";
+				
+				var newRow = $("<tr>");
+		        var cols = "";
+		        
+				if(item.assignmentType=="Assignment")
+				{
+					var createdData = new Date(item.createdOn);
+					createdData = createdData.getFullYear() +"-" + createdData.getMonth() + "-" + createdData.getDay();
+					
+					cols += '<td style="display:none;border-top: 0px solid #ddd;"><label class="form-control education_row" name="id">' + item.id + '</label> </td>';
+					cols += '<td class="col-sm-3" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="createdOn">' + createdData + '</label> </td>';
+			        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="marks">' + item.marks +" / " + item.outoff + '</label> </td>';
+			        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="grade">' + item.grade + '</label> </td>';
+					cols += '<td class="col-sm-5 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="egraduationdate">' + item.feedback + '</label> </td>';
+			        newRow.append(cols);
+			        $("#assignments_table_section_id").append(newRow);
+				}
+				else if(item.assignmentType=="Presentation")
+				{
+					var createdData = new Date(item.createdOn);
+					createdData = createdData.getFullYear() +"-" + createdData.getMonth() + "-" + createdData.getDay();
+					
+					cols += '<td style="display:none;border-top: 0px solid #ddd;"><label class="form-control education_row" name="id">' + item.id + '</label> </td>';
+					cols += '<td class="col-sm-3" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="createdOn">' + createdData + '</label> </td>';
+			        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="marks">' + item.marks +" / " + item.outoff + '</label> </td>';
+			        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="grade">' + item.grade + '</label> </td>';
+					cols += '<td class="col-sm-5 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="egraduationdate">' + item.feedback + '</label> </td>';
+			        newRow.append(cols);
+			        $("#presentations_table_section_id").append(newRow);
+				}
+				else if(item.assignmentType=="Exam")
+				{
+					var createdData = new Date(item.createdOn);
+					createdData = createdData.getFullYear() +"-" + createdData.getMonth() + "-" + createdData.getDay();
+					
+					cols += '<td style="display:none;border-top: 0px solid #ddd;"><label class="form-control education_row" name="id">' + item.id + '</label> </td>';
+					cols += '<td class="col-sm-3" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="createdOn">' + createdData + '</label> </td>';
+			        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="marks">' + item.marks +" / " + item.outoff + '</label> </td>';
+			        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="grade">' + item.grade + '</label> </td>';
+					cols += '<td class="col-sm-5 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="egraduationdate">' + item.feedback + '</label> </td>';
+			        newRow.append(cols);
+			        $("#exams_table_section_id").append(newRow);
+				}
+				else if(item.assignmentType=="Project")
+				{
+					var createdData = new Date(item.createdOn);
+					createdData = createdData.getFullYear() +"-" + createdData.getMonth() + "-" + createdData.getDay();
+					
+					cols += '<td style="display:none;border-top: 0px solid #ddd;"><label class="form-control education_row" name="id">' + item.id + '</label> </td>';
+					cols += '<td class="col-sm-3" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="createdOn">' + createdData + '</label> </td>';
+			        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="marks">' + item.marks +" / " + item.outoff + '</label> </td>';
+			        cols += '<td class="col-sm-2 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="grade">' + item.grade + '</label> </td>';
+					cols += '<td class="col-sm-5 tr_style" style="border-top: 0px solid #ddd;"><label class="form-control education_row" name="egraduationdate">' + item.feedback + '</label> </td>';
+			        newRow.append(cols);
+			        $("#pojects_table_section_id").append(newRow);
+				}
+				 
+		        counter++;
+			}); 
+			
+			$("#assignments_table_section_id").on("click", ".ibtnDeld1", function (event) {
+				var $tr = $("#assignments_table_section_id"); 
+				var row = $(this).closest("tr").index(); 
+				 
+				var id =document.getElementById("assignments_table_section_id").rows[row].cells[0].innerHTML;  
+				  
+				if(id.length>0)
+				{
+					id = id.replace('<label class="form-control education_row" name="id">','');
+					id = id.replace('</label>','');
+				} 
+				 
+				fnDeleteAssessment(id);
+				
+		        $(this).closest("tr").remove();       
+		        counter -= 1
+		        var rowCount = $('#assignments_table_section_id tr').length; 
+		    });
+			
+			$("#presentations_table_section_id").on("click", ".ibtnDeld2", function (event) {
+				var $tr = $("#assignments_table_section_id"); 
+				var row = $(this).closest("tr").index(); 
+				 
+				var id =document.getElementById("presentations_table_section_id").rows[row].cells[0].innerHTML;  
+				  
+				if(id.length>0)
+				{
+					id = id.replace('<label class="form-control education_row" name="id">','');
+					id = id.replace('</label>','');
+				} 
+				 
+				fnDeleteAssessment(id);
+				
+		        $(this).closest("tr").remove();       
+		        counter -= 1
+		        var rowCount = $('#presentations_table_section_id tr').length; 
+		    });
+			
+			$("#exams_table_section_id").on("click", ".ibtnDeld3", function (event) {
+				var $tr = $("#exams_table_section_id"); 
+				var row = $(this).closest("tr").index(); 
+				 
+				var id =document.getElementById("exams_table_section_id").rows[row].cells[0].innerHTML;  
+				  
+				if(id.length>0)
+				{
+					id = id.replace('<label class="form-control education_row" name="id">','');
+					id = id.replace('</label>','');
+				} 
+				 
+				fnDeleteAssessment(id);
+				
+		        $(this).closest("tr").remove();       
+		        counter -= 1
+		        var rowCount = $('#exams_table_section_id tr').length; 
+		    });
+			
+			$("#pojects_table_section_id").on("click", ".ibtnDeld4", function (event) {
+				var $tr = $("#pojects_table_section_id"); 
+				var row = $(this).closest("tr").index(); 
+				 
+				var id =document.getElementById("pojects_table_section_id").rows[row].cells[0].innerHTML;  
+				  
+				if(id.length>0)
+				{
+					id = id.replace('<label class="form-control education_row" name="id">','');
+					id = id.replace('</label>','');
+				} 
+				 
+				fnDeleteAssessment(id);
+				
+		        $(this).closest("tr").remove();       
+		        counter -= 1
+		        var rowCount = $('#pojects_table_section_id tr').length; 
+		    });
+		}
+		
 	}
 	
 	function fnRegisterCourses()
@@ -1448,7 +1630,7 @@ function validateProgramResearchInterestSection() {
 			$('#REE1').addClass('hide_error');
 		}
 	}); 
-	
+	 
 	/* end Student enrollment and view program section */
 
 });
