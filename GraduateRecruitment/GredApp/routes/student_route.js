@@ -28,6 +28,19 @@ router.post("/getResearchTitle",function(req,res){
 	}); 
 });
 
+router.post("/getRegisterUserDetail",function(req,res){  
+	student_model.getRegisterUserDetail(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
 router.post("/getProfile",function(req,res){  
 	student_model.getProfile(req.body,function(err, data) {
 		if (err)
@@ -40,7 +53,7 @@ router.post("/getProfile",function(req,res){
 	    }	      
 	}); 
 });
-
+ 
 router.post("/getEducation",function(req,res){  
 	student_model.getEducationDetail(req.body,function(err, data) {
 		if (err)

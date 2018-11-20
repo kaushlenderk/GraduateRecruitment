@@ -22,7 +22,21 @@ var studentModel = {
 	deleteRegisterCourses:deleteRegisterCourses,
 	setRegisterCourses:setRegisterCourses,
 	getRegisterCourses:getRegisterCourses,
-	getAssessment:getAssessment
+	getAssessment:getAssessment,
+	getRegisterUserDetail:getRegisterUserDetail
+}
+
+function getRegisterUserDetail(data,result)
+{
+	 db.query("SELECT id,firstName,lastName,email,munEmail,facultyId FROM user WHERE active=1 AND id='" + data.userId +"'", function (err, res) {
+		  if(err) {
+		      console.log("error: ", err);
+		      result(null, err);
+		  }
+		  else{   
+		     result(null, res);
+		  }
+	   });  
 }
 
 function getResearchTitle(data,result) {
@@ -373,7 +387,7 @@ function getResearchTitle(data,result) {
 //get program detail
 
 function GetStudentProgramDetail(data,result) {
-	  
+	   
 	var sql="call GetStudentProgramDetail('"+ data.id +"')";
 	
     db.query(sql, function (err, res) {
@@ -381,8 +395,7 @@ function GetStudentProgramDetail(data,result) {
 	        console.log("error: ", err);
 	        result(null, err);
 	    }
-	    else{  
-	    	console.log("res:"+res);
+	    else{   
 	        result(null, res);
 	        
 	    }

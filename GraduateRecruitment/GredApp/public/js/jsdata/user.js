@@ -114,8 +114,9 @@ $(function(){
 				$("#email").val("");
 				$("#facultyid").val("");
 				$("#password").val("");
-				 
-				$("#newUserId").text(data);
+				  
+				$("#newUserId").text(data[0].id);
+				$("#uniEmailId").text(data[0].munEmail);
 				$('#myModal').modal('toggle');
 			}
 		}

@@ -600,6 +600,19 @@ function validateProgramResearchInterestSection() {
 	
 	var UserId = $("#userIdData").val(); 
 	
+	$.post("/getRegisterUserDetail",{
+		userId : UserId
+	},fnRegisterUserDetail)
+ 
+	function fnRegisterUserDetail(data)
+	{   
+		$.each(data,function(key,item){
+			$("#firstName").val(item.firstName);
+			$("#lastName").val(item.lastName);
+			$("#email").val(item.munEmail); 
+		});  
+	}
+	
 	$.post("/getProfile",{
 		userId : UserId
 	},fnGetProfile)
@@ -1179,13 +1192,12 @@ function validateProgramResearchInterestSection() {
 		if (typeof(data.errno) != "undefined" &&  data.errno!="") {
 			//$("#alertMessage").text(data.sqlMessage)
 		} 
-		else { 		
-			 
+		else { 		  
 			$.each(data,function(key,item){	
-				var count=0; 
+				var count=0;  
 				$.each(item,function(keyValue,itemValue){
 					if(itemValue.department != undefined)
-					{  
+					{   
 						$("#department_id").html(itemValue.department);
 						$("#program_id").html(itemValue.program);
 						$("#degree_id").html(itemValue.degree); 

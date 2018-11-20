@@ -12,7 +12,7 @@ var userModel = {
 }
 
 function recoverPassword(data,result) {
-    db.query("SELECT password FROM USER WHERE active=1 AND email= '" + data.email +"' OR id= '" + data.memorialNumber +"'", function (err, res) {
+    db.query("SELECT password FROM USER WHERE active=1 AND email= '" + data.email +"' OR id= '" + data.memorialNumber +"' OR munEmail='" + data.email + "'", function (err, res) {
 	    if(err) {
 	            console.log("error: ", err);
 	            result(null, err);
@@ -83,7 +83,17 @@ function registerUser(data,result) {
 		 }
 		 else{
 		    console.log(res.insertId);
-		    result(null, res.insertId);
+		    //result(null, res.insertId);
+		    
+		    db.query("SELECT id,firstName,lastName,email,munEmail,facultyId FROM user WHERE active=1 AND id='" + res.insertId +"'", function (err, res) {
+			  if(err) {
+			      console.log("error: ", err);
+			      result(null, err);
+			  }
+			  else{   
+			     result(null, res);
+			  }
+		   });  
 		 }
     });
 }
