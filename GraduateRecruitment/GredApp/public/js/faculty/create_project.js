@@ -865,8 +865,7 @@ $(function(){
 			 
 			$.each(data,function(key,item){	
 				var count=0; 
-				$.each(item,function(keyValue,itemValue){	
-					console.log("status" + admissionStatus[itemValue.status]);
+				$.each(item,function(keyValue,itemValue){	 
 					
 					var status = admissionStatus[itemValue.status];
 					

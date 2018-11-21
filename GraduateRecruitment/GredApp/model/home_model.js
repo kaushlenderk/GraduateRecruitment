@@ -8,7 +8,7 @@ var modelData = {
 
 
 function getDepartmentList(result) {
-    db.query("SELECT DISTINCT DeptName FROM DEPARTMENT", function (err, res) {
+    db.query("SELECT DISTINCT DeptName FROM department", function (err, res) {
 	    if(err) {
 	        console.log("error: ", err);
 	        result(null, err);

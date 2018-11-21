@@ -45,7 +45,7 @@ function getDepartmentList(data,result) {
 }
 
 function getDepartmentBranch(data,result) { 
-    db.query("SELECT DISTINCT DeptBranch FROM DEPARTMENT WHERE DeptName='"+ data.DeptName +"'", function (err, res) {
+    db.query("SELECT DISTINCT DeptBranch FROM department WHERE DeptName='"+ data.DeptName +"'", function (err, res) {
 	    if(err) {
 	        console.log("error: ", err);
 	        result(null, err);

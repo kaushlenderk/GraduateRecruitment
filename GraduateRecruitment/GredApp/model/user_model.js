@@ -12,7 +12,7 @@ var userModel = {
 }
 
 function recoverPassword(data,result) {
-    db.query("SELECT password FROM USER WHERE active=1 AND email= '" + data.email +"' OR id= '" + data.memorialNumber +"' OR munEmail='" + data.email + "'", function (err, res) {
+    db.query("SELECT password FROM user WHERE active=1 AND email= '" + data.email +"' OR id= '" + data.memorialNumber +"' OR munEmail='" + data.email + "'", function (err, res) {
 	    if(err) {
 	            console.log("error: ", err);
 	            result(null, err);
@@ -41,7 +41,7 @@ function recoverPassword(data,result) {
 };
 
 function verfiyEmail(data,result) {
-    db.query("SELECT email FROM USER WHERE active=1 AND email= '" + data.email +"'", function (err, res) {
+    db.query("SELECT email FROM user WHERE active=1 AND email= '" + data.email +"'", function (err, res) {
 	    if(err) {
 	            console.log("error: ", err);
 	            result(null, err);

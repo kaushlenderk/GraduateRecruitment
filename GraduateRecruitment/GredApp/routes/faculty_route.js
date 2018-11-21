@@ -36,6 +36,19 @@ router.post("/getProfile",function(req,res){
 	}); 
 });
 
+router.post("/getRegisterUserDetail",function(req,res){  
+	faculty_model.getRegisterUserDetail(req.body,function(err, data) {
+		if (err)
+	    {
+	    	throw err;
+	    }
+	    else
+	    {  
+	       res.json(data);	
+	    }	      
+	}); 
+});
+
 router.post("/getEducation",function(req,res){  
 	faculty_model.getEducationDetail(req.body,function(err, data) {
 		if (err)

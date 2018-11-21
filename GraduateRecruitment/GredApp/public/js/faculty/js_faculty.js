@@ -449,6 +449,20 @@ $(document).ready(function () {
 		}); 
 	}
 	
+	$.post("/getRegisterUserDetail",{
+		userId : UserId
+	},fnRegisterUserDetail)
+ 
+	function fnRegisterUserDetail(data)
+	{   
+		console.log("data"+data[0]);
+		$.each(data,function(key,item){
+			$("#firstName").val(item.firstName);
+			$("#lastName").val(item.lastName);
+			$("#email").val(item.munEmail); 
+		});  
+	}
+	
 	$.post("/getEducation",{
 		userId : UserId
 	},fnGetEducation)
