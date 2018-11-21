@@ -23,7 +23,8 @@ var studentModel = {
 	setRegisterCourses:setRegisterCourses,
 	getRegisterCourses:getRegisterCourses,
 	getAssessment:getAssessment,
-	getRegisterUserDetail:getRegisterUserDetail
+	getRegisterUserDetail:getRegisterUserDetail,
+	deleteProgramResearchInterest:deleteProgramResearchInterest
 }
 
 function getRegisterUserDetail(data,result)
@@ -272,6 +273,21 @@ function setWorkExperienceDetail(data,result) {
 	 
 }
 
+function deleteProgramResearchInterest(data,result) {  
+	
+	console.log("ddd : "+  data.userId )
+	db.query("DELETE FROM programResearchInterest WHERE userId= " + data.userId +"", function (err, res) {
+	    if(err) {
+	            console.log("error: ", err);
+	            result(null, err);
+		    }
+		    else{   
+		    	result(null, res);
+		 }
+	 });  
+	 
+}
+
 function setProgramResearchInterest(data,result) {  
 	
 	var userModel={
@@ -281,31 +297,20 @@ function setProgramResearchInterest(data,result) {
 		    "researchDescription":data.researchDescription,
 		    "skillSet":data.skillSet 
 	};
-	   	
-	db.query("DELETE FROM programResearchInterest WHERE userId= " + data.userId +"", function (err, res) {
-	    if(err) {
-	            console.log("error: ", err);
-	            result(null, err);
-		    }
-		    else{  
-		    	
-		    	if(userModel.program!="")
-		    	{
-		    		db.query("INSERT INTO programResearchInterest set ? " ,userModel,function(err,res){
-			   			 if(err) {
-			   			    console.log("error: ", err);
-			   			    result(null,err);
-			   			 }
-			   			 else{
-			   			    console.log(res.insertId);
-			   			    result(null, res.insertId);
-			   			 }
-			   	    });
-		    	}
-		    	
-		    }
-	 });  
-	 
+	
+	if(userModel.program!="")
+	{
+		db.query("INSERT INTO programResearchInterest set ? " ,userModel,function(err,res){
+   			 if(err) {
+   			    console.log("error: ", err);
+   			    result(null,err);
+   			 }
+   			 else{
+   			    console.log(res.insertId);
+   			    result(null, res.insertId);
+   			 }
+   	    });
+	}
 }
 
 /* Enrollment and program detail*/

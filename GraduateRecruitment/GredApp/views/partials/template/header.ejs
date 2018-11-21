@@ -17,6 +17,7 @@
 					<% if(locals.user) { %>
 						 
 					    <% if(locals.user[0].memorialNumber != null && locals.user[0].facultyId == ""){ %>
+					    	 <li><a href="student">Apply Here</a></li>
 					      	 <li><a href="student">Student</a></li>
 					         <li><a href="logout">Log out</a></li>
 					    <% } else if (locals.user[0].memorialNumber != null && locals.user[0].facultyId != "") {%> 

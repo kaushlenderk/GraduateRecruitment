@@ -158,6 +158,19 @@ router.post("/workExperience",function(req,res){
 	  });
 });
 
+router.post("/deleteProgramResearchInterest",function(req,res){ 
+	student_model.deleteProgramResearchInterest(req.body, function(err, data) {	    
+	    if (err)
+	    {
+	    	throw err
+	    }
+	    else
+	    {
+	    	res.json(data);	
+	    } 
+	  });
+});
+
 router.post("/researchInterest",function(req,res){ 
 	student_model.setProgramResearchInterest(req.body, function(err, data) {	    
 	    if (err)

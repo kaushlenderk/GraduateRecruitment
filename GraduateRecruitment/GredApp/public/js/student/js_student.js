@@ -782,19 +782,17 @@ function validateProgramResearchInterestSection() {
 	/*end get form data */
 	
 	/*start save form data */
-	 		
+	var userId = $("#userIdData").val();
+	
 	$("#userProfileform").submit(function(e){
 		e.preventDefault();  
 		
-		var isDraft = 0;		
-		var userId = 0; 
+		var isDraft = 0; 
 		var isFinancialSupportNeed=0;
 		
 		if($('#isFinancialSupportNeed').prop('checked')) {
 			isFinancialSupportNeed = 1;
 		} 
-		
-		userId = $("#userIdData").val();
 		 
 		if(validateFormData() && userId!="")
 		{ 
@@ -802,7 +800,7 @@ function validateProgramResearchInterestSection() {
 			{
 				isDraft=1;
 			} 
-			 
+			  
 			$.post("/student",{
 				userId : userId,
 				firstName : $("#firstName").val(),
@@ -893,23 +891,31 @@ function validateProgramResearchInterestSection() {
 				},funAlertProfile)
 		        	
 		    }); 
-			
+			 
 			//researchInterest
-			$.post("/researchInterest",{
+			$.post("/deleteProgramResearchInterest",{
 				userId : userId,
 				program : "",
 				researchArea : "",
 				researchDescription : "",
 				skillSet:""
-			},funAlertProfile)
-			
+			},fnDeleteAction)
+			 
+		}	
+	});
+	
+	function fnDeleteAction(data)
+	{ 
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") { 
+		}
+		else { 
 			$("#researchProgramResearchInterestTable").find('tbody tr').each(function (i, el) {
 		        var $tds = $(this).find('td'),
 		        program = $tds.eq(0).text(),
 		        researchArea = $tds.eq(1).text(),
 		        researchDescription = $tds.eq(2).text(),
 		        skillSet = $tds.eq(3).text(); 
-		        
+		         
 		        $.post("/researchInterest",{
 					userId : userId,
 					program : program,
@@ -919,8 +925,8 @@ function validateProgramResearchInterestSection() {
 				},funAlertProfile)
 		        	
 		    }); 
-		}	
-	});
+		}
+	}
 	
 	function funAlertProfile(data)
 	{ 
@@ -941,9 +947,14 @@ function validateProgramResearchInterestSection() {
 					$('#btnDraftProfile').addClass("hide_error");
 					$('#btnDraftProfile').removeClass("show_error");
 					$("#btnSubmitProfile").html('Update Profile');
+					$("#actionProfileStudentModalMessage").text("Profile has been successfully saved");
+					$('#myStudentModal').modal('show');
 				}
-				$("#actionProfileStudentModalMessage").text("Profile has been successfully saved");
-				$('#myStudentModal').modal('show');
+				if(btnClick==="btnDraftProfile")
+				{
+					$("#actionProfileStudentModalMessage").text("Profile draft has been successfully saved");
+					$('#myStudentModal').modal('show');
+				}  
 			}
 		} 
 	}
@@ -1109,8 +1120,7 @@ function validateProgramResearchInterestSection() {
 		
 		$.each(data,function(key,item){	
 			var count=0; 
-			$.each(item,function(keyValue,itemValue){	
-				console.log("status" + admissionStatus[itemValue.status]);
+			$.each(item,function(keyValue,itemValue){	 
 				
 				var status = admissionStatus[itemValue.status];
 				
@@ -1406,6 +1416,7 @@ function validateProgramResearchInterestSection() {
 				$('#txtSelectRegisterCourse').addClass('show_error');
 			}  
 			
+			$("#subject_id option:not(:first)").remove();
 			var selectSubject = document.getElementById("subject_id");
 			$.each(data,function(key,item){
 				var option = document.createElement("option");
@@ -1645,6 +1656,12 @@ function validateProgramResearchInterestSection() {
 	 
 	/* end Student enrollment and view program section */
 
+	$("#rpnumberofmonthexperience").on("keypress keyup blur",function (event) { 
+		 $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
 });
 
 

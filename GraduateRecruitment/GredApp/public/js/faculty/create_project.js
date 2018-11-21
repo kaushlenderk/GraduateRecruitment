@@ -213,10 +213,8 @@ $(function(){
 			$("#program_start_date_id").val(item.programStartDate);
 			$("#application_end_date_id").val(item.applicationEndDate);
 			$("#number_of_position_id").val(item.numberOfPosition);
-			$("#other_requirement_id").val(item.financialSupport);
-			$("#available_amount_id").val(item.otherRequirement);
-			
-			
+			$("#available_amount_id").val(item.financialSupport);
+			$("#other_requirement_id").val(item.otherRequirement); 
 		});  
 	}
 	
@@ -1019,6 +1017,8 @@ $(function(){
 
 		function getEducationProjectStudentData(data)
 		{   
+			$("#educationStudentTable > tbody").html("");
+			 
 			$.each(data,function(key,item){
 				var count=0;
 				 
@@ -1040,6 +1040,8 @@ $(function(){
 		
 		function getPublicationStudentData(data)
 		{  
+			$("#publicationResearchStudentTable > tbody").html("");
+			
 			$.each(data,function(key,item){
 				var count=0;
 				 
@@ -1063,6 +1065,8 @@ $(function(){
 		
 		function getWorkExperienceStudentData(data)
 		{  
+			$("#workExperienceStudentTable > tbody").html("");
+			
 			$.each(data,function(key,item){
 				var count=0;
 				 
