@@ -678,6 +678,8 @@ function validateProgramResearchInterestSection() {
 	function fnGetEducation(data)
 	{  
 		var isFinancial="";
+		$("#educationTable > tbody").html("");
+		
 		$.each(data,function(key,item){
 			var count=0;
 			 
@@ -686,15 +688,18 @@ function validateProgramResearchInterestSection() {
 			
 			var newRow = $("<tr>");
 	        var cols = "";
-	
-	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="eddlprogram">' + item.program+ '</label> </td>';
-	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.fieldOfStudy + '</label> </td>';
-	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.instituteNameAddress + '</label> </td>';
-			cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.graduationDate + '</label> </td>';
-	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
-	        newRow.append(cols);
-	        $("#educationTable").append(newRow);
-	        counter++;
+	        
+	        if(item.program != "undefined")
+	        {
+	        	cols += '<td class="col-sm-3"><label class="form-control education_row" name="eddlprogram">' + item.program + '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.fieldOfStudy + '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.instituteNameAddress + '</label> </td>';
+				cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.graduationDate + '</label> </td>';
+		        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+		        newRow.append(cols);
+		        $("#educationTable").append(newRow);
+		        counter++;
+	        } 
 		});  
 	}
 	
@@ -704,6 +709,7 @@ function validateProgramResearchInterestSection() {
  
 	function fnGetPublication(data)
 	{  
+		$("#publicationResearchTable > tbody").html("");
 		$.each(data,function(key,item){
 			var count=0;
 			 
@@ -713,15 +719,18 @@ function validateProgramResearchInterestSection() {
 	        var newRow = $("<tr>");
 	        var cols = "";
 	
-	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="eddlprogram">' + item.publicationName + '</label> </td>';
-	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.publicationArea + '</label> </td>';
-	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.publicationDescription + '</label> </td>';
-			cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.publicationDate + '</label> </td>';
-	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
-	        newRow.append(cols);
-	        $("#publicationResearchTable").append(newRow);
-	        
-	        counter++; 
+	        if(item.publicationName != "undefined")
+	        {
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="eddlprogram">' + item.publicationName + '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.publicationArea + '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.publicationDescription + '</label> </td>';
+				cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.publicationDate + '</label> </td>';
+		        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+		        newRow.append(cols);
+		        $("#publicationResearchTable").append(newRow);
+		        
+		        counter++; 
+	        }
 		});  
 	}
 	
@@ -731,6 +740,7 @@ function validateProgramResearchInterestSection() {
  
 	function fnGetWorkExperience(data)
 	{  
+		$("#workExperienceTable > tbody").html("");
 		$.each(data,function(key,item){
 			var count=0;
 			 
@@ -740,14 +750,17 @@ function validateProgramResearchInterestSection() {
 	        var newRow = $("<tr>");
 	        var cols = "";
 	
-	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="eddlprogram">' + item.institution + '</label> </td>';
-	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.position + '</label> </td>';
-	        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.location + '</label> </td>';
-			cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.monthOfExperience + '</label> </td>';
-	        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
-	        newRow.append(cols);
-	        $("#workExperienceTable").append(newRow);
-	        counter++; 
+	        if(item.institution != "undefined")
+	        {
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="eddlprogram">' + item.institution + '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="efieldofstudy">' + item.position + '</label> </td>';
+		        cols += '<td class="col-sm-3"><label class="form-control education_row" name="einstituename_address">' + item.location + '</label> </td>';
+				cols += '<td class="col-sm-2"><label class="form-control education_row" name="egraduationdate">' + item.monthOfExperience + '</label> </td>';
+		        cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+		        newRow.append(cols);
+		        $("#workExperienceTable").append(newRow);
+		        counter++; 
+	        }
 		});  
 	}
 	
@@ -757,6 +770,7 @@ function validateProgramResearchInterestSection() {
  
 	function fnGetProgramResearchIntereste(data)
 	{  
+		$("#researchProgramResearchInterestTable > tbody").html("");
 		$.each(data,function(key,item){
 			var count=0;
 			 
@@ -766,16 +780,19 @@ function validateProgramResearchInterestSection() {
 	        var newRow = $("<tr>");
 	        var cols = "";
 	
-	        cols += '<td class="col-sm-2"><label class="form-control education_row" name="rpiddlprogram">' + item.program + '</label> </td>';
-	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpiddlresearcharea">' + item.researchArea + '</label> </td>';
-	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpidescription">' + item.researchDescription + '</label> </td>';
-	        cols += '<td class="col-sm-4"><label class="form-control education_row" name="skillSet">' + item.skillSet + '</label> </td>';
-	        //cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
-	        
-	        newRow.append(cols);
-	        $("#researchProgramResearchInterestTable").append(newRow);
-	       
-	        counter++; 
+	        if(item.program != "undefined")
+	        {
+		        cols += '<td class="col-sm-2"><label class="form-control education_row" name="rpiddlprogram">' + item.program + '</label> </td>';
+		        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpiddlresearcharea">' + item.researchArea + '</label> </td>';
+		        cols += '<td class="col-sm-4"><label class="form-control education_row" name="rpidescription">' + item.researchDescription + '</label> </td>';
+		        cols += '<td class="col-sm-4"><label class="form-control education_row" name="skillSet">' + item.skillSet + '</label> </td>';
+		        //cols += '<td class="col-sm-1"><input type="button" class="ibtnDel btn btn-md btn-danger " style="padding: 1px 6px;font-weight: bold;" value="Delete"></td>';
+		        
+		        newRow.append(cols);
+		        $("#researchProgramResearchInterestTable").append(newRow);
+		       
+		        counter++; 
+	        }
 		});  
 	} 
 	

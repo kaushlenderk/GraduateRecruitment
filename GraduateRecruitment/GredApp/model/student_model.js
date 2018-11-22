@@ -144,7 +144,7 @@ function setProfile(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId);
+			   			    console.log(res.insertId); 
 			   			    result(null, res.insertId);
 			   			 }
 			   	    });
@@ -158,7 +158,7 @@ function setProfile(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId);
+			   			    console.log(res.insertId); 
 			   			    result(null, res.insertId);
 			   			 }
 		           });   
@@ -167,6 +167,21 @@ function setProfile(data,result) {
 		    }
 	 });  
 	 
+}
+
+function StudentProfileMapping()
+{
+	var sql="call CreateStudentProgramMapping()";
+	
+    db.query(sql, function (err, res) {
+	    if(err) {
+	        console.log("error: ", err);
+	        result(null, err);
+	    }
+	    else{  
+	    	console.log(" kaushlender  : " + res[0]);  
+	    }
+    }); 
 }
 
 function setEducationDetail(data,result) {  

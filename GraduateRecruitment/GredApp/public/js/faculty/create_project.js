@@ -1303,23 +1303,39 @@ $(function(){
 				$('#myCreateProjectModal').modal('show');
 			}
 			else { 
-				$('#subject_id option:not(:first)').remove();
-				
-				console.log(data);
+				 
 				var icount=0;
-				
+				 
+				$('#subject_id option').remove();
 				var select = document.getElementById("subject_id");
-				$.each(data,function(key,item){
-					if(icount==0)
-					{
-						$('#subject_id option').remove(); 
-						icount = 1;
-					}
+				
+				if(data=="")
+				{
 					var option = document.createElement("option");
-					option.text = item.coursesName;
-					option.value = item.coursesName;
+					option.text = "-select-";
+					option.value = "-select-";
 					select.appendChild(option);
-				});
+					icount = 0;
+					
+					$('#assessmentSectionDiv').addClass("hide_error");
+					$('#assessmentSectionDiv').removeClass("show_error"); 
+				}
+				else
+				{
+					$.each(data,function(key,item){
+						if(icount==0)
+						{
+							$('#subject_id option').remove(); 
+							icount = 1;
+						}
+						var option = document.createElement("option");
+						option.text = item.coursesName;
+						option.value = item.coursesName;
+						select.appendChild(option);
+					});
+					
+				}
+				
 				
 				if(icount==1)
 				{
