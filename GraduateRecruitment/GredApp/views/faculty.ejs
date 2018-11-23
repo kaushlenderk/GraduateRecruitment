@@ -50,6 +50,7 @@
 			display:flex;
 		}
 		 
+		body { padding-right: 0 !important } 
 	</style>
 </head>
 
@@ -87,7 +88,8 @@
         </div>
         <div class="row div_unactive" id="tab5">
         	<div class="col-sm-12" style="min-height:500px;">        		
-        		<h1 style="text-align: center;"><%= underConstruction %></h1>
+        		<h4 class="form-title section_header" style="text-align: left;font-weight: bold;">Communication</h4>
+        		<% include partials/template/faculty/communication.ejs %>
         	</div>
         </div>
 </div>

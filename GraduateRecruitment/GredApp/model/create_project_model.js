@@ -15,7 +15,10 @@ var modelData = {
 	setAssessmentData:setAssessmentData,
 	getAssessment:getAssessment,
 	deleteAssessment:deleteAssessment,
-	getStudentSubject:getStudentSubject
+	getStudentSubject:getStudentSubject,
+	getAllMessages:getAllMessages,
+	sendMessage:sendMessage,
+	getDistinctEmailList:getDistinctEmailList
 }
 
 /*function getDepartmentList(result) {
@@ -163,7 +166,6 @@ function setProjectDetail(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId);
 			   			    result(null, res.insertId);
 			   			 }
 			   	    });
@@ -178,7 +180,6 @@ function setProjectDetail(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId);
 			   			    result(null, res.insertId);
 			   			 }
 		           });   
@@ -207,14 +208,12 @@ function setProjectResearchDetail(data,result) {
 		    else{		    	
 		    	if(model.researchTitle!="")
 		    	{
-		    		console.log("sadsad dsa : dd" +data.projectId);
 		    		db.query("INSERT INTO projectResearchDetail set ? " ,model,function(err,res){
 			   			 if(err) {
 			   			    console.log("error: ", err);
 			   			    result(null,err);
 			   			 }
-			   			 else{
-			   			    console.log(res.insertId);
+			   			 else{ 
 			   			    result(null, res.insertId);
 			   			 }
 			   	    });
@@ -257,8 +256,7 @@ function setAssessmentData(data,result) {
 		    console.log("error: ", err);
 		    result(null,err);
 		}
-		else{
-		    console.log(res.insertId);
+		else{ 
 		    result(null, res.insertId);
 		}
    });
@@ -307,5 +305,56 @@ function deleteAssessment(data,result) {
 }
 
 /* end Assessment data */ 
+
+/** communication route **/
+
+function getDistinctEmailList(data,result)
+{
+	 db.query("SELECT munEmail FROM user WHERE active=1 and munEmail != '" + data.munEmail +"'", function (err, res) {
+		  if(err) {
+		      console.log("error: ", err);
+		      result(null, err);
+		  }
+		  else{   
+		     result(null, res);
+		  }
+	   });  
+}
+
+function getAllMessages(data,result) {  
+	db.query("SELECT DISTINCT communication.id,message_to,message_from,subject,message FROM communication " +
+			"INNER JOIN user ON trim(communication.message_to) = user.munEmail " +
+			"WHERE trim(communication.message_to) ='" + data.munEmail +"' ORDER BY communication.createdOn DESC ", function (err, res) {
+	    if(err) {
+	            console.log("error: ", err);
+	            result(null, err);
+		    }
+		    else{   
+		        result(null, res);
+		}
+	});
+};
+
+function sendMessage(data,result) {  
+	
+	var userModel={
+			"message_to":data.message_to,	
+		    "message_from":data.message_from,
+		    "subject":data.subject,
+		    "message":data.message
+	};
+	   
+	db.query("INSERT INTO communication set ?",userModel, function(err,res){
+			 if(err) {
+			    console.log("error: ", err);
+			    result(null,err);
+			 }
+			 else{ 
+			    result(null, res.insertId);
+			 }
+    });
+	 
+}
+
 
 module.exports = modelData;

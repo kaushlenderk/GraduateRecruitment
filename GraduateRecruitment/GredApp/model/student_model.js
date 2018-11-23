@@ -24,7 +24,10 @@ var studentModel = {
 	getRegisterCourses:getRegisterCourses,
 	getAssessment:getAssessment,
 	getRegisterUserDetail:getRegisterUserDetail,
-	deleteProgramResearchInterest:deleteProgramResearchInterest
+	deleteProgramResearchInterest:deleteProgramResearchInterest,
+	getAllMessages:getAllMessages,
+	sendMessage:sendMessage,
+	getDistinctEmailList:getDistinctEmailList
 }
 
 function getRegisterUserDetail(data,result)
@@ -144,7 +147,6 @@ function setProfile(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId); 
 			   			    result(null, res.insertId);
 			   			 }
 			   	    });
@@ -158,7 +160,6 @@ function setProfile(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId); 
 			   			    result(null, res.insertId);
 			   			 }
 		           });   
@@ -179,7 +180,7 @@ function StudentProfileMapping()
 	        result(null, err);
 	    }
 	    else{  
-	    	console.log(" kaushlender  : " + res[0]);  
+	    	console.log("");  
 	    }
     }); 
 }
@@ -208,7 +209,6 @@ function setEducationDetail(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId);
 			   			    result(null, res.insertId);
 			   			 }
 			   	    });
@@ -243,7 +243,6 @@ function setPublicationDetail(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId);
 			   			    result(null, res.insertId);
 			   			 }
 			   	    });
@@ -278,7 +277,6 @@ function setWorkExperienceDetail(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId);
 			   			    result(null, res.insertId);
 			   			 }
 			   	    });
@@ -321,7 +319,6 @@ function setProgramResearchInterest(data,result) {
    			    result(null,err);
    			 }
    			 else{
-   			    console.log(res.insertId);
    			    result(null, res.insertId);
    			 }
    	    });
@@ -340,7 +337,6 @@ function GetStudentOfferAdmissionDetail(data,result) {
 	        result(null, err);
 	    }
 	    else{  
-	    	console.log("res:"+res);
 	        result(null, res);
 	        
 	    }
@@ -492,6 +488,57 @@ function getAssessment(data,result) {
 		}
 	});
 };
+
+
+/** communication route **/
+
+function getDistinctEmailList(data,result)
+{
+	 db.query("SELECT munEmail FROM user WHERE active=1 and munEmail != '" + data.munEmail +"'", function (err, res) {
+		  if(err) {
+		      console.log("error: ", err);
+		      result(null, err);
+		  }
+		  else{   
+		     result(null, res);
+		  }
+	   });  
+}
+
+function getAllMessages(data,result) {  
+	db.query("SELECT DISTINCT communication.id,message_to,message_from,subject,message FROM communication " +
+			"INNER JOIN user ON trim(communication.message_to) = user.munEmail " +
+			"WHERE trim(communication.message_to) ='" + data.munEmail +"' ORDER BY communication.createdOn DESC ", function (err, res) {
+	    if(err) {
+	            console.log("error: ", err);
+	            result(null, err);
+		    }
+		    else{   
+		        result(null, res);
+		}
+	});
+};
+
+function sendMessage(data,result) {  
+	
+	var userModel={
+			"message_to":data.message_to,	
+		    "message_from":data.message_from,
+		    "subject":data.subject,
+		    "message":data.message
+	};
+	   
+	db.query("INSERT INTO communication set ?",userModel, function(err,res){
+			 if(err) {
+			    console.log("error: ", err);
+			    result(null,err);
+			 }
+			 else{ 
+			    result(null, res.insertId);
+			 }
+    });
+	 
+}
 
 module.exports = studentModel;
 

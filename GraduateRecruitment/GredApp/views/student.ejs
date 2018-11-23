@@ -50,11 +50,13 @@
 		.div_active1{
 			display:flex;
 		}
+		
+		body { padding-right: 0 !important }
 		 
 	</style>
 </head>
 
-<body> 
+<body style="padding-right:0px;"> 
 		
 <% include partials/template/header.ejs %>
 
@@ -81,7 +83,8 @@
         </div>
         <div class="row div_unactive" id="tab4">
         	<div class="col-sm-12 section_header" style="min-height:500px;">        		
-        		<h1 style="text-align: center;"><%= underConstruction %></h1>
+        		 <h4 class="form-title section_header" style="text-align: left;font-weight: bold;">Communication</h4>
+        		<% include partials/template/student/communication.ejs %>
         	</div>
         </div>
 </div>

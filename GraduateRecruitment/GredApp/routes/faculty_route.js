@@ -371,4 +371,44 @@ create_project_model.deleteAssessment(req.body, function(err, data) {
   });
 });
 /* end Assessment data */ 
+
+/** communication route **/
+
+router.post("/getDistinctEmailList",function(req,res){  
+	create_project_model.getDistinctEmailList(req.body,function(err, data) {
+		if (err){
+	    	throw err;
+	    }
+	    else{  
+	    	console.log(data);
+	    	res.json(data);	
+	    }	      
+	}); 
+});
+
+router.post("/getAllMessages",function(req,res){  
+	create_project_model.getAllMessages(req.body,function(err, data) {
+		if (err){
+	    	throw err;
+	    }
+	    else{  
+	    	console.log(data);
+	    	res.json(data);	
+	    }	      
+	}); 
+});
+
+
+router.post("/sendMessage",function(req,res){
+	create_project_model.sendMessage(req.body, function(err, data) {	    
+	    if (err){
+	    	throw err;
+	    	
+	    }else{
+	    	res.json(data);	
+	    } 
+	  });
+});
+
+
 module.exports =router; 

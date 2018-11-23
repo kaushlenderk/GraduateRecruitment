@@ -1717,4 +1717,203 @@ $(function(){
 		 
 		  
 	/* end Assessment data */ 
+		
+	/* communication section */
+
+		$.post("/getAllMessages",{
+			 munEmail : $("#userMunEmailId").val() 
+		 },fnInboxMessageList);
+			
+		 function fnInboxMessageList(data)
+		 {
+			if (typeof(data.errno) != "undefined" &&  data.errno!="") {
+				//$("#alertMessage").text(data.sqlMessage)
+			} 
+			else
+			{  
+				$("#communication_table > tbody").html("");
+				 
+				$.each(data,function(key,item){
+					var count=0; 
+					 
+					var newRow = $("<tr>");
+			        var cols = "";
+			
+			        if(item.message_to != "undefined")
+			        {
+			          cols += '<td style="display:none;"><label class="form-control education_row" name="id">' + item.id + '</label> </td>';	
+			          cols += '<td class="col-sm-2"><label class="form-control education_row" name="message_from">' + item.message_from + '</label> </td>';
+					  cols += '<td class="col-sm-3"><label class="form-control education_row" name="subject">' + item.subject	 + '</label> </td>';
+					  cols += '<td class="col-sm-5"><label class="form-control education_row" name="message">' + item.message + '</label> </td>';
+					  cols += '<td class="col-sm-1" style="text-align: right;"><input type="button" class="ibtnDelReply btn btn-md btn-success" style="padding: 1px 6px;font-weight: bold;" value="Reply" id="btnMessageReply"></td>';
+					  
+					  newRow.append(cols);
+					  $("#communication_table").append(newRow);
+					  counter++;
+			        } 
+				}); 
+			} 
+		 }
+		
+		 $("#communication_table").on("click", ".ibtnDelReply", function (event) {
+			  
+			 	event.stopImmediatePropagation();
+			 	
+				var table = document.getElementById('communication_table');
+				var $tr = $("#communication_table"); 
+				var row = $(this).closest("tr").index(); 
+				row = row;
+				 
+				var from_email_id =document.getElementById("communication_table").rows[row].cells[1].innerHTML;  
+				var subject_id =document.getElementById("communication_table").rows[row].cells[2].innerHTML;  
+				 
+				if(from_email_id.length>0)
+				{
+					from_email_id = from_email_id.replace('<label class="form-control education_row" name="message_from">','');
+					from_email_id = from_email_id.replace('</label>','');
+				}
+				
+				if(subject_id.length>0)
+				{
+					subject_id = subject_id.replace('<label class="form-control education_row" name="subject">','');
+					subject_id = subject_id.replace('</label>','');
+				}
+			
+				$("#message_to").val($.trim(from_email_id));
+				$("#subject").val(subject_id) 
+				
+				$('#myModalMessage').modal('show'); 
+		 });
+		 
+		
+		 var input = document.getElementById("message_to");
+		 var awesomplete = new Awesomplete(input, {
+		   minChars: 1, 
+		   autoFirst: false,
+		   maxItems: 10,
+		 });
+		 //awesomplete.list = ['mikea	@gmail.com','jack@gmail.coms'];
+		 awesomplete.list=[];
+		 
+		 $.post("/getDistinctEmailList",{
+			 munEmail : $("#userMunEmailId").val() 
+		 },fnDistinctEmailList)
+			
+		 function fnDistinctEmailList(data)
+		 {
+			if (typeof(data.errno) != "undefined" &&  data.errno!="") {
+				//$("#alertMessage").text(data.sqlMessage)
+			} 
+			else
+			{
+				var list = []; 
+				$.each(data,function(key,item){ 
+					 list.push(item.munEmail);
+				});
+			}
+			
+			awesomplete.list = list;
+		 }
+		 
+		 $("#sendMessageForm").submit(function(e){
+				e.preventDefault();   
+				e.stopImmediatePropagation();
+				
+				if(validateCommuncationForm())
+				{ 
+					$.post("/sendMessage",{ 
+						message_to : $("#message_to").val(),
+						message_from : $("#userMunEmailId").val(),
+						subject : $("#subject").val(),
+						message : $("textarea#comm_message").val() 
+					},fnSendMessage)
+				}
+		 });
+		 
+		 function fnSendMessage(data)
+		 { 
+			 $("#myModalMessage .close").click();
+			 $('#message_to').val("");
+			 $('#subject').val("");
+			 $('textarea#comm_message').val("");
+		 }
+		 
+		 $("#btnCommClose").click(function(){
+			 $('#CEI1').removeClass('show_error');
+			 $('#CEI1').addClass('hide_error');
+			 $('#CEI2').removeClass('show_error');
+			 $('#CEI2').addClass('hide_error');
+			 $('#CEI3').removeClass('show_error');
+			 $('#CEI3').addClass('hide_error');
+			 
+			 $('#message_to').val("");
+			 $('#subject').val("");
+			 $('textarea#comm_message').val("");
+		 });
+		 
+		 function validateCommuncationForm()
+		 {
+				var flag = true;
+
+				if ($('#message_to').val().length === 0) {
+					$('#CEI1').removeClass('hide_error');
+					$('#CEI1').addClass('show_error');
+					flag = false;
+				}
+				else {
+					$('#CEI1').removeClass('show_error');
+					$('#CEI1').addClass('hide_error');
+				}			 
+
+				if ($('#subject').val().length === 0) {
+					$('#CEI2').removeClass('hide_error');
+					$('#CEI2').addClass('show_error');
+					flag = false;
+				}
+				else {
+					$('#CEI2').removeClass('show_error');
+					$('#CEI2').addClass('hide_error');
+				}
+				 
+				if ($('textarea#comm_message').val().length === 0) {
+					$('#CEI3').removeClass('hide_error');
+					$('#CEI3').addClass('show_error');
+					flag = false;
+				}
+				else {
+					$('#CEI3').removeClass('show_error');
+					$('#CEI3').addClass('hide_error');
+				}
+				
+				if (flag == true) {
+					return true;
+				}
+				else {
+					return false;
+				}
+		 }
+		 
+		   $('#message_to').on('change',function(e){
+				if($("#message_to").val()!= null || $("#message_to").val()!= '')
+				{ 
+					 $('#CEI1').removeClass('show_error');
+					 $('#CEI1').addClass('hide_error');
+				}
+			});
+			
+			$('#subject').on('change',function(e){
+				if($("#subject").val()!= null || $("#subject").val()!= '')
+				{ 
+					$('#CEI2').removeClass('show_error');
+					$('#CEI2').addClass('hide_error');
+				}
+			});
+			
+			$('textarea#comm_message').on('change',function(e){
+				if($("textarea#comm_message").val()!= null || $("textarea#comm_message").val()!= '')
+				{ 
+					$('#CEI3').removeClass('show_error');
+					$('#CEI3').addClass('hide_error');
+				} 
+			});	 
 });

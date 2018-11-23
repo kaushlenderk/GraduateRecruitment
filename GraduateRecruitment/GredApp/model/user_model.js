@@ -103,7 +103,7 @@ function verfiyCredentials(data,result) {
 	var memorialNumber=data.memorialNumber;
     var password=data.password;
 	  
-    db.query('SELECT id as memorialNumber, firstName,lastName,email,facultyId,password FROM user WHERE id = ?',[memorialNumber], function (error, results, fields) {
+    db.query('SELECT id as memorialNumber, firstName,lastName,email,facultyId,password,munEmail FROM user WHERE id = ?',[memorialNumber], function (error, results, fields) {
     	
     	if (error) { 
               var sendData={

@@ -18,7 +18,6 @@ function GetMappedStudentProfile(data,result) {
 	        result(null, err);
 	    }
 	    else{  
-	    	console.log("res:"+res);
 	        result(null, res);
 	        
 	    }
