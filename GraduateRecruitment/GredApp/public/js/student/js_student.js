@@ -1793,7 +1793,7 @@ function validateProgramResearchInterestSection() {
 	 
 	 function fnSendMessage(data)
 	 { 
-		 $("#myModalMessage .close").click();
+		 //$("#myModalMessage .close").click();
 		 
 		 $('#message_to').val("");
 		 $('#subject').val("");

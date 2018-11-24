@@ -506,7 +506,7 @@ function getDistinctEmailList(data,result)
 }
 
 function getAllMessages(data,result) {  
-	db.query("SELECT DISTINCT communication.id,message_to,message_from,subject,message FROM communication " +
+	db.query("SELECT DISTINCT communication.id,message_to,message_from,subject,message,communication.createdOn FROM communication " +
 			"INNER JOIN user ON trim(communication.message_to) = user.munEmail " +
 			"WHERE trim(communication.message_to) ='" + data.munEmail +"' ORDER BY communication.createdOn DESC ", function (err, res) {
 	    if(err) {

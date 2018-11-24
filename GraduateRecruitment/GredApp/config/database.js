@@ -2,7 +2,8 @@ var mysql = require('mysql');
 
 /* --- local database --- */
 
- 
+
+/*
 var connection = mysql.createPool({
     connectionLimit : 1000,
     connectTimeout  : 60 * 60 * 10000,
@@ -13,12 +14,12 @@ var connection = mysql.createPool({
     password : 'Admin@1234',
     database : 'gredapp'
 })  
-
+*/
 
  
 /* --- remote database --- */
 
-/*
+
 var connection = mysql.createPool({
     connectionLimit : 1000,
     connectTimeout  : 60 * 60 * 100000,
@@ -31,7 +32,6 @@ var connection = mysql.createPool({
     database 		: 'gredapp'
 })
 
-*/
 /* connection.connect(function(err) {
     if (err) 
     {
