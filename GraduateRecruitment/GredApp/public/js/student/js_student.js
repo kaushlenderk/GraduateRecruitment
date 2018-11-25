@@ -838,7 +838,7 @@ function validateProgramResearchInterestSection() {
 					fieldOfStudy : "",
 					instituteNameAddress : "",
 					graduationDate : ""
-			},funAlertProfile)
+			},fnDeleteAction)
 				
 			$("#educationTable").find('tbody tr').each(function (i, el) {
 		        var $tds = $(this).find('td'),
@@ -864,7 +864,7 @@ function validateProgramResearchInterestSection() {
 				publicationArea : "",
 				publicationDescription : "",
 				publicationDate : ""
-			},funAlertProfile)
+			},fnDeleteAction)
 			
 			$("#publicationResearchTable").find('tbody tr').each(function (i, el) {
 		        var $tds = $(this).find('td'),
@@ -890,7 +890,7 @@ function validateProgramResearchInterestSection() {
 				position : "",
 				location : "",
 				monthOfExperience : ""
-			},funAlertProfile)
+			},fnDeleteAction)
 			
 			$("#workExperienceTable").find('tbody tr').each(function (i, el) {
 		        var $tds = $(this).find('td'),
@@ -917,22 +917,14 @@ function validateProgramResearchInterestSection() {
 				researchDescription : "",
 				skillSet:""
 			},fnDeleteAction)
-			 
-		}	
-	});
-	
-	function fnDeleteAction(data)
-	{ 
-		if (typeof(data.errno) != "undefined" &&  data.errno!="") { 
-		}
-		else { 
+			
 			$("#researchProgramResearchInterestTable").find('tbody tr').each(function (i, el) {
 		        var $tds = $(this).find('td'),
 		        program = $tds.eq(0).text(),
 		        researchArea = $tds.eq(1).text(),
 		        researchDescription = $tds.eq(2).text(),
 		        skillSet = $tds.eq(3).text(); 
-		         
+		          
 		        $.post("/researchInterest",{
 					userId : userId,
 					program : program,
@@ -942,7 +934,15 @@ function validateProgramResearchInterestSection() {
 				},funAlertProfile)
 		        	
 		    }); 
-		}
+			
+			fnFinalSubmissionAlert();
+		}	
+	});
+	
+	function fnDeleteAction(data)
+	{ 
+		if (typeof(data.errno) != "undefined" &&  data.errno!="") { 
+		} 
 	}
 	
 	function funAlertProfile(data)
@@ -951,28 +951,32 @@ function validateProgramResearchInterestSection() {
 			$("#actionProfileStudentModalMessage").text(data.sqlMessage);
 			$('#myStudentModal').modal('show');
 		}
-		else {
+		else { 
 			if(data.status==false)
 			{ 
 				$("#actionProfileStudentModalMessage").text(data.message);
 				$('#myStudentModal').modal('show');
 			}
 			else	
-			{ 
-				if(btnClick == "btnSubmitProfile")
-				{
-					$('#btnDraftProfile').addClass("hide_error");
-					$('#btnDraftProfile').removeClass("show_error");
-					$("#btnSubmitProfile").html('Update Profile');
-					$("#actionProfileStudentModalMessage").text("Profile has been successfully saved");
-					$('#myStudentModal').modal('show');
-				}
-				if(btnClick==="btnDraftProfile")
-				{
-					$("#actionProfileStudentModalMessage").text("Profile draft has been successfully saved");
-					$('#myStudentModal').modal('show');
-				}  
+			{  
 			}
+		} 
+	}
+	
+	function fnFinalSubmissionAlert()
+	{
+		if(btnClick == "btnSubmitProfile")
+		{
+			$('#btnDraftProfile').addClass("hide_error");
+			$('#btnDraftProfile').removeClass("show_error");
+			$("#btnSubmitProfile").html('Update Profile');
+			$("#actionProfileStudentModalMessage").text("Profile has been successfully saved");
+			$('#myStudentModal').modal('show');
+		}
+		if(btnClick==="btnDraftProfile")
+		{
+			$("#actionProfileStudentModalMessage").text("Profile draft has been successfully saved");
+			$('#myStudentModal').modal('show');
 		} 
 	}
 	

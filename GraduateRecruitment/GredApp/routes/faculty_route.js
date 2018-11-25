@@ -380,7 +380,6 @@ router.post("/getDistinctEmailList",function(req,res){
 	    	throw err;
 	    }
 	    else{  
-	    	console.log(data);
 	    	res.json(data);	
 	    }	      
 	}); 

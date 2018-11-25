@@ -67,7 +67,6 @@ router.post("/verfiyEmail",function(req,res){
 	    }
 	    else
 	    {  
-	       console.log(data);
 	       res.json(data);	
 	    }	      
 	}); 
@@ -81,7 +80,6 @@ router.post("/verfiyFaculty",function(req,res){
 	    }
 	    else
 	    {  
-	       console.log(data);
 	       res.json(data);	
 	    }	      
 	}); 

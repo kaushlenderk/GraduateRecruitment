@@ -311,8 +311,12 @@ function setProgramResearchInterest(data,result) {
 		    "skillSet":data.skillSet 
 	};
 	
+	console.log("Model 1 :"+ userModel.program);
 	if(userModel.program!="")
 	{
+		console.log("Model 2 :"+ userModel);
+		
+		
 		db.query("INSERT INTO programResearchInterest set ? " ,userModel,function(err,res){
    			 if(err) {
    			    console.log("error: ", err);

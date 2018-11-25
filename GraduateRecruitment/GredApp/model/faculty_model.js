@@ -116,7 +116,6 @@ function setProfile(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId);
 			   			    result(null, res.insertId);
 			   			 }
 			   	    });
@@ -130,7 +129,6 @@ function setProfile(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId);
 			   			    result(null, res.insertId);
 			   			 }
 		           });   
@@ -165,7 +163,6 @@ function setEducationDetail(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId);
 			   			    result(null, res.insertId);
 			   			 }
 			   	    });
@@ -200,7 +197,6 @@ function setPublicationDetail(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId);
 			   			    result(null, res.insertId);
 			   			 }
 			   	    });
@@ -235,7 +231,6 @@ function setWorkExperienceDetail(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId);
 			   			    result(null, res.insertId);
 			   			 }
 			   	    });
@@ -269,7 +264,6 @@ function setProgramResearchInterest(data,result) {
 			   			    result(null,err);
 			   			 }
 			   			 else{
-			   			    console.log(res.insertId);
 			   			    result(null, res.insertId);
 			   			 }
 			   	    });

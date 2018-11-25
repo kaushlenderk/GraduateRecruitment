@@ -998,8 +998,7 @@ $(function(){
 			 
 			$.each(data,function(key,item){
 				var count=0; 
-				
-				console.log(item);
+				 
 				var newRow = $("<tr>");
 		        var cols = "";
 		
