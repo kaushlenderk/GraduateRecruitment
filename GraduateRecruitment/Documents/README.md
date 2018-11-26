@@ -14,21 +14,27 @@ The system is also going to be responsible for handling all future communication
 and handling functionalities such as offering the formal accept or decline letter to the students and monitoring the progress of the 
 student throughout the life of his/her program.
 
+## Website Flow
+
+	 # Website home page accessible to all users.
+	 # User can register as a student or faculty to access individual personalize page (using student or faculty link button available on menu bar)
+
+
 ## Git Hub Folder Structure
 
      # GraduateRecritment
      
         # Documents: 
-              -	Assignment  documents
-              - Website Test documents
+              -	Assignment and Final Project  documents
+              - 	Website Test documents
 
         # GredApp (application folder):
               -	Node_modules (node packages)
               -	Public (website public files like image and css)
               -	Routes (GredApp website site routing files)
               -	Views (website html page)
-              - Model
-              - config
+              - 	Model (Business Logic)
+              - 	config (Database configuration)
 
 ## GitHub and Website Link:
 
