@@ -1262,7 +1262,7 @@ $(function(){
 				 
 				$('#assignment_id option')[0].selected = true; 
 		        $("#point_id").val("");
-		        $("#point_id").val("");
+		        $("#point_id1").val("");
 		        $("#project_grade_id").val("");
 		        $("#feedback_id").val("");
 		        
