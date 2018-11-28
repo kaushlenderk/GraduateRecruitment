@@ -43,6 +43,16 @@ student throughout the life of his/her program.
 
         #  Git Hub Link:
                - https://github.com/kaushlenderk/GraduateRecruitment
+
+## Test User Account:
+	# Faculty
+		UserId: 1016
+		Password: test
+	# Student
+		UserId: 1018	
+		Password: test
+		
+	Note: To signup as a new faculty, please pass (1111 or 2222) as faculty id on signup page.
                
 ## Project contribution:
 
